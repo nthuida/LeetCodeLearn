@@ -28,7 +28,6 @@ public class IsSymmetric {
         StringBuilder stringBuilder = new StringBuilder();
         midOrder(root,stringBuilder);
         String midOrder = stringBuilder.toString();
-        System.out.println(stringBuilder.toString());
         String reverse = new StringBuffer(stringBuilder).reverse().toString();
         return midOrder.equals(reverse);
     }
@@ -43,8 +42,8 @@ public class IsSymmetric {
     /**
      * 递归
      * 如果同时满足下面的条件，两个树互为镜像：
-     * 它们的两个根结点具有相同的值。
-     * 每个树的右子树都与另一个树的左子树镜像对称
+     * 1、它们的两个根结点具有相同的值。
+     * 2、每个树的右子树都与另一个树的左子树镜像对称
      * @param root
      * @return
      */

@@ -10,6 +10,7 @@ package com.maomao.test.tree;
 public class IsSameTree {
     /**
      * 递归 :找到退出条件
+     * 值相等，且左右子树叶相等
      * @param p
      * @param q
      * @return

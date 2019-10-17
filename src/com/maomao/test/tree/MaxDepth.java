@@ -34,4 +34,25 @@ public class MaxDepth {
         int right = maxDepth(root.right);
         return left > right ? left + 1 : right + 1;
     }
+
+    /**
+     * 树的最小深度
+     * @param root
+     * @return
+     */
+    public int minDepth(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        //右子树为空，代表没有路径，计算左子树的，和最大深度不一样
+        if (root.right == null) {
+            return minDepth(root.left) + 1;
+        }
+        if (root.left == null) {
+            return minDepth(root.right) + 1;
+        }
+        int left = minDepth(root.left);
+        int right = minDepth(root.right);
+        return left < right ? left + 1 : right + 1;
+    }
 }

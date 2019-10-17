@@ -28,7 +28,7 @@ import java.util.*;
 public class LevelOrderBottom {
 
     /**
-     * 从上到下层序遍历，在反转
+     * 从上到下层序遍历，放入队列中，在反转
      * @param root
      * @return
      */
