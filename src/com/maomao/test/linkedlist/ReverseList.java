@@ -33,12 +33,30 @@ public class ReverseList {
         return reverseHead;
     }
 
+    /**
+     * 非递归
+     * @param head
+     * @return
+     */
+    public ListNode reverseList1(ListNode head) {
+        //链表原地反转
+        ListNode prev = null;
+        while (head != null) {
+            ListNode temp = head.next;
+            head.next = prev;
+            prev = head;
+            head = temp;
+        }
+        return prev;
+    }
+
+
     public static void main(String[] args) {
         LinkList linkList = new LinkList();
         linkList.addNode(1);
         linkList.addNode(9);
         linkList.addNode(2);
-        ListNode headNode = new ReverseList().reverseList(linkList.getHead());
+        ListNode headNode = new ReverseList().reverseList1(linkList.getHead());
         linkList.setHead(headNode);
         linkList.printList();
     }
