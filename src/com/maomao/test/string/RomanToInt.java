@@ -77,6 +77,33 @@ public class RomanToInt {
         return sum;
     }
 
+    /**
+     * 给定一个整数，将其转为罗马数字。输入确保在 1 到 3999 的范围内。
+     *
+     *目的是“分解的整数个数”尽可能少，因此，对于这道问题，类似于用最少的纸币凑成一个整数，贪心算法的规则如下：
+     *每一步都使用当前较大的罗马数字作为加法因子，最后得到罗马数字表示就是长度最少的。
+     * @param num
+     * @return
+     */
+    public String intToRoman(int num) {
+        // 把阿拉伯数字与罗马数字可能出现的所有情况和对应关系，放在两个数组中
+        // 并且按照阿拉伯数字的大小降序排列，这是贪心选择思想
+        int[] nums = {1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
+        String[] romans = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
+
+        StringBuilder stringBuilder = new StringBuilder();
+        int index = 0;
+        while (index < 13) {
+            while (num >= nums[index]) {
+                // 注意：这里是等于号，表示尽量使用大的"面值"
+                stringBuilder.append(romans[index]);
+                num -= nums[index];
+            }
+            index++;
+        }
+        return stringBuilder.toString();
+    }
+
     public static void main(String[] args) {
         RomanToInt romanToInt = new RomanToInt();
         System.out.println(romanToInt.romanToInt("MCMXCIV"));
