@@ -1,4 +1,4 @@
-package com.maomao.test;
+package com.maomao.test.mutiThread;
 
 import java.util.concurrent.CountDownLatch;
 

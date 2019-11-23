@@ -9,7 +9,6 @@ import java.util.Map;
  * 你可以假设数组是非空的，并且给定的数组总是存在众数。
  *
  * 示例 1:
- *
  * 输入: [3,2,3]
  * 输出: 3
  *
@@ -17,6 +16,11 @@ import java.util.Map;
  * @Date 2019/10/28
  */
 public class MajorityElement {
+    /**
+     * map计数
+     * @param nums
+     * @return
+     */
     public int majorityElement(int[] nums) {
         int length = nums.length;
         Map<Integer, Integer> map = new HashMap<>(length);
