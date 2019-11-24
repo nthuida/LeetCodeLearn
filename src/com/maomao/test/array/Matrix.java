@@ -25,7 +25,7 @@ public class Matrix {
     }
 
     /**
-     * 打印外环矩阵
+     * 打印外环矩阵:每次打印四个边
      * @param matrix
      * @param leftUpRow
      * @param leftUpColumn
@@ -46,18 +46,19 @@ public class Matrix {
         } else {
             int tempRow = leftUpRow;
             int tempColumn = leftUpColumn;
+            //上边
             while (tempColumn != rightDownColumn) {
                 System.out.print(matrix[leftUpRow][tempColumn++] + " ,");
             }
-
+            //右边
             while (tempRow != rightDownRow) {
                 System.out.print(matrix[tempRow++][rightDownColumn] + " ,");
             }
-
+            //下边
             while (tempColumn != leftUpColumn) {
                 System.out.print(matrix[rightDownRow][tempColumn--] + " ,");
             }
-
+            //左边
             while (tempRow != leftUpRow) {
                 System.out.print(matrix[tempRow--][leftUpColumn] + " ,");
             }
@@ -70,7 +71,8 @@ public class Matrix {
      *  5  6  7  8
      *  9  10 11 12
      *  13 14 15 16
-     *    结果：1,5,2,9,6,3,13,10,7,4,14,11,8,15,12,16
+     *
+     *  结果：1,5,2,9,6,3,13,10,7,4,14,11,8,15,12,16
      * @param matrix
      */
     public void leftPrint(int[][] matrix) {
@@ -98,7 +100,7 @@ public class Matrix {
     }
 
     /**
-     *
+     * 对角线打印，右上角开始
      * @param matrix
      */
     public void rightPrint(int[][] matrix) {
