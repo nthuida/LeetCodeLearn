@@ -5,13 +5,13 @@ package com.maomao.test.linkedlist;
  * @date 2019/3/6
  */
 public class LinkList {
-    private ListNode head;
+    private LinkedListNode head;
 
-    public ListNode getHead() {
+    public LinkedListNode getHead() {
         return head;
     }
 
-    public void setHead(ListNode head) {
+    public void setHead(LinkedListNode head) {
         this.head = head;
     }
 
@@ -20,12 +20,12 @@ public class LinkList {
      * @param data
      */
     public void addNode(int data) {
-        ListNode nextNode = new ListNode(data);
+        LinkedListNode nextNode = new LinkedListNode(data);
         if (head == null) {
             head = nextNode;
             return;
         }
-        ListNode temp = head;
+        LinkedListNode temp = head;
         //找到最后一个节点
         while (temp.getNext() != null) {
             temp = temp.getNext();
@@ -48,8 +48,8 @@ public class LinkList {
         }
 
         int i = 2;
-        ListNode preNode = head;
-        ListNode curNode = preNode.getNext();
+        LinkedListNode preNode = head;
+        LinkedListNode curNode = preNode.getNext();
         while (curNode != null) {
             if (i == index) {
                 preNode.setNext(curNode.getNext());
@@ -69,7 +69,7 @@ public class LinkList {
      */
     public int length() {
         int len = 0;
-        ListNode temp = head;
+        LinkedListNode temp = head;
         while (temp != null) {
             len++;
             temp = temp.getNext();
@@ -78,17 +78,17 @@ public class LinkList {
     }
 
     public void printList() {
-        ListNode temp = head;
+        LinkedListNode temp = head;
         while (temp != null) {
             System.out.println(temp.getData());
             temp = temp.getNext();
         }
     }
 
-    public static void printList(ListNode listNode) {
-        while (listNode != null) {
-            System.out.println(listNode.getData());
-            listNode = listNode.getNext();
+    public static void printList(LinkedListNode linkedListNode) {
+        while (linkedListNode != null) {
+            System.out.println(linkedListNode.getData());
+            linkedListNode = linkedListNode.getNext();
         }
     }
 
@@ -96,7 +96,7 @@ public class LinkList {
      * 删除指定节点
      * @param node
      */
-    public void deleteNode(ListNode node) {
+    public void deleteNode(LinkedListNode node) {
         if (node == null || node.next == null) {
             return;
         }
@@ -110,8 +110,8 @@ public class LinkList {
         linkList.addNode(1);
         linkList.addNode(3);
         linkList.addNode(9);
-        ListNode listNode = linkList.getHead();
-        linkList.deleteNode(listNode);
+        LinkedListNode linkedListNode = linkList.getHead();
+        linkList.deleteNode(linkedListNode);
         linkList.printList();
     }
  }

@@ -1,4 +1,4 @@
-package com.maomao.test.list;
+package com.maomao.test.linkedlist;
 
 /**
  * 移除链表元素

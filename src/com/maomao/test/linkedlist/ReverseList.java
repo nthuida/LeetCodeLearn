@@ -17,17 +17,17 @@ public class ReverseList {
      * @param head
      * @return
      */
-    public ListNode reverseList(ListNode head) {
+    public LinkedListNode reverseList(LinkedListNode head) {
         //如果没有结点或者只有一个结点直接返回Head
         if (head == null || head.next == null) {
             return head;
         }
         //当前结点的下一结点
-        ListNode next = head.next;
+        LinkedListNode next = head.next;
         //头结点变为尾结点
         head.next = null;
         //递归结束时reverseHead一定是新链表的头结点
-        ListNode reverseHead = reverseList(next);
+        LinkedListNode reverseHead = reverseList(next);
         //当前节点指向前一节点
         next.next = head;
         return reverseHead;
@@ -38,11 +38,11 @@ public class ReverseList {
      * @param head
      * @return
      */
-    public ListNode reverseList1(ListNode head) {
+    public LinkedListNode reverseList1(LinkedListNode head) {
         //链表原地反转
-        ListNode prev = null;
+        LinkedListNode prev = null;
         while (head != null) {
-            ListNode temp = head.next;
+            LinkedListNode temp = head.next;
             head.next = prev;
             prev = head;
             head = temp;
@@ -56,7 +56,7 @@ public class ReverseList {
         linkList.addNode(1);
         linkList.addNode(9);
         linkList.addNode(2);
-        ListNode headNode = new ReverseList().reverseList1(linkList.getHead());
+        LinkedListNode headNode = new ReverseList().reverseList1(linkList.getHead());
         linkList.setHead(headNode);
         linkList.printList();
     }

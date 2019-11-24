@@ -11,9 +11,9 @@ public class HasCycle {
      * @param head
      * @return
      */
-    public boolean hasCycle(ListNode head) {
-        ListNode fast = head;
-        ListNode slow = head;
+    public boolean hasCycle(LinkedListNode head) {
+        LinkedListNode fast = head;
+        LinkedListNode slow = head;
         while (fast != null && fast.next != null) {
             fast = fast.next.next;
             slow = slow.next;

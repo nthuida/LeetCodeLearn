@@ -22,8 +22,8 @@ public class DeleteDuplicates {
      * @param head
      * @return
      */
-    public ListNode deleteDuplicates(ListNode head) {
-        ListNode current = head;
+    public LinkedListNode deleteDuplicates(LinkedListNode head) {
+        LinkedListNode current = head;
         while (current != null && current.next != null) {
             if (current.next.data == current.data) {
                 current.next = current.next.next;
@@ -35,13 +35,14 @@ public class DeleteDuplicates {
     }
 
     /**
+     * set判断元素是否存在，前置节点来去重
      * 时间复杂度：O(n)  链表未排序
      * @param head
      * @return
      */
-    public ListNode deleteDuplicates1(ListNode head) {
-        ListNode temp = head;
-        ListNode pre = null;
+    public LinkedListNode deleteDuplicates1(LinkedListNode head) {
+        LinkedListNode temp = head;
+        LinkedListNode pre = null;
         Set<Integer> set = new HashSet<>();
         while (temp != null) {
             if (set.contains(temp.data)) {
@@ -66,7 +67,7 @@ public class DeleteDuplicates {
         linkList.addNode(3);
         linkList.addNode(3);
 
-        ListNode headNode = new DeleteDuplicates().deleteDuplicates(linkList.getHead());
+        LinkedListNode headNode = new DeleteDuplicates().deleteDuplicates(linkList.getHead());
         linkList.setHead(headNode);
         linkList.printList();
 
@@ -78,7 +79,7 @@ public class DeleteDuplicates {
         linkList1.addNode(3);
         linkList1.addNode(1);
 
-        ListNode headNode1 = new DeleteDuplicates().deleteDuplicates1(linkList1.getHead());
+        LinkedListNode headNode1 = new DeleteDuplicates().deleteDuplicates1(linkList1.getHead());
         linkList.setHead(headNode1);
         linkList.printList();
     }

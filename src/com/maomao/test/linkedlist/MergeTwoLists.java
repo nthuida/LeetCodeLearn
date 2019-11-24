@@ -16,10 +16,10 @@ public class MergeTwoLists {
      * @param l2
      * @return
      */
-    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+    public LinkedListNode mergeTwoLists(LinkedListNode l1, LinkedListNode l2) {
         //初始化
-        ListNode headNode = new ListNode(0);
-        ListNode cur = headNode;
+        LinkedListNode headNode = new LinkedListNode(0);
+        LinkedListNode cur = headNode;
         while (l1 != null && l2 != null) {
             if (l1.data <= l2.data) {
                 cur.next = l1;
@@ -58,7 +58,7 @@ public class MergeTwoLists {
         linkList1.addNode(2);
         linkList1.addNode(3);
         linkList1.addNode(6);
-        ListNode headNode = new MergeTwoLists().mergeTwoLists(linkList.getHead(), linkList1.getHead());
+        LinkedListNode headNode = new MergeTwoLists().mergeTwoLists(linkList.getHead(), linkList1.getHead());
         linkList.setHead(headNode);
         linkList.printList();
     }
