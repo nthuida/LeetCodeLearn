@@ -4,9 +4,7 @@ package com.maomao.test.tree;
  * 翻转二叉树
  *
  * 翻转一棵二叉树。
- *
  * 示例：
- *
  * 输入：
  *
  *      4

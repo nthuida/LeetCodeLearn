@@ -17,29 +17,6 @@ package com.maomao.test.tree;
 public class IsSymmetric {
 
     /**
-     * 中序遍历 不行 比如[1,2,2,2,null,2],它不对称，但它回文
-     * @param root
-     * @return
-     */
-    public boolean isSymmetric1(TreeNode root) {
-        if (root == null) {
-            return false;
-        }
-        StringBuilder stringBuilder = new StringBuilder();
-        midOrder(root,stringBuilder);
-        String midOrder = stringBuilder.toString();
-        String reverse = new StringBuffer(stringBuilder).reverse().toString();
-        return midOrder.equals(reverse);
-    }
-    public void midOrder(TreeNode node, StringBuilder stringBuilder) {
-        if (node != null) {
-            midOrder(node.left, stringBuilder);
-            stringBuilder.append(node.val);
-            midOrder(node.right,stringBuilder);
-        }
-    }
-
-    /**
      * 递归
      * 如果同时满足下面的条件，两个树互为镜像：
      * 1、它们的两个根结点具有相同的值。

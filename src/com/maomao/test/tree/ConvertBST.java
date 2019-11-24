@@ -16,14 +16,6 @@ package com.maomao.test.tree;
  *           20     13
  */
 public class ConvertBST {
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-        TreeNode(int x) { val = x; }
-    }
-
     public int rightSum = 0;
 
     /**

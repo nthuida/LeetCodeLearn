@@ -20,8 +20,9 @@ package com.maomao.test.tree;
 public class SumOfLeftLeaves {
 
     /**
-     * 递归：1、左子树的和加上右子树的和
-     *       2、怎么求左子叶的和：左子树为叶子节点，返回右子树的左叶子和 + 左子叶的值
+     * 递归
+     * 1、左子树的和加上右子树的和
+     * 2、怎么求左子叶的和：左子树为叶子节点，返回右子树的左叶子和 + 左子叶的值
      * @param root
      * @return
      */
