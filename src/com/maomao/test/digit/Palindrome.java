@@ -22,6 +22,7 @@ package com.maomao.test.digit;
 public class Palindrome {
 
     /**
+     * 解法一
      * @param x
      * @return
      */
@@ -29,5 +30,42 @@ public class Palindrome {
         String origin = x + "";
         String reverse = new StringBuffer(origin).reverse().toString();
         return origin.equals(reverse);
+    }
+
+    /**
+     * 通过取整和取余操作获取整数中对应的数字进行比较。
+     *
+     * 举个例子：1221 这个数字。
+     * - 通过计算 1221 / 1000， 得首位1
+     * - 通过计算 1221 % 10， 可得末位 1
+     * - 进行比较
+     * - 再将 22 取出来继续比较
+     * @param x
+     * @return
+     */
+    public boolean isPalindrome1(int x) {
+        if (x < 0) {
+            return false;
+        }
+        while (x > 0) {
+            //被除数
+            int div = 1;
+            while (x/div >=10) {
+                div *= 10;
+            }
+            int left = x / div;
+            int right = x % 10;
+            if (left != right) {
+                return false;
+            }
+            //取中间的数
+            x = x % div /10;
+        }
+
+        return true;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new Palindrome().isPalindrome1(12));
     }
 }
