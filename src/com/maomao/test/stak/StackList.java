@@ -10,7 +10,6 @@ import java.util.LinkedList;
 public class StackList<E> {
 
     private LinkedList<E> list = new LinkedList<E>();
-
     //入栈
     public void push(E e){
         list.addFirst(e);
@@ -29,11 +28,6 @@ public class StackList<E> {
     //判空
     public boolean empty(){
         return list.isEmpty();
-    }
-
-    //打印栈元素
-    public String toString(){
-        return list.toString();
     }
 
     public static void main(String[] args) {
