@@ -5,7 +5,7 @@ package com.maomao.test.stak;
  * @author Administrator
  * @date 2019/3/17
  */
-public class StackList1<E> {
+public class StackOfLinked<E> {
     private class Node<E>{
         E data;
         Node<E> next;
@@ -18,7 +18,7 @@ public class StackList1<E> {
     private Node<E> top;
     private int size;
 
-    public StackList1(){
+    public StackOfLinked(){
         top = null;
     }
 
@@ -64,7 +64,7 @@ public class StackList1<E> {
     }
 
     public static void main(String[] args) {
-        StackList1<String> stack = new StackList1<>();
+        StackOfLinked<String> stack = new StackOfLinked<>();
         System.out.println(stack.size);
         System.out.println(stack.empty());
         stack.push("a");

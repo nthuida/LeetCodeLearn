@@ -1,4 +1,4 @@
-package com.maomao.test;
+package com.maomao.test.other;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

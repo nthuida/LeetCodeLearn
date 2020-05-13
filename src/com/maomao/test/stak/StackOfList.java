@@ -7,7 +7,7 @@ import java.util.LinkedList;
  * @author Administrator
  * @date 2019/3/17
  */
-public class StackList<E> {
+public class StackOfList<E> {
 
     private LinkedList<E> list = new LinkedList<E>();
     //入栈
@@ -31,9 +31,9 @@ public class StackList<E> {
     }
 
     public static void main(String[] args) {
-        StackList<String> stackList = new StackList<>();
-        stackList.push("fakjkljsa");
-        stackList.push("dd");
-        System.out.println(stackList.toString());
+        StackOfList<String> stackOfList = new StackOfList<>();
+        stackOfList.push("fakjkljsa");
+        stackOfList.push("dd");
+        System.out.println(stackOfList.toString());
     }
 }
