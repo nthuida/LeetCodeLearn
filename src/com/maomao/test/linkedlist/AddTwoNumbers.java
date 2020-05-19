@@ -21,7 +21,7 @@ public class AddTwoNumbers {
      * @param l2
      * @return
      */
-    public LinkedListNode addTwoNumbers(LinkedListNode l1, LinkedListNode l2) {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         if (l1 == null) {
             return l2;
         }
@@ -29,15 +29,15 @@ public class AddTwoNumbers {
             return l1;
         }
 
-        LinkedListNode headNode = new LinkedListNode(0);
-        LinkedListNode cur = headNode;
+        ListNode headNode = new ListNode(0);
+        ListNode cur = headNode;
         //进位
         int plus = 0;
         while (l1 != null && l2 != null) {
-            int data =  l1.data + l2.data + plus;
+            int data =  l1.val + l2.val + plus;
             plus = data/10;
             int mod = data%10;
-            LinkedListNode node = new LinkedListNode(mod);
+            ListNode node = new ListNode(mod);
             l1 = l1.next;
             l2 = l2.next;
             cur.next = node;
@@ -46,27 +46,27 @@ public class AddTwoNumbers {
 
         //剩余的l1
         while (l1 != null) {
-            int data =  l1.data  + plus;
+            int data =  l1.val  + plus;
             plus = data/10;
             int mod = data%10;
-            LinkedListNode node = new LinkedListNode(mod);
+            ListNode node = new ListNode(mod);
             l1 = l1.next;
             cur.next = node;
             cur = cur.next;
         }
         //剩余的l2
         while (l2 != null) {
-            int data =  l2.data  + plus;
+            int data =  l2.val  + plus;
             plus = data/10;
             int mod = data%10;
-            LinkedListNode node = new LinkedListNode(mod);
+            ListNode node = new ListNode(mod);
             l2 = l2.next;
             cur.next = node;
             cur = cur.next;
         }
 
         if (plus ==1) {
-            LinkedListNode node = new LinkedListNode(1);
+            ListNode node = new ListNode(1);
             cur.next = node;
 
         }
@@ -74,16 +74,64 @@ public class AddTwoNumbers {
         return headNode.next;
     }
 
+    /**
+     * 给你两个 非空 链表来代表两个非负整数。数字最高位位于链表开始位置。它们的每个节点只存储一位数字。将这两数相加会返回一个新的链表。
+     * 你可以假设除了数字 0 之外，这两个数字都不会以零开头。
+     *
+     * 示例：
+     * 输入：(7 -> 2 -> 4 -> 3) + (5 -> 6 -> 4)
+     * 输出：7 -> 8 -> 0 -> 7
+     *
+     * @param l1
+     * @param l2
+     * @return
+     */
+    public ListNode addTwoNumbers1(ListNode l1, ListNode l2) {
+        if (l1 == null) {
+            return l2;
+        }
+        if (l2 == null) {
+            return l1;
+        }
+        ListNode reverse1 = reverseList(l1);
+        ListNode reverse2 = reverseList(l2);
+        ListNode result = addTwoNumbers(reverse1, reverse2);
+        return reverseList(result);
+    }
+
+    public ListNode reverseList(ListNode head) {
+        //链表原地反转
+        ListNode prev = null;
+        while (head != null) {
+            ListNode temp = head.next;
+            head.next = prev;
+            prev = head;
+            head = temp;
+        }
+        return prev;
+    }
+
     public static void main(String[] args) {
-        LinkList linkList = new LinkList();
-        linkList.addNode(5);
+        ListNode l1 = new ListNode(7);
+        ListNode l2 = new ListNode(2);
+        l1.next = l2;
+        ListNode l3 = new ListNode(4);
+        l2.next = l3;
+        ListNode l4 = new ListNode(3);
+        l3.next = l4;
 
-        LinkList linkList1 = new LinkList();
-        linkList1.addNode(5);
+        ListNode l5 = new ListNode(5);
+        ListNode l6 = new ListNode(6);
+        l5.next = l6;
+        ListNode l7 = new ListNode(4);
+        l6.next = l7;
 
-        LinkedListNode headNode = new AddTwoNumbers().addTwoNumbers(linkList.getHead(), linkList1.getHead());
+        ListNode addResult = new AddTwoNumbers().addTwoNumbers1(l1, l5);
+        while (addResult != null) {
+            System.out.println(addResult.val);
+            addResult = addResult.next;
+        }
 
-        linkList.setHead(headNode);
-        linkList.printList();
+
     }
 }
