@@ -40,8 +40,10 @@ public class FindTheLongestSubstring {
      */
     public int findTheLongestSubstring(String s) {
         int n = s.length();
-        int[] pos = new int[1 << 5];//5个元音字母，就是00000-11111，2^5种情况，或者叫状态
-        Arrays.fill(pos, -1);//用-1填充是怕00000这种情况，避免混淆
+        //5个元音字母，就是00000-11111，2^5种情况，或者叫状态
+        int[] pos = new int[1 << 5];
+        //用-1填充是怕00000这种情况，避免混淆
+        Arrays.fill(pos, -1);
         int ans = 0, status = 0;
         pos[0] = 0;
         for (int i = 0; i < n; i++) {
