@@ -78,4 +78,9 @@ public class FindTheLongestSubstring {
         }
         return ans;
     }
+
+    public static void main(String[] args) {
+        String s = "ell";
+        System.out.println(new FindTheLongestSubstring().findTheLongestSubstring(s));
+    }
 }
