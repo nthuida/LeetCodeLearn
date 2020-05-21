@@ -1,6 +1,7 @@
 package com.maomao.test.string;
 
 /**
+ * 最长回文子串
  * 给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。
  *
  * 示例 1：
@@ -15,18 +16,17 @@ package com.maomao.test.string;
 public class LongestPalindrome {
 
     /**
-     * 方法四：中心扩展算法
-
-     * 我们观察到回文中心的两侧互为镜像。因此，回文可以从它的中心展开，并且只有 2n - 1个这样的中心。
+     * 中心扩展算法
      *
-     * 你可能会问，为什么会是 2n - 1个，而不是 n个中心？原因在于所含字母数为偶数的回文的中心可以处于两字母之间（例如 {“abba”}“abba” 的中心在两个 {‘b’}‘b’ 之间）。
+     * 我们观察到回文中心的两侧互为镜像。因此，回文可以从它的中心展开，并且只有 2n - 1个这样的中心。
+     * 由于存在奇数的字符串和偶数的字符串，所以我们需要从一个字符开始扩展，或者从两个字符之间开始扩展，所以总共有 n+n-1 个中心
      *
      * @param s
      * @return
      */
     public String longestPalindrome(String s) {
-        if(s == null) {
-            return "";
+        if(s == null || s.length() == 0) {
+            return s;
         }
         int start = 0, end = 0;
         for (int i = 0; i < s.length(); i++) {
@@ -53,15 +53,15 @@ public class LongestPalindrome {
      * @return
      */
     private int expandAroundCenter(String s, int left, int right) {
-        int L = left, R = right;
-        while (L >= 0 && R < s.length() && s.charAt(L) == s.charAt(R)) {
-            L--;
-            R++;
+        int start = left, end = right;
+        while (start >= 0 && end < s.length() && s.charAt(start) == s.charAt(end)) {
+            start--;
+            end++;
         }
-        return R - L - 1;
+        return end - start - 1;
     }
 
     public static void main(String[] args) {
-        System.out.println(new LongestPalindrome().longestPalindrome("cbbd"));
+        System.out.println(new LongestPalindrome().longestPalindrome(""));
     }
 }
