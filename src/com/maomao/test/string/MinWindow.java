@@ -54,6 +54,7 @@ public class MinWindow {
                     res = s.substring(left, right+1);
                 }
                 ch = s.charAt(left);
+                //左边缩小窗口
                 if (ori[ch] > 0 && ori[ch] >= window[ch]) {
                     count--;
                 }
