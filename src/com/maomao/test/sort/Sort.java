@@ -62,6 +62,14 @@ public class Sort {
         return low;
     }
 
+    /**
+     * 归并排序
+     * @param array
+     */
+    public void mergeSort(int[] array) {
+        //TODO
+    }
+
     public static void main(String[] args) {
         int[] a = {3,43,2,56,7};
         bubbleSort(a);
