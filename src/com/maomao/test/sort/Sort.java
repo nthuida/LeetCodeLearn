@@ -48,11 +48,11 @@ public class Sort {
         //基准元素
         int temp = arrary[low];
         while (low < high) {
-            while (low < high && arrary[high] > temp) {
+            while (low < high && arrary[high] >= temp) {
                 high--;
             }
             arrary[low] = arrary[high];
-            while (low < high && arrary[low] < temp) {
+            while (low < high && arrary[low] <= temp) {
                 low++;
             }
             arrary[high] = arrary[low];
