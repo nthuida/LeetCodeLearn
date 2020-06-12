@@ -1,7 +1,6 @@
 package com.maomao.test.string;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * 单词接龙II
@@ -42,7 +41,139 @@ import java.util.List;
 public class FindLadders {
 
     public List<List<String>> findLadders(String beginWord, String endWord, List<String> wordList) {
-        //todo
-        return new ArrayList<>();
+        // 结果集
+        List<List<String>> res = new ArrayList<>();
+        Set<String> distSet = new HashSet<>(wordList);
+        // 字典中不包含目标单词
+        if (!distSet.contains(endWord)) {
+            return res;
+        }
+        // 已经访问过的单词集合：只找最短路径，所以之前出现过的单词不用出现在下一层
+        Set<String> visited = new HashSet<>();
+        // 累积每一层的结果队列
+        Queue<List<String>> queue= new LinkedList<>();
+        List<String> list = new ArrayList<>(Arrays.asList(beginWord));
+        queue.add(list);
+        visited.add(beginWord);
+        // 是否到达符合条件的层：如果该层添加的某一单词符合目标单词，则说明截止该层的所有解为最短路径，停止循环
+        boolean flag = false;
+        while (!queue.isEmpty() && !flag) {
+            // 上一层的结果队列
+            int size = queue.size();
+            // 该层添加的所有元素：每层必须在所有结果都添加完新的单词之后，再将这些单词统一添加到已使用单词集合
+            // 如果直接添加到 visited 中，会导致该层本次结果添加之后的相同添加行为失败
+            // 如：该层遇到目标单词，有两条路径都可以遇到，但是先到达的将该单词添加进 visited 中，会导致第二条路径无法添加
+            Set<String> subVisited = new HashSet<>();
+            for (int i = 0; i < size; i++) {
+                List<String> path = queue.poll();
+                // 获取该路径上一层的单词
+                String word = path.get(path.size() - 1);
+                char[] chars = word.toCharArray();
+                // 寻找该单词的下一个符合条件的单词
+                for (int j = 0; j < chars.length; j++) {
+                    char temp = chars[j];
+                    for (char ch = 'a'; ch <= 'z'; ch++) {
+                        chars[j] = ch;
+                        if (temp == ch) {
+                            continue;
+                        }
+                        String str = new String(chars);
+                        // 符合条件：在 wordList 中 && 之前的层没有使用过
+                        if (distSet.contains(str) && !visited.contains(str)) {
+                            // 生成新的路径
+                            List<String> pathList = new ArrayList<>(path);
+                            pathList.add(str);
+                            // 如果该单词是目标单词：将该路径添加到结果集中，查询截止到该层
+                            if (str.equals(endWord)) {
+                                flag = true;
+                                res.add(pathList);
+                            }
+                            // 将该路径添加到该层队列中
+                            queue.add(pathList);
+                            // 将该单词添加到该层已访问的单词集合中
+                            subVisited.add(str);
+                        }
+                    }
+                    chars[j] = temp;
+                }
+            }
+            // 将该层所有访问的单词添加到总的已访问集合中
+            visited.addAll(subVisited);
+        }
+        return res;
     }
+
+    public List<List<String>> findLaddersII(String beginWord, String endWord, List<String> wordList) {
+        List<List<String>> ans = new ArrayList<>();
+        // 如果不含有结束单词，直接结束，不然后边会造成死循环
+        if (!wordList.contains(endWord)) {
+            return ans;
+        }
+        bfs(beginWord, endWord, wordList, ans);
+        return ans;
+    }
+
+    public void bfs(String beginWord, String endWord, List<String> wordList, List<List<String>> ans) {
+        Queue<List<String>> queue = new LinkedList<>();
+        List<String> path = new ArrayList<>();
+        path.add(beginWord);
+        queue.offer(path);
+        boolean isFound = false;
+        Set<String> dict = new HashSet<>(wordList);
+        Set<String> visited = new HashSet<>();
+        visited.add(beginWord);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            Set<String> subVisited = new HashSet<>();
+            for (int j = 0; j < size; j++) {
+                List<String> p = queue.poll();
+                //得到当前路径的末尾单词
+                String temp = p.get(p.size() - 1);
+                // 一次性得到所有的下一个的节点
+                ArrayList<String> neighbors = getNeighbors(temp, dict);
+                for (String neighbor : neighbors) {
+                    //只考虑之前没有出现过的单词
+                    if (!visited.contains(neighbor)) {
+                        //到达结束单词
+                        if (neighbor.equals(endWord)) {
+                            isFound = true;
+                            p.add(neighbor);
+                            ans.add(new ArrayList<String>(p));
+                            p.remove(p.size() - 1);
+                        }
+                        //加入当前单词
+                        p.add(neighbor);
+                        queue.offer(new ArrayList<String>(p));
+                        p.remove(p.size() - 1);
+                        subVisited.add(neighbor);
+                    }
+                }
+            }
+            visited.addAll(subVisited);
+            if (isFound) {
+                break;
+            }
+        }
+    }
+
+    private ArrayList<String> getNeighbors(String node, Set<String> dict) {
+        ArrayList<String> res = new ArrayList<String>();
+        char chs[] = node.toCharArray();
+        for (char ch = 'a'; ch <= 'z'; ch++) {
+            for (int i = 0; i < chs.length; i++) {
+                if (chs[i] == ch)
+                    continue;
+                char old_ch = chs[i];
+                chs[i] = ch;
+                if (dict.contains(String.valueOf(chs))) {
+                    res.add(String.valueOf(chs));
+                }
+                chs[i] = old_ch;
+            }
+
+        }
+        return res;
+    }
+
+
 }
