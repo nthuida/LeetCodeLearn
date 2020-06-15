@@ -102,7 +102,46 @@ public class CanMeasureWater {
         return false;
     }
 
+    /**
+     * 住关注水的总量，每次增加或减少x、y
+     * @param x
+     * @param y
+     * @param z
+     * @return
+     */
+    public boolean canMeasureWaterII(int x, int y, int z) {
+        if (z < 0 || z > x + y) {
+            return false;
+        }
+        Set<Integer> set = new HashSet<>();
+        Queue<Integer> q = new LinkedList<>();
+        q.offer(0);
+        while (!q.isEmpty()) {
+            int n = q.poll();
+            if (n + x <= x + y && !set.contains(n + x)) {
+                set.add(n+x);
+                q.offer(n + x);
+            }
+            if (n + y <= x + y && !set.contains(n + y)) {
+                set.add(n + y);
+                q.offer(n + y);
+            }
+            if (n - x >= 0 && !set.contains(n - x)) {
+                set.add(n-x);
+                q.offer(n - x);
+            }
+            if (n - y >= 0 && !set.contains(n - y)) {
+                set.add(n - y);
+                q.offer(n - y);
+            }
+            if (set.contains(z)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
-        System.out.println(new CanMeasureWater().canMeasureWater(2,6,5));
+        System.out.println(new CanMeasureWater().canMeasureWaterII(2,6,5));
     }
 }

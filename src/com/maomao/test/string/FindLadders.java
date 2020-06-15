@@ -61,12 +61,12 @@ public class FindLadders {
             // 上一层的结果队列
             int size = queue.size();
             // 该层添加的所有元素：每层必须在所有结果都添加完新的单词之后，再将这些单词统一添加到已使用单词集合
-            // 如果直接添加到 visited 中，会导致该层本次结果添加之后的相同添加行为失败
+            // 如果直接添加到 visited 中，会导致该层本次结果添加之后，其他相同添加失败
             // 如：该层遇到目标单词，有两条路径都可以遇到，但是先到达的将该单词添加进 visited 中，会导致第二条路径无法添加
             Set<String> subVisited = new HashSet<>();
             for (int i = 0; i < size; i++) {
                 List<String> path = queue.poll();
-                // 获取该路径上一层的单词
+                // 获取该路径上的最后一个单词
                 String word = path.get(path.size() - 1);
                 char[] chars = word.toCharArray();
                 // 寻找该单词的下一个符合条件的单词
@@ -105,7 +105,7 @@ public class FindLadders {
 
     public List<List<String>> findLaddersII(String beginWord, String endWord, List<String> wordList) {
         List<List<String>> ans = new ArrayList<>();
-        // 如果不含有结束单词，直接结束，不然后边会造成死循环
+        // 如果不含有结束单词，直接结束
         if (!wordList.contains(endWord)) {
             return ans;
         }
@@ -161,8 +161,10 @@ public class FindLadders {
         char chs[] = node.toCharArray();
         for (char ch = 'a'; ch <= 'z'; ch++) {
             for (int i = 0; i < chs.length; i++) {
-                if (chs[i] == ch)
+                if (chs[i] == ch) {
                     continue;
+
+                }
                 char old_ch = chs[i];
                 chs[i] = ch;
                 if (dict.contains(String.valueOf(chs))) {
@@ -170,10 +172,16 @@ public class FindLadders {
                 }
                 chs[i] = old_ch;
             }
-
         }
         return res;
     }
 
+    public static void main(String[] args) {
+        String beginWord = "hit";
+        String endWord = "cog";
+        String[] wordList = {"hot","dot","dog","lot","log","cog"};
+        List<List<String>> list = new FindLadders().findLadders(beginWord, endWord, Arrays.asList(wordList));
+        System.out.println(list);
+    }
 
 }
