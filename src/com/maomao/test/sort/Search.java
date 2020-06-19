@@ -10,7 +10,7 @@ public class Search {
         int high = nums.length-1;
         int low = 0;
         while (low <= high) {
-            int mid = (high + low)/2;
+            int mid = low + (high - low) / 2;
             if (nums[mid] == target) {
                 return mid;
             } else if (nums[mid] > target) {
@@ -21,6 +21,56 @@ public class Search {
         }
         return -1;
     }
+
+    /**
+     * 搜索左边界
+     * @param nums
+     * @param target
+     * @return
+     */
+    public int searchLeft(int[] nums, int target) {
+        int high = nums.length-1;
+        int low = 0;
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            if (nums[mid] == target) {
+                //收缩右边边界
+                high = mid-1;
+            } else if (nums[mid] > target) {
+                high = mid-1;
+            } else {
+                low = mid+1;
+            }
+        }
+        //没有找到
+        if (low >=nums.length || nums[low] != target ) {
+            return -1;
+        }
+        return low;
+    }
+
+    public int searchRight(int[] nums, int target) {
+        int high = nums.length-1;
+        int low = 0;
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+            if (nums[mid] == target) {
+                //收缩左边边界
+                low = mid+1;
+            } else if (nums[mid] > target) {
+                high = mid-1;
+            } else {
+                low = mid+1;
+            }
+        }
+        //没有找到
+        if (high < 0 || nums[high] != target) {
+            return -1;
+        }
+        return high;
+    }
+
+
 
     /**
      * 假设按照升序排序的数组在预先未知的某个点上进行了旋转。
