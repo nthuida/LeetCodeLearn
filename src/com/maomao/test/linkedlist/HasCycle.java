@@ -1,5 +1,7 @@
 package com.maomao.test.linkedlist;
 
+import java.util.List;
+
 /**
  * 给定一个链表，判断链表中是否有环。
  * @author Administrator
@@ -11,9 +13,9 @@ public class HasCycle {
      * @param head
      * @return
      */
-    public boolean hasCycle(LinkedListNode head) {
-        LinkedListNode fast = head;
-        LinkedListNode slow = head;
+    public boolean hasCycle(ListNode head) {
+        ListNode fast = head;
+        ListNode slow = head;
         while (fast != null && fast.next != null) {
             fast = fast.next.next;
             slow = slow.next;
@@ -22,5 +24,35 @@ public class HasCycle {
             }
         }
         return false;
+    }
+
+    /**
+     * 给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。
+     * @param head
+     * @return
+     */
+    public ListNode detectCycle(ListNode head) {
+        ListNode fast = head;
+        ListNode slow = head;
+        boolean hasCycle = false;
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+            if (fast == slow) {
+                hasCycle = true;
+                break;
+            }
+        }
+        if (hasCycle) {
+            ListNode listNode = head;
+            while (listNode != slow) {
+                listNode = listNode.next;
+                slow = slow.next;
+            }
+            return listNode;
+        } else {
+            return null;
+        }
+
     }
 }
