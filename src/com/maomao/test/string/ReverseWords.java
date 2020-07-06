@@ -38,8 +38,46 @@ public class ReverseWords {
         return stringBuffer.toString();
     }
 
+    /**
+     * 给定一个字符串，你需要反转字符串中每个单词的字符顺序，同时仍保留空格和单词的初始顺序。
+     *
+     * 示例 1:
+     * 输入: "Let's take LeetCode contest"
+     * 输出: "s'teL ekat edoCteeL tsetnoc" 
+     *
+     * @param s
+     * @return
+     */
+    public String reverseWordsII(String s) {
+        if (s == null || s=="") {
+            return s;
+        }
+        StringBuffer stringBuffer = new StringBuffer();
+        String[] str = s.trim().split(" ");
+        for(int i = 0; i < str.length; i++){
+           if (i != str.length-1) {
+               stringBuffer.append(reverseString(str[i]) + " ");
+           } else {
+               stringBuffer.append(reverseString(str[i]));
+           }
+        }
+        return stringBuffer.toString();
+    }
+
+    private String reverseString(String s) {
+        char[] ch = s.toCharArray();
+        for (int i=0,j= ch.length-1; i<=j; i++,j--) {
+            char temp = ch[i];
+            ch[i] = ch[j];
+            ch[j] = temp;
+        }
+        return new String(ch);
+    }
+
     public static void main(String[] args) {
         String a = "a good   example";
         System.out.println(new ReverseWords().reverseWords(a));
+        String b = "Let's take LeetCode contest";
+        System.out.println(new ReverseWords().reverseWordsII(b));
     }
 }

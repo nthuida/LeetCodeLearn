@@ -27,6 +27,9 @@ public class HasCycle {
     }
 
     /**
+     * 走a+nb步一定是在环入口
+     * 第一次相遇时慢指针已经走了nb步
+     * a:入环口的长度，b:环的长度
      * 给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。
      * @param head
      * @return
