@@ -114,8 +114,55 @@ public class CombinationSum {
         }
     }
 
+    /**
+     * 找出所有相加之和为 n 的k个数的组合。组合中只允许含有 1 - 9 的正整数，并且每种组合中不存在重复的数字。
+     *
+     * 说明：
+     * 所有数字都是正整数。
+     * 解集不能包含重复的组合。 
+     *
+     * 示例 1:
+     * 输入: k = 3, n = 7
+     * 输出: [[1,2,4]]
+     *
+     * 示例 2:
+     * 输入: k = 3, n = 9
+     * 输出: [[1,2,6], [1,3,5], [2,3,4]]
+     *
+     * @param k
+     * @param n
+     * @return
+     */
+    public List<List<Integer>> combinationSum3(int k, int n) {
+        List<List<Integer>> res = new ArrayList<>();
+        LinkedList<Integer> track = new LinkedList<>();
+        backtrack3(res, 1, k,n, track);
+        return res;
+    }
+
+    private void backtrack3(List<List<Integer>> res, int start, int k, int n, LinkedList<Integer> track) {
+        //终止条件
+        if (track.size() == k && n==0) {
+            res.add(new ArrayList<>(track));
+            return;
+        }
+
+        // 不重复，要从上一个选择之后的下一个值开始
+        for (int i=start; i<=9; i++) {
+            //选择
+            track.add(i);
+            //递归
+            backtrack3(res, i+1, k, n-i, track);
+            //回溯
+           track.removeLast();
+        }
+    }
+
+
+
     public static void main(String[] args) {
         int[] nums = {2,3,6,7};
         System.out.println(new CombinationSum().combinationSum(nums, 7));
+        System.out.println(new CombinationSum().combinationSum3(3,9));
     }
 }
