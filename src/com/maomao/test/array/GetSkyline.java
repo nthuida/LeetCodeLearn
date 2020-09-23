@@ -18,6 +18,9 @@ public class GetSkyline {
     /**
      * 使用扫描线，从左至右扫过。如果遇到左端点，将高度入堆，如果遇到右端点，则将高度从堆中删除。使用 last 变量记录上一个转折点。
      *
+     * 技巧
+     * 存左上角坐标的时候， 将高度（y）存为负数。存右上角坐标的时候，将高度（y）存为正数。
+     *
      * @param buildings
      * @return
      */
@@ -30,7 +33,6 @@ public class GetSkyline {
             if (!map.containsKey(build[0])) {
                 map.put(build[0], new ArrayList<>());
             }
-            //为负，区分左和右
             map.get(build[0]).add(-build[2]);
             //插入右节点的高度
             if (!map.containsKey(build[1])) {
@@ -38,7 +40,7 @@ public class GetSkyline {
             }
             map.get(build[1]).add(build[2]);
         }
-        //保留当前位置的所有高度：从大到小
+        //保留当前位置的所有高度 重定义排序：从大到小
         Map<Integer, Integer> heights = new TreeMap<>(new Comparator<Integer>() {
             @Override
             public int compare(Integer o1, Integer o2) {
@@ -56,10 +58,16 @@ public class GetSkyline {
             for (int y : yArrays) {
                 //左端点,高度入队
                 if (y < 0) {
-                    heights.put(-y, 1);
+                    int val = heights.getOrDefault(-y, 0);
+                    heights.put(-y, val + 1);
                 } else {
                     //右端点移除高度
-                    heights.remove(-y);
+                    int val = heights.getOrDefault(y, 0);
+                    if (val == 1) {
+                        heights.remove(y);
+                    } else {
+                        heights.put(y, val - 1);
+                    }
                 }
                 //获取heights的最大值:就是第一个值
                 Integer maxHeight = 0;
