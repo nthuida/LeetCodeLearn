@@ -1,6 +1,8 @@
 package com.maomao.test.tree;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 /**
@@ -138,6 +140,25 @@ public class BinaryTree {
         return isBalanced(root.getRight()) && isBalanced(root.getLeft());
     }
 
+    List<Integer> list = new ArrayList<>();
+    public List<Integer> postorderTraversal(TreeNode root) {
+        if (root != null) {
+            postorderTraversal(root.left);
+            postorderTraversal(root.right);
+            list.add(root.val);
+        }
+        return list;
+    }
+
+    public List<Integer> preorderTraversal(TreeNode root) {
+        if (root != null) {
+            list.add(root.val);
+            preorderTraversal(root.left);
+            preorderTraversal(root.right);
+        }
+        return list;
+    }
+
 
 
     public static void main(String[] args) {
@@ -153,5 +174,12 @@ public class BinaryTree {
         System.out.println(bTree.getTreeDepth(bTree.getRoot()));
 
         System.out.println(bTree.isBalanced(bTree.getRoot()));
+
+        TreeNode root = new TreeNode(1);
+        TreeNode node1 = new TreeNode(2);
+        TreeNode node2 = new TreeNode(3);
+        node1.left = node2;
+        root.right = node1;
+        System.out.println(new BinaryTree().postorderTraversal(root));
     }
 }
