@@ -102,9 +102,46 @@ public class SolveNQueens {
         return path;
     }
 
+    int count = 0;
+    /**
+     *  给定一个整数 n，返回 n 皇后不同的解决方案的数量。
+     * @param n
+     * @return
+     */
+    public int totalNQueens(int n) {
+        char[][] chess = new char[n][n];
+        //初始化
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                chess[i][j] = '.';
+            }
+        }
+        solve(chess, 0);
+        return count;
+    }
+
+    private void solve(char[][] chess, int row) {
+        //退出条件，到达最后一行
+        if (row == chess.length) {
+            count++;
+            return;
+        }
+        for (int col = 0; col < chess.length; col++) {
+            //判断
+            if (valid(chess, row, col)) {
+                chess[row][col] = 'Q';
+                //下一行
+                solve(chess, row + 1);
+                //回溯
+                chess[row][col] = '.';
+            }
+        }
+    }
+
     public static void main(String[] args) {
         List<List<String>> res = new SolveNQueens().solveNQueens(4);
         System.out.println(res);
+        System.out.println(new SolveNQueens().totalNQueens(4));
     }
 
 }
