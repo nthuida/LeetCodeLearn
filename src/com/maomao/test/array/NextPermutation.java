@@ -1,7 +1,5 @@
 package com.maomao.test.array;
 
-import com.sun.org.apache.regexp.internal.RE;
-
 import java.util.Arrays;
 
 /**
