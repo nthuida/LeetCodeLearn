@@ -28,6 +28,7 @@ public class FindMode {
             return new int[]{};
         }
         Map<Integer, Integer> map = new HashMap<>();
+        //中序遍历计数
         midOrder(root, map);
         int max = Collections.max(map.values());
         List<Integer> res = new ArrayList<>();

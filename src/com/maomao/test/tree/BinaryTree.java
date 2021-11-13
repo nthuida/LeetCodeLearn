@@ -34,7 +34,12 @@ public class BinaryTree {
         this.root = root;
     }
 
-    //排序二叉树添加数据
+    /**
+     * 排序二叉树添加数据
+     * @param node
+     * @param value
+     * @return
+     */
     public Node addNode(Node node, int value) {
         if (node == null) {
             node = new Node(value);
@@ -90,7 +95,7 @@ public class BinaryTree {
      * 把根节点放入队列，然后每次从队列取节点打印，如果有子节点，就把子节点放入队列中
      * @param root
      */
-    public void layerOeder(Node root) {
+    public void layerOrder(Node root) {
         if (root == null) {
             return;
         }
@@ -140,16 +145,24 @@ public class BinaryTree {
         return isBalanced(root.getRight()) && isBalanced(root.getLeft());
     }
 
+    /**
+     * 后序遍历
+     */
     List<Integer> list = new ArrayList<>();
-    public List<Integer> postorderTraversal(TreeNode root) {
+    public List<Integer> postOrderTraversal(TreeNode root) {
         if (root != null) {
-            postorderTraversal(root.left);
-            postorderTraversal(root.right);
+            postOrderTraversal(root.left);
+            postOrderTraversal(root.right);
             list.add(root.val);
         }
         return list;
     }
 
+    /**
+     * 先序遍历
+     * @param root
+     * @return
+     */
     public List<Integer> preorderTraversal(TreeNode root) {
         if (root != null) {
             list.add(root.val);
@@ -169,7 +182,7 @@ public class BinaryTree {
         bTree.addNode(bTree.getRoot(), 1);
         bTree.preOrder(bTree.getRoot());
 
-        bTree.layerOeder(bTree.getRoot());
+        bTree.layerOrder(bTree.getRoot());
 
         System.out.println(bTree.getTreeDepth(bTree.getRoot()));
 
@@ -180,6 +193,6 @@ public class BinaryTree {
         TreeNode node2 = new TreeNode(3);
         node1.left = node2;
         root.right = node1;
-        System.out.println(new BinaryTree().postorderTraversal(root));
+        System.out.println(new BinaryTree().postOrderTraversal(root));
     }
 }

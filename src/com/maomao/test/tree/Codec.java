@@ -45,6 +45,11 @@ public class Codec {
         }
     }
 
+    /**
+     * 反序列化
+     * @param data
+     * @return
+     */
     public TreeNode deserialize(String data) {
         List<String> list = new LinkedList<>(Arrays.asList(data.split(",")));
         return myDeserialize(list);
