@@ -45,13 +45,13 @@ public class Tree2str {
      * @return
      */
     public String tree2str(TreeNode t) {
-        if(t==null) {
+        if (t == null) {
             return "";
         }
-        if(t.left==null && t.right==null) {
+        if (t.left ==  null && t.right == null) {
             return t.val+"";
         }
-        if(t.right==null) {
+        if (t.right == null) {
             return t.val+"("+tree2str(t.left)+")";
         }
         //左子树为空，也需要()

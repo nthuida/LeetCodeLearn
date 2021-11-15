@@ -71,7 +71,7 @@ public class LongestUnivaluePath {
         }
         //当前节点最长同值路径值
         res = Math.max(res, left+right);
-        //返回该节点的最长单侧同值路径，如果该节点的值与其左右子节点的值都不等，则返回0
+        //返回该节点的最长单侧同值路径
         return Math.max(left, right);
 
     }

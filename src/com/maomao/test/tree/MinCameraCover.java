@@ -36,13 +36,13 @@ public class MinCameraCover {
             return 1;
         }
         int left = lrd(treeNode.left);
-        int righrt= lrd(treeNode.right);
+        int right= lrd(treeNode.right);
 
-        if (left == 0|| righrt ==0) {
+        if (left == 0|| right ==0) {
             //左或右子树没有覆盖，父节点需要安装一个
             res++;
             return 2;
-        } else if (left == 2|| righrt ==2) {
+        } else if (left == 2|| right ==2) {
             //子节点安装了
             return 1;
         } else {
