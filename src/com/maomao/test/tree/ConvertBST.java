@@ -29,6 +29,7 @@ public class ConvertBST {
         if(null == root){
             return root;
         }
+        //从大到小
         convertBST(root.right);
         root.val = root.val + rightSum;
         rightSum = root.val;
