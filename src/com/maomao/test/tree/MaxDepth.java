@@ -1,5 +1,8 @@
 package com.maomao.test.tree;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * 给定一个二叉树，找出其最大深度。
  * 二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。
@@ -53,5 +56,51 @@ public class MaxDepth {
         int left = minDepth(root.left);
         int right = minDepth(root.right);
         return left < right ? left + 1 : right + 1;
+    }
+
+    public int minDepth1(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        Queue<TreeNode> q = new LinkedList<>();
+        q.offer(root);
+        // root 本身就是一层，depth 初始化为 1
+        int depth = 1;
+
+        while (!q.isEmpty()) {
+            int sz = q.size();
+            /* 将当前队列中的所有节点向四周扩散 */
+            for (int i = 0; i < sz; i++) {
+                TreeNode cur = q.poll();
+                /* 判断是否到达终点 */
+                if (cur.left == null && cur.right == null) {
+                    //直接返回，跳出while循环
+                    return depth;
+                }
+                /* 将 cur 的相邻节点加入队列 */
+                if (cur.left != null)
+                    q.offer(cur.left);
+                if (cur.right != null)
+                    q.offer(cur.right);
+            }
+            /* 这里增加步数 */
+            depth++;
+        }
+        return depth;
+    }
+
+
+    public static void main(String[] args) {
+        TreeNode root = new TreeNode(1);
+        TreeNode left = new TreeNode(2);
+        TreeNode right = new TreeNode(3);
+        root.left = left;
+        root.right = right;
+        TreeNode node = new TreeNode(4);
+        TreeNode node1 = new TreeNode(5);
+        right.left = node;
+        right.right = node1;
+        System.out.println(new MaxDepth().minDepth1(root));
+
     }
 }
