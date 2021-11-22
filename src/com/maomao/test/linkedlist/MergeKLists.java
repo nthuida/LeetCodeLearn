@@ -1,5 +1,9 @@
 package com.maomao.test.linkedlist;
 
+import java.util.Comparator;
+import java.util.PriorityQueue;
+import java.util.Queue;
+
 /**
  * 合并k个排序链表
  * 合并k个排序链表，返回合并后的排序链表。请分析和描述算法的复杂度。
@@ -17,6 +21,11 @@ package com.maomao.test.linkedlist;
  */
 public class MergeKLists {
 
+    /**
+     * 复杂度 k*k k为链表的条数
+     * @param lists
+     * @return
+     */
     public ListNode mergeKLists(ListNode[] lists) {
         ListNode res = null;
         for (ListNode list: lists) {
@@ -54,5 +63,38 @@ public class MergeKLists {
         }
         //去掉头结点
         return headNode.next;
+    }
+
+    /**
+     * 利用优先队列PriorityQueue的最小堆实现
+     * 复杂度 O(Nlogk) N为总的节点数
+     * @param lists
+     * @return
+     */
+    public ListNode mergeKLists1(ListNode[] lists) {
+        if (lists.length == 0) {
+            return null;
+        }
+        ListNode head = new ListNode(0);
+        ListNode cur = head;
+        //最小堆
+        Queue<ListNode> queue = new PriorityQueue<>(
+                lists.length, Comparator.comparingInt(a -> a.val)
+                );
+        for (ListNode node : lists) {
+            if (node != null) {
+                queue.add(node);
+            }
+        }
+        while (!queue.isEmpty()) {
+            ListNode node = queue.poll();
+            cur.next = node;
+            cur = cur.next;
+            if (node.next != null) {
+                queue.add(node.next);
+            }
+        }
+
+        return head.next;
     }
 }

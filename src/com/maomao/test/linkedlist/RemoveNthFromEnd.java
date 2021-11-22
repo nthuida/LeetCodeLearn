@@ -42,4 +42,44 @@ public class RemoveNthFromEnd {
         first.next = first.next.next;
         return head;
     }
+
+    /**
+     * 找到倒数第n+1个节点
+     * @param head
+     * @param n
+     * @return
+     */
+    public ListNode removeNthFromEnd1(ListNode head, int n) {
+        //防止删除第链表长度的时候，出现空指针
+        ListNode temp = new ListNode(0);
+        temp.next = head;
+        //找到倒数第N+1个节点
+        ListNode cur = findFromEnd(temp, n+1);
+        //删除第n个节点
+        cur.next = cur.next.next;
+        return temp.next;
+    }
+
+    /**
+     * 找到链表的倒数N个节点
+     * 遍历一次链表找出
+     * @param listNode
+     * @param k
+     * @return
+     */
+    private ListNode findFromEnd(ListNode listNode, int k) {
+        ListNode first = listNode;
+        //第一节点先走k步
+        for (int i=0; i<k; i++) {
+            first = first.next;
+        }
+        ListNode second = listNode;
+        //同时走n-k步
+        while (first != null) {
+            first = first.next;
+            second = second.next;
+        }
+        //返回倒数第k个
+        return second;
+    }
 }

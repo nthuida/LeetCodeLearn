@@ -1,7 +1,5 @@
 package com.maomao.test.linkedlist;
 
-import java.util.List;
-
 /**
  * 给定一个链表，判断链表中是否有环。
  * @author Administrator
@@ -28,7 +26,8 @@ public class HasCycle {
 
     /**
      * 走a+nb步一定是在环入口
-     * 第一次相遇时慢指针已经走了nb步
+     * 第一次相遇时慢指针已经走了nb步，相遇时慢指针走了K步，快指针走了2K步
+     * 快指针比慢指针多走n圈，即K=nb
      * a:入环口的长度，b:环的长度
      * 给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。
      * @param head

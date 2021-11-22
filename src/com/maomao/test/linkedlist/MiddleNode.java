@@ -21,7 +21,7 @@ package com.maomao.test.linkedlist;
  */
 public class MiddleNode {
     /**
-     *
+     * 计算链表长度N，中点为N/2
      * @param head
      * @return
      */
@@ -42,5 +42,20 @@ public class MiddleNode {
             i++;
         }
         return resultNode;
+    }
+
+    /**
+     * 快慢指针，快的走到终点后，慢的走到中点
+     * @param head
+     * @return
+     */
+    public ListNode middleNode1(ListNode head) {
+       ListNode fast = head;
+       ListNode slow = head;
+       while (fast != null && fast.next != null) {
+           slow = slow.next;
+           fast = fast.next.next;
+       }
+       return slow;
     }
 }
