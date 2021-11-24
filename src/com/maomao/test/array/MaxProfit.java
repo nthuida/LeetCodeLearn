@@ -216,47 +216,35 @@ public class MaxProfit {
      * 解释：在第 2 天 (股票价格 = 2) 的时候买入，在第 3 天 (股票价格 = 6) 的时候卖出, 这笔交易所能获得利润 = 6-2 = 4 。
      *      随后，在第 5 天 (股票价格 = 0) 的时候买入，在第 6 天 (股票价格 = 3) 的时候卖出, 这笔交易所能获得利润 = 3-0 = 3 。
      *
-     *
-     * 初始状态为 dp[0[0]
-     * 第一次买dp[0][1]、第一次卖dp[1][0]
-     * 第二次买dp[1][1]、第二次卖dp[2][0]
-     * 第k次买dp[k-1][1]、第k次卖dp[k][0]
-     *
-     * DP公式如下：
-     * dp[j-1][1] = max(dp[j-1][1],dp[j-1][0]-prices[i])
-     * dp[j][0] = max(dp[j][0],dp[j-1][1]+prices[i])
-     *
-     * @param k
-     * @param prices
-     * @return
      */
+
     public int maxProfit(int k, int[] prices) {
-        int len = prices.length;
-        if (k == 0 || len <2) {
+        int n = prices.length;
+        if (n <= 1)    {
             return 0;
         }
-        if (k>= len/2) {
-            //不收交易次数限制
-            return maxProfit3(prices);
-        }
-        int[][] dp = new int[k+1][2];
-        //初始化
-        for(int i=0;i<=k;++i) {
-            dp[i][0] = 0;
-            dp[i][1] = -prices[0];
+        //因为一次交易至少涉及两天，所以如果k大于总天数的一半，就直接取天数一半即可，多余的交易次数是无意义的
+        k = Math.min(k, n/2);
+
+        /*dp定义：dp[i][j][k]代表 第i天交易了k次时的最大利润，其中j代表当天是否持有股票，0不持有，1持有*/
+        int[][][] dp = new int[n][2][k+1];
+        for(int i=0; i<=k; i++){
+            dp[0][0][i] = 0;
+            dp[0][1][i] = -prices[0];
         }
 
-        for (int i=0; i<len ; i++) {
-            for (int j=1; j<=k; j++) {
-                //第k次买入
-                 dp[j-1][1] = Math.max(dp[j-1][1],dp[j-1][0] - prices[i]) ;
-                //第k次卖出
-                 dp[j][0] = Math.max(dp[j][0],dp[j-1][1] + prices[i]);
+        /*状态方程：
+        dp[i][0][k]，当天不持有股票时，看前一天的股票持有情况
+        dp[i][1][k]，当天持有股票时，看前一天的股票持有情况*/
+        for(int i=1; i<n; i++){
+            for(int j=1; j<=k; j++){
+                dp[i][0][j] = Math.max(dp[i-1][0][j], dp[i-1][1][j] + prices[i]);
+                dp[i][1][j] = Math.max(dp[i-1][1][j], dp[i-1][0][j-1] - prices[i]);
             }
         }
-
-        return dp[k][0];
+        return dp[n-1][0][k];
     }
+
 
 
     /**
@@ -292,32 +280,32 @@ public class MaxProfit {
      * @return
      */
     public int maxProfitIII(int[] prices) {
-        int len = prices.length;
-        if (len <2) {
+        int n = prices.length;
+        if (n <= 1)    {
             return 0;
         }
 
-        int[][] dp = new int[3][2];
-        //初始化
-        for(int i=0;i<=2;++i) {
-            dp[i][0] = 0;
-            dp[i][1] = -prices[0];
+        /*dp定义：dp[i][j][k]代表 第i天交易了k次时的最大利润，其中j代表当天是否持有股票，0不持有，1持有*/
+        int[][][] dp = new int[n][2][3];
+        for(int i=0; i<=2; i++){
+            dp[0][0][i] = 0;
+            dp[0][1][i] = -prices[0];
         }
 
-        for (int i=0; i<len ; i++) {
-            for (int j=1; j<=2; j++) {
-                //第k次买入
-                dp[j-1][1] = Math.max(dp[j-1][1],dp[j-1][0] - prices[i]) ;
-                //第k次卖出
-                dp[j][0] = Math.max(dp[j][0],dp[j-1][1] + prices[i]);
+        /*状态方程：
+        dp[i][0][k]，当天不持有股票时，看前一天的股票持有情况
+        dp[i][1][k]，当天持有股票时，看前一天的股票持有情况*/
+        for(int i=1; i<n; i++){
+            for(int j=1; j<=2; j++){
+                dp[i][0][j] = Math.max(dp[i-1][0][j], dp[i-1][1][j] + prices[i]);
+                dp[i][1][j] = Math.max(dp[i-1][1][j], dp[i-1][0][j-1] - prices[i]);
             }
         }
-
-        return dp[2][0];
+        return dp[n-1][0][2];
     }
 
     public static void main(String[] args) {
-        int[] a = {7,6,4,3,1};
+        int[] a = {3,3,5,0,0,3,1,4};
         System.out.println(new MaxProfit().maxProfitIII(a));
     }
 
