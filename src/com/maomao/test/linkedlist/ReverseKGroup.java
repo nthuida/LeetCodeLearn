@@ -16,6 +16,12 @@ package com.maomao.test.linkedlist;
  */
 public class ReverseKGroup {
 
+    /**
+     * 迭代实现
+     * @param head
+     * @param k
+     * @return
+     */
     public ListNode reverseKGroup(ListNode head, int k) {
         ListNode headNode = new ListNode(0);
         headNode.next = head;
@@ -46,14 +52,62 @@ public class ReverseKGroup {
         return headNode.next;
     }
 
+    /**
+     * 迭代实现
+     * @param head
+     * @param k
+     * @return
+     */
+    ListNode reverseKGroupII(ListNode head, int k) {
+        if (head == null) {
+            return null;
+        }
+        // 区间 [a, b) 包含 k 个待反转元素
+        ListNode a = head;
+        ListNode b = head;
+        for (int i = 0; i < k; i++) {
+            // 不足 k 个，不需要反转，base case
+            if (b == null) {
+                return head;
+            }
+            b = b.next;
+        }
+        // 反转前 k 个元素
+        ListNode newHead = reverse(a, b);
+        // 递归反转后续链表并连接起来
+        a.next = reverseKGroup(b, k);
+        return newHead;
+    }
+
+    /**
+     * 反转[a,b)之间的链表
+     * @param a
+     * @param b
+     * @return
+     */
+    public ListNode reverse(ListNode a, ListNode b) {
+        //链表原地反转
+        ListNode prev = null;
+        ListNode cur = a;
+        while (cur != b) {
+            ListNode next = cur.next;
+            cur.next = prev;
+            prev = cur;
+            cur = next;
+        }
+        return prev;
+    }
+
+
     public ListNode reverseList(ListNode head) {
         //链表原地反转
         ListNode prev = null;
-        while (head != null) {
-            ListNode temp = head.next;
-            head.next = prev;
-            prev = head;
-            head = temp;
+        ListNode cur = head;
+        while (cur != null) {
+            ListNode next = cur.next;
+            cur.next = prev;
+            prev = cur;
+            cur = next;
         }
         return prev;
     }
