@@ -26,13 +26,13 @@ public class ConvertBST {
      * @return
      */
     public TreeNode convertBST(TreeNode root) {
-        if(null == root){
+        if(root == null){
             return root;
         }
         //从大到小
         convertBST(root.right);
-        root.val = root.val + rightSum;
-        rightSum = root.val;
+        rightSum += root.val;
+        root.val = rightSum;
         convertBST(root.left);
         return root;
     }
