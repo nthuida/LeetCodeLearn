@@ -19,6 +19,11 @@ import java.util.Stack;
  **/
 public class RemoveDuplicateLetters {
 
+    /**
+     * 单调栈
+     * @param s
+     * @return
+     */
     public String removeDuplicateLetters(String s) {
         Stack<Character> stack = new Stack<>();
         //记录每个字符出现的次数
@@ -33,6 +38,7 @@ public class RemoveDuplicateLetters {
             if (flag[ch-'a']) {
                 continue;
             }
+            //保证字典顺序
             while (!stack.empty() && stack.peek()>ch) {
                 // 若之后不存在栈顶元素了，则停止 pop
                 if (count[stack.peek() - 'a'] == 0) {
