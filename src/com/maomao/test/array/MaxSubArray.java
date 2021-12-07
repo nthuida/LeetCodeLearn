@@ -14,8 +14,8 @@ package com.maomao.test.array;
 public class MaxSubArray {
     /**
      *  动态规划o(n)
-     *  以第i个元素结尾且和最大的连续子数组实际上，要么是以第i-1个元素结尾且和最大的连续子数组加上这个元素，要么是只包含第i个元素，即sum[i]
-     * = max(sum[i-1] + a[i], a[i])。可以通过判断sum[i-1] + a[i]是否大于a[i]来做选择，而这实际上等价于判断sum[i-1]是否大于0
+     *  以第i个元素结尾且和最大的连续子数组，实际上要么是以第i-1个元素结尾且和最大的连续子数组加上这个元素，要么是只包含第i个元素，
+     *  即sum[i] = max(sum[i-1] + a[i], a[i])。可以通过判断sum[i-1] + a[i]是否大于a[i]来做选择，而这实际上等价于判断sum[i-1]是否大于0
      * @param nums
      * @return
      */
