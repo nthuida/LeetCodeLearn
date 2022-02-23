@@ -16,7 +16,7 @@ import java.util.List;
  *      / \
  *     4   5
  *
- * 序列化为 "[1,2,3,null,null,4,5]"
+ * 序列化为 "1,2,null,null,3,4,null,null,5,null,null,"
  *
  * @author huida
  * @date 2020/6/16
@@ -62,7 +62,7 @@ public class Codec {
         }
         TreeNode root = new TreeNode(Integer.valueOf(list.get(0)));
         list.remove(0);
-        root .left = myDeserialize(list);
+        root.left = myDeserialize(list);
         root.right = myDeserialize(list);
         return root;
     }
