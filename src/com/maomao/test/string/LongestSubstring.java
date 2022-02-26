@@ -68,7 +68,22 @@ public class LongestSubstring {
                 hashSet.remove(s.charAt(i++));
             }
         }
+        return result;
+    }
 
+    public int lengthOfLongestSubstring2(String s) {
+        int result = 0;
+        int left = 0;
+        Map<Character, Integer> map = new HashMap<>();
+        for (int i=0; i<s.length(); i++) {
+            if (map.containsKey(s.charAt(i))) {
+                //左边界右移
+                left = Math.max(left, map.get(s.charAt(i) + 1));
+            }
+            //更新当前字符位置
+            map.put(s.charAt(i), i);
+            result = Math.max(result, i-left+1);
+        }
         return result;
     }
 
