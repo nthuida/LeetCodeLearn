@@ -15,7 +15,7 @@ package com.maomao.test.array;
  * nums1 = [1, 2]
  * nums2 = [3, 4]
  * 则中位数是 (2 + 3)/2 = 2.5
- *
+ * 算法的时间复杂度应该为 O(log (m+n))
  * @author huida
  * @date 2020/5/25
  */
@@ -65,14 +65,13 @@ public class FindMedianSortedArrays {
         if (k == 1) {
             return Math.min(nums1[start1], nums2[start2]);
         }
-        //数组的前k/2比较，防止数组长度小于k/2
+        //数组前k/2比较，防止数组长度小于k/2
         int i = start1 + Math.min(len1, k / 2) - 1;
         int j = start2 + Math.min(len2, k / 2) - 1;
         if (nums1[i] > nums2[j]) {
             //排除nums2的前2/k个元素
             return getKth(nums1, start1, end1, nums2, j + 1, end2, k - (j - start2 + 1));
-        }
-        else {
+        } else {
             return getKth(nums1, i + 1, end1, nums2, start2, end2, k - (i - start1 + 1));
         }
 

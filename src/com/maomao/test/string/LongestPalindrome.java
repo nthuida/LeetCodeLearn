@@ -17,7 +17,6 @@ public class LongestPalindrome {
 
     /**
      * 中心扩展算法
-     *
      * 我们观察到回文中心的两侧互为镜像。因此，回文可以从它的中心展开，并且只有 2n - 1个这样的中心。
      * 由于存在奇数的字符串和偶数的字符串，所以我们需要从一个字符开始扩展，或者从两个字符之间开始扩展，所以总共有 n+n-1 个中心
      *
@@ -25,40 +24,32 @@ public class LongestPalindrome {
      * @return
      */
     public String longestPalindrome(String s) {
-        if(s == null || s.length() == 0) {
-            return s;
-        }
-        int start = 0, end = 0;
+        String res = "";
         for (int i = 0; i < s.length(); i++) {
             //奇数中心
-            int len1 = expandAroundCenter(s, i, i);
-            //偶数
-            int len2 = expandAroundCenter(s, i, i + 1);
-            int len = Math.max(len1, len2);
-            if (len > end - start) {
-                //开始的位置
-                start = i - (len - 1) / 2;
-                //结束位置
-                end = i + len / 2;
-            }
+            String s1 = expandAroundCenter(s, i, i);
+            //偶数中心
+            String s2 = expandAroundCenter(s, i, i + 1);
+            res = res.length() > s1.length() ? res : s1;
+            res = res.length() > s2.length() ? res : s2;
         }
-        return s.substring(start, end + 1);
+        return res;
     }
 
     /**
-     * 计算回文的长度
+     * 判断回文
      * @param s
      * @param left
      * @param right
      * @return
      */
-    private int expandAroundCenter(String s, int left, int right) {
+    private String expandAroundCenter(String s, int left, int right) {
         int start = left, end = right;
         while (start >= 0 && end < s.length() && s.charAt(start) == s.charAt(end)) {
             start--;
             end++;
         }
-        return end - start - 1;
+        return s.substring(start+1, end);
     }
 
     /**
@@ -102,6 +93,6 @@ public class LongestPalindrome {
     }
 
     public static void main(String[] args) {
-        System.out.println(new LongestPalindrome().longestPalindrome(""));
+        System.out.println(new LongestPalindrome().longestPalindrome("babad"));
     }
 }
