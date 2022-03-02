@@ -71,6 +71,7 @@ public class ThreeSum {
                 // 如果当前数字大于0，则三数之和一定大于0，所以结束循环
                 break;
             }
+            //去重
             if(k > 0 && nums[k] == nums[k - 1]) {
                 continue;
             }
@@ -89,7 +90,7 @@ public class ThreeSum {
                     }
                 } else {
                     res.add(new ArrayList<Integer>(Arrays.asList(nums[k], nums[left], nums[right])));
-                    //去重
+                    //判断左界和右界是否和下一位置重复，去重
                     while(left < right && nums[left] == nums[++left]) {
                         continue;
                     }

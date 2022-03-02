@@ -1,7 +1,5 @@
 package com.maomao.test.string;
 
-import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
-
 /**
  * 编写一个函数来查找字符串数组中的最长公共前缀。
  * 如果不存在公共前缀，返回空字符串 ""。
@@ -30,6 +28,7 @@ public class LongestCommonPrefix {
         }
         String result = strs[0];
         for (int i=1; i<strs.length; i++) {
+            //indexOf() 字符出现的最早位置
             while (strs[i].indexOf(result) != 0) {
                 result = result.substring(0,result.length()-1);
                 if (result.length() == 0) {
