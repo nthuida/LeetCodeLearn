@@ -1,6 +1,7 @@
 package com.maomao.test.array;
 
 import java.util.Arrays;
+import java.util.Stack;
 
 /**
  * 下一个排列
@@ -19,8 +20,7 @@ import java.util.Arrays;
 public class NextPermutation {
 
     /**
-     * 从最右i开始找到比i大的值，交换，且重新升序后面的值
-     * 找不到则升序排列
+     * 从最右边开始找到比i大的值，交换，且重新升序i后面的值
      * @param nums
      */
     public void nextPermutation(int[] nums) {
@@ -40,6 +40,7 @@ public class NextPermutation {
 
             }
         }
+        //没找到，说明是降序排列的
         Arrays.sort(nums);
     }
 }

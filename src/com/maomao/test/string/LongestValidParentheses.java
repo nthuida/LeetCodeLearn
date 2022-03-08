@@ -25,9 +25,9 @@ import java.util.Stack;
 public class LongestValidParentheses {
 
     /**
-     * 栈顶保存遍历过程中最后一个没有被匹配的右括号的下标
-     * 扫描到右括号，就将栈顶出栈（代表栈顶的左括号匹配到了右括号），然后分两种情况。
+     * 栈底保存遍历过程中最后一个没有被匹配的右括号的下标
      *
+     * 扫描到右括号，就将栈顶出栈（代表栈顶的左括号匹配到了右括号），然后分两种情况。
      * 1、栈不空，那么就用当前的位置减去栈顶的存的位置，然后就得到当前合法序列的长度，然后更新一下最长长度。
      * 2、栈是空的，说明之前没有与之匹配的左括号，那么就将当前的位置入栈。
      *
@@ -39,6 +39,7 @@ public class LongestValidParentheses {
             return 0;
         }
         int max = 0;
+        //保存下标索引
         Stack<Integer> stack = new Stack<>();
         //便于计算第一个匹配的括号
         stack.push(-1);
@@ -50,7 +51,7 @@ public class LongestValidParentheses {
                 //匹配,出栈
                 stack.pop();
                 if (stack.empty()) {
-                    //都已经匹配
+                    //都已经匹配，保存当前右括号的下标当参照
                     stack.push(i);
                 } else {
                     //计算最大值
