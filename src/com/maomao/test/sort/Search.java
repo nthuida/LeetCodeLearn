@@ -42,7 +42,7 @@ public class Search {
                 low = mid+1;
             }
         }
-        //没有找到
+        //没有找到，{1,2,3} target=4,左边界会出界
         if (low >=nums.length || nums[low] != target ) {
             return -1;
         }
@@ -63,7 +63,7 @@ public class Search {
                 low = mid+1;
             }
         }
-        //没有找到
+        //{1,2,3}, target = 0,右边界会出界
         if (high < 0 || nums[high] != target) {
             return -1;
         }

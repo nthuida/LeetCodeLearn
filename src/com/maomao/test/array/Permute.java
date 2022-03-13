@@ -121,9 +121,10 @@ public class Permute {
             if (visited[i]) {
                 continue;
             }
-            //接下来，如果当前节点与他的前一个节点一样，且他的前一个节点已经被遍历过了，那我们也就不需要了。
-            if(i>0 && nums[i] == nums[i-1] && visited[i-1]) {
-                break;
+            //接下来，如果当前节点与他的前一个节点一样，且他的前一个节点已经被遍历过了，就剪枝
+            // 写 !visited[i - 1] 是因为 nums[i - 1] 在深度优先遍历的过程中刚刚被撤销选择
+            if(i>0 && nums[i] == nums[i-1] && !visited[i-1]) {
+                continue;
             }
             //做出选择
             track.add(nums[i]);

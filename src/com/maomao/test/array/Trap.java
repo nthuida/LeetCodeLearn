@@ -17,13 +17,12 @@ public class Trap {
 
     /**
      * 关键：在一个位置能容下的雨水量等于它左右两边柱子最大高度的最小值减去它的高度
-     * 只有当前柱子高度小于左右最大柱子的高度，才可以接到水
      * @param height
      * @return
      */
     public int trap(int[] height) {
         int sum = 0;
-        //最两端的列不用考虑，因为一定不会有水。所以下标从 1 到 length - 2
+        //按列求，最两端的列不用考虑，因为一定不会有水。所以下标从 1 到 length - 2
         for (int i = 1; i < height.length - 1; i++) {
             int max_left = 0;
             //找出左边最高
@@ -41,7 +40,7 @@ public class Trap {
             }
             //找出两端较小的
             int min = Math.min(max_left, max_right);
-            //只有较小的一段大于当前列的高度才会有水，其他情况不会有水
+            //只有较小的一端大于当前列的高度才会有水，其他情况不会有水
             if (min > height[i]) {
                 sum = sum + (min - height[i]);
             }
