@@ -37,9 +37,28 @@ public class MaxSubArray {
         return maxSum;
     }
 
+    /**
+     * 动态规划求解
+     * dp[i] 表示以i结尾的最大子数组和
+     * @param nums
+     * @return
+     */
+    public int maxSubArrayII(int[] nums) {
+        int[] dp = new int[nums.length];
+        dp[0] = nums[0];
+        for (int i=1; i<nums.length; i++) {
+            dp[i] = Math.max(dp[i-1] + nums[i], nums[i]);
+        }
+        int max = Integer.MIN_VALUE;
+        for (int i : dp) {
+            max = Math.max(max, i);
+        }
+        return  max;
+    }
+
     public static void main(String[] args) {
         int[] nums = {-2,1,-3,4,-1,2,1,-5,4};
         System.out.println(nums[0]);
-        System.out.println(new MaxSubArray().maxSubArray(nums));
+        System.out.println(new MaxSubArray().maxSubArrayII(nums));
     }
 }

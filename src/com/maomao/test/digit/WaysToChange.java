@@ -63,6 +63,7 @@ public class WaysToChange {
     public int waysToChange1(int n) {
         int[] coins = new int[]{1, 5, 10, 25};
         int[] dp = new int[n + 1];
+        //初始化
         dp[0] = 1;
         for (int coin : coins) {
             for (int i = 1; i <= n; i++) {

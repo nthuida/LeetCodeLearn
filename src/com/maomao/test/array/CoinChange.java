@@ -22,7 +22,7 @@ import java.util.Arrays;
 public class CoinChange {
     /**
      * 动态规划
-     * F(i)= (min F(i−coin[j]))+1  , F(i)为组成金额 i 所需最少的硬币数量,coin[j]为第j枚硬币的面值
+     * F(i)= min(F[i],F(i−coin[j])+1)  , F(i)为组成金额i所需最少的硬币数量,coin[j]为第j枚硬币的面值
      *
      * 对于这道题，以coins = [1, 2, 5], amount = 11为例
      * 我们要求组成11的最少硬币数，可以考虑组合中的最后一个硬币分别是1，2，5的情况，比如

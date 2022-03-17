@@ -8,7 +8,6 @@ package com.maomao.test.array;
  * 题目数据保证结果符合 32 位带符号整数。
  *
  * 示例 1：
- *
  * 输入：amount = 5, coins = [1, 2, 5]
  * 输出：4
  * 解释：有四种方式可以凑成总金额：
@@ -16,13 +15,13 @@ package com.maomao.test.array;
  * 5=2+2+1
  * 5=2+1+1+1
  * 5=1+1+1+1+1
- * 示例 2：
  *
+ * 示例 2：
  * 输入：amount = 3, coins = [2]
  * 输出：0
  * 解释：只用面额 2 的硬币不能凑成总金额 3 。
- * 示例 3：
  *
+ * 示例 3：
  * 输入：amount = 10, coins = [10]
  * 输出：1
  *
@@ -32,8 +31,7 @@ package com.maomao.test.array;
 public class Change {
 
     /**
-     * 背包问题
-     *
+     * 动态规划
      * @param amount
      * @param coins
      * @return
@@ -42,8 +40,14 @@ public class Change {
         int[] dp = new int[amount + 1];
         //金额0时只有1种组合
         dp[0] = 1;
+        //先遍历硬币，在遍历金额，保证求的是组合数
         for (int coin : coins) {
-            for (int j = coin; j <= amount; j++) {
+            //遍历硬币
+            for (int j = 1; j <= amount; j++) {
+                //遍历金额
+                if(j < coin) {
+                    continue;
+                }
                 dp[j] += dp[j - coin];
             }
         }

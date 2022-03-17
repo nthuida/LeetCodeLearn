@@ -25,111 +25,42 @@ import java.util.*;
  */
 public class CanMeasureWater {
 
+
     /**
-     * 广度优先搜索
-     * 定义有序整数对 (a, b) 表示当前 A 和 B 两个水壶的水量，
+     * 关注水的总量，每次增加或减少x、y
      * @param x
      * @param y
      * @param z
      * @return
      */
     public boolean canMeasureWater(int x, int y, int z) {
-        if (x + y < z) {
-            return false;
-        }
-        if (x == 0 || y == 0) {
-            return x == z || y == z;
-        }
-        //保存水壶的水量
-        Queue<List<Integer>> queue = new LinkedList<>();
-        //判断状态去重
-        Set<List<Integer>> set = new HashSet<>();
-        //起点，都为空(0,0)
-        List<Integer> list = Arrays.asList(0, 0);
-        queue.offer(list);
-        set.add(list);
-
-        while (!queue.isEmpty()) {
-            List<Integer> temp = queue.poll();
-            //a的水量
-            int cur_x = temp.get(0);
-            //b的水量
-            int cur_y = temp.get(1);
-            if (z == cur_x || z == cur_y || z == cur_x + cur_y) {
-                return true;
-            }
-            //1、给x加满水
-            List<Integer> condition1 = Arrays.asList(x, cur_y);
-            if (!set.contains(condition1)) {
-                set.add(condition1);
-                queue.offer(condition1);
-            }
-            //2、给y加满水
-            List<Integer> condition2 = Arrays.asList(cur_x, y);
-            if (!set.contains(condition2)) {
-                set.add(condition2);
-                queue.offer(condition2);
-            }
-            //3、清空x的水
-            List<Integer> condition3 = Arrays.asList(0, cur_y);
-            if (!set.contains(condition3)) {
-                set.add(condition3);
-                queue.offer(condition3);
-            }
-            //4、清空y的水
-            List<Integer> condition4 = Arrays.asList(cur_x, 0);
-            if (!set.contains(condition4)) {
-                set.add(condition4);
-                queue.offer(condition4);
-            }
-            //5、x给y倒水
-            List<Integer> condition5 = (cur_x + cur_y >= y) ?
-                    Arrays.asList(cur_x + cur_y - y, y) :
-                    Arrays.asList(0, cur_x + cur_y);
-            if (!set.contains(condition5)) {
-                set.add(condition5);
-                queue.offer(condition5);
-            }
-            //6、y给x倒水
-            List<Integer> condition6 = (cur_x + cur_y >= x) ?
-                    Arrays.asList(x, cur_x + cur_y - x) :
-                    Arrays.asList(cur_x + cur_y, 0);
-            if (!set.contains(condition6)) {
-                set.add(condition6);
-                queue.offer(condition6);
-            }
-        }
-        return false;
-    }
-
-    /**
-     * 住关注水的总量，每次增加或减少x、y
-     * @param x
-     * @param y
-     * @param z
-     * @return
-     */
-    public boolean canMeasureWaterII(int x, int y, int z) {
         if (z < 0 || z > x + y) {
             return false;
         }
+        //去重
         Set<Integer> set = new HashSet<>();
+        //水的总量
         Queue<Integer> q = new LinkedList<>();
+        //初始化0
         q.offer(0);
         while (!q.isEmpty()) {
             int n = q.poll();
+            //加X升水
             if (n + x <= x + y && !set.contains(n + x)) {
                 set.add(n+x);
                 q.offer(n + x);
             }
+            //加Y升水
             if (n + y <= x + y && !set.contains(n + y)) {
                 set.add(n + y);
                 q.offer(n + y);
             }
+            //减X升水
             if (n - x >= 0 && !set.contains(n - x)) {
                 set.add(n-x);
                 q.offer(n - x);
             }
+            //减Y升水
             if (n - y >= 0 && !set.contains(n - y)) {
                 set.add(n - y);
                 q.offer(n - y);
@@ -142,6 +73,6 @@ public class CanMeasureWater {
     }
 
     public static void main(String[] args) {
-        System.out.println(new CanMeasureWater().canMeasureWaterII(2,6,5));
+        System.out.println(new CanMeasureWater().canMeasureWater(2,6,5));
     }
 }

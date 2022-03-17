@@ -1,7 +1,5 @@
 package com.maomao.test.digit;
 
-import java.util.Map;
-
 /**
  * @author Administrator
  * @date 2019/3/17
@@ -55,30 +53,7 @@ public class Fib {
     }
 
     /**
-     * 备忘录法，用map做缓存
-     * @param n
-     * @param map
-     * @return
-     */
-    public int climbStairs(int n, Map<Integer, Integer> map) {
-        if (n == 1) {
-            return 1;
-        }
-        if (n == 2) {
-            return 2;
-        }
-        if (map.containsKey(n)) {
-            return map.get(n);
-        } else {
-            int value =  climbStairs(n-1) + climbStairs(n-2);
-            map.put(n, value);
-            return value;
-        }
-
-    }
-
-    /**
-     * 动态规划求解  保存上次和上上次的结果
+     * 迭代 保存上次和上上次的结果
      * @param n
      * @return
      */
@@ -101,6 +76,11 @@ public class Fib {
 
     }
 
+    /**
+     * 动态规划
+     * @param n
+     * @return
+     */
     public int climbStairs2(int n) {
         if (n ==1) {
             return 1;
