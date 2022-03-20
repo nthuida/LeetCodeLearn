@@ -34,7 +34,7 @@ public class OddEvenList {
         while (even != null && even.next != null) {
             //奇数节点的下一个节点指向偶数节点的下一个节点
             odd.next = even.next;
-            //先前移动
+            //向前移动
             odd = odd.next;
             //偶数节点的下个节点指向奇数节点的下一个节点
             even.next = odd.next;

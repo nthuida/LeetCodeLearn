@@ -25,10 +25,11 @@ public class HasCycle {
     }
 
     /**
-     * 走a+nb步一定是在环入口
-     * 第一次相遇时慢指针已经走了nb步，相遇时慢指针走了K步，快指针走了2K步
-     * 快指针比慢指针多走n圈，即K=nb
-     * a:入环口的长度，b:环的长度
+     * 第一次相遇时慢指针走了k步，快指针走了2k步，快指针比慢指针多走n圈
+     * 假设相遇点距环的起点的距离为 m，环的起点距头结点 head 的距离为 k - m，
+     * 也就是说如果从 head 前进 k - m 步就能到达环起点。
+     * 巧的是，如果从相遇点继续前进 k - m 步，也恰好到达环起点：
+     *
      * 给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。
      * @param head
      * @return
@@ -46,12 +47,14 @@ public class HasCycle {
             }
         }
         if (hasCycle) {
-            ListNode listNode = head;
-            while (listNode != slow) {
-                listNode = listNode.next;
+            //重新指向头节点
+            fast = head;
+            while (fast != slow) {
+                // 快慢指针同步前进，相交点就是环起点
+                fast = fast.next;
                 slow = slow.next;
             }
-            return listNode;
+            return fast;
         } else {
             return null;
         }

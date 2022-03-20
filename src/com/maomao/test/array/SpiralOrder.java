@@ -19,128 +19,64 @@ import java.util.List;
  * @date 2020/6/5
  */
 public class SpiralOrder {
-    int k = 0;
-    public int[] spiralOrder(int[][] matrix) {
-        if (matrix.length ==0) {
-            return new int[]{};
-        }
-        int row = matrix.length - 1;
-        int column = matrix[0].length - 1;
-        int[] res = new int[matrix.length * matrix[0].length];
-        int leftUpRow = 0;
-        int leftUpColumn = 0;
-        while (leftUpRow <= row && leftUpColumn <= column) {
-            print(matrix, leftUpRow++, leftUpColumn++, row--, column--, res);
-        }
-        return res;
-    }
 
     /**
-     * 打印外环矩阵:每次打印四个边
+     * 从上到右到下再到左遍历
      * @param matrix
-     * @param leftUpRow
-     * @param leftUpColumn
-     * @param rightDownRow
-     * @param rightDownColumn
-     * @param res
+     * @return
      */
-    public void print(int[][] matrix, int leftUpRow, int leftUpColumn, int rightDownRow, int rightDownColumn, int[] res) {
-        if (leftUpRow == rightDownRow) {
-            //只有一行
-            for (int i=leftUpColumn; i<=rightDownColumn; i++) {
-                res[k++] = matrix[leftUpRow][i] ;
-            }
-        } else if (leftUpColumn == rightDownColumn) {
-            //只有一列
-            for (int i =leftUpRow; i<=rightDownRow; i++) {
-                res[k++] = matrix[i][leftUpColumn];
-            }
-        } else {
-            int tempRow = leftUpRow;
-            int tempColumn = leftUpColumn;
-            //上边
-            while (tempColumn != rightDownColumn) {
-                res[k++]=matrix[leftUpRow][tempColumn++];
-            }
-            //右边
-            while (tempRow != rightDownRow) {
-                res[k++] = matrix[tempRow++][rightDownColumn];
-            }
-            //下边
-            while (tempColumn != leftUpColumn) {
-                res[k++] = matrix[rightDownRow][tempColumn--];
-            }
-            //左边
-            while (tempRow != leftUpRow) {
-                res[k++] = matrix[tempRow--][leftUpColumn];
-            }
-        }
-    }
-
-    public List<Integer> spiralOrderII(int[][] matrix) {
-        if (matrix.length ==0) {
+    public List<Integer> spiralOrder(int[][] matrix) {
+        if (matrix.length == 0) {
             return new ArrayList<>();
         }
-        int row = matrix.length - 1;
-        int column = matrix[0].length - 1;
+        int row = matrix.length;
+        int col = matrix[0].length;
+        int upBound = 0;
+        int downBound = row-1;
+        int leftBound = 0;
+        int rightBound = col-1;
         List<Integer> res = new ArrayList<>();
-        int leftUpRow = 0;
-        int leftUpColumn = 0;
-        while (leftUpRow <= row && leftUpColumn <= column) {
-            printII(matrix, leftUpRow++, leftUpColumn++, row--, column--, res);
+
+        while (res.size() < col * row) {
+            //遍历上
+            if (upBound <= downBound) {
+                for(int i=leftBound; i<=rightBound; i++) {
+                    res.add(matrix[upBound][i]);
+                }
+                //下移
+                upBound++;
+            }
+            //遍历右
+            if (leftBound <= rightBound) {
+                for(int i=upBound; i<=downBound; i++) {
+                    res.add(matrix[i][rightBound]);
+                }
+                //左移
+                rightBound--;
+            }
+            //遍历下
+            if (upBound <= downBound) {
+                for (int i=rightBound; i>=leftBound; i--) {
+                    res.add(matrix[downBound][i]);
+                }
+                //上移
+                downBound--;
+            }
+            //遍历左
+            if (leftBound <= rightBound) {
+                for (int i=downBound; i>=upBound; i--) {
+                    res.add(matrix[i][leftBound]);
+                }
+                //右移
+                leftBound++;
+            }
         }
         return res;
-    }
-
-    /**
-     * 打印外环矩阵:每次打印四个边
-     * @param matrix
-     * @param leftUpRow
-     * @param leftUpColumn
-     * @param rightDownRow
-     * @param rightDownColumn
-     * @param res
-     */
-    public void printII(int[][] matrix, int leftUpRow, int leftUpColumn, int rightDownRow, int rightDownColumn,  List<Integer> res) {
-        if (leftUpRow == rightDownRow) {
-            //只有一行
-            for (int i=leftUpColumn; i<=rightDownColumn; i++) {
-               res.add(matrix[leftUpRow][i]);
-            }
-        } else if (leftUpColumn == rightDownColumn) {
-            //只有一列
-            for (int i =leftUpRow; i<=rightDownRow; i++) {
-                res.add(matrix[i][leftUpColumn]);
-            }
-        } else {
-            int tempRow = leftUpRow;
-            int tempColumn = leftUpColumn;
-            //上边
-            while (tempColumn != rightDownColumn) {
-                res.add(matrix[leftUpRow][tempColumn++]);
-            }
-            //右边
-            while (tempRow != rightDownRow) {
-                res.add(matrix[tempRow++][rightDownColumn]);
-            }
-            //下边
-            while (tempColumn != leftUpColumn) {
-                res.add(matrix[rightDownRow][tempColumn--]);
-            }
-            //左边
-            while (tempRow != leftUpRow) {
-                res.add(matrix[tempRow--][leftUpColumn]);
-            }
-        }
     }
 
     public static void main(String[] args) {
-        int[][] matrix = {{1,2,3,4}, {5,6 ,7,8}, {9,10,11,12},{13,14,15,16}};
-        /*int[] res = new SpiralOrder().spiralOrder(matrix);
-        for (int i : res) {
-            System.out.println(i);
-        }*/
-        List<Integer> result = new SpiralOrder().spiralOrderII(matrix);
+        int[][] matrix = {{1,2,3,4}, {5,6 ,7,8}, {9,10,11,12}};
+        List<Integer> result = new SpiralOrder().spiralOrder(matrix);
         for (int i : result) {
             System.out.println(i);
         }

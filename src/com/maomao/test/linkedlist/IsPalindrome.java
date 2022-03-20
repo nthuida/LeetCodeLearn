@@ -46,11 +46,5 @@ public class IsPalindrome {
         }
         return true;
     }
-
-    public static void main(String[] args) {
-        ListNode node = new ListNode(-12);
-        ListNode node1 = new ListNode(-12);
-        node.next = node1;
-        System.out.println(new IsPalindrome().isPalindrome(node));
-    }
+    
 }

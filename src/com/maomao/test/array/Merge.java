@@ -2,6 +2,7 @@ package com.maomao.test.array;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.LinkedList;
 
 /**
  * 合并两个有序数组
@@ -67,27 +68,23 @@ public class Merge {
      * @return
      */
     public int[][] merge(int[][] intervals) {
-        int len = intervals.length;
-        if (len < 2) {
-            return intervals;
-        }
-        // 按照左端点排序
-        Arrays.sort(intervals, Comparator.comparingInt(o -> o[0]));
-
-        // 遍历区间
-        int[][] res = new int[intervals.length][2];
-        int index = -1;
-        for (int i=0; i<intervals.length; i++) {
-            // 如果当前区间的起始位置 > 结果数组中最后区间的终止位置，
-            // 则不合并，直接将当前区间加入结果数组。
-            if (index == -1 || intervals[i][0] > res[index][1]) {
-                res[++index] = intervals[i];
+        //按左端点从小到大排序
+        Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]));
+        LinkedList<int[]> res = new LinkedList<>();
+        res.add(intervals[0]);
+        for (int i=1; i<intervals.length; i++) {
+            //当前数组
+            int[] cur = intervals[i];
+            //保存的数组
+            int[] last = res.getLast();
+            if (last[1] < cur[0]) {
+                //前一个的end 比 当前的start 还小，不合并
+                res.add(cur);
             } else {
-                // 反之将当前区间合并至结果数组的最后区间
-                res[index][1] = Math.max(res[index][1], intervals[i][1]);
+                last[1] = Math.max(last[1], cur[1]);
             }
         }
-        return Arrays.copyOf(res, index + 1);
+        return res.toArray(new int[res.size()][2]);
     }
 
     public static void main(String[] args) {

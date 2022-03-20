@@ -1,4 +1,4 @@
-package com.maomao.test.digit;
+package com.maomao.test.dp;
 
 /**
  * 不同的路径

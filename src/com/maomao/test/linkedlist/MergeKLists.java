@@ -78,7 +78,7 @@ public class MergeKLists {
         ListNode head = new ListNode(0);
         ListNode cur = head;
         //最小堆
-        Queue<ListNode> queue = new PriorityQueue<>((v1,v2) -> v1.val - v2.val);
+        Queue<ListNode> queue = new PriorityQueue<>(Comparator.comparingInt(v -> v.val));
         for (ListNode node : lists) {
             if (node != null) {
                 //将头节点加入最小堆
