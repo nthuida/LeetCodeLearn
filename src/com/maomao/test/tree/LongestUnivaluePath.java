@@ -63,10 +63,10 @@ public class LongestUnivaluePath {
         int left = 0;
         //当前节点右侧最长同值路径
         int right=0;
-        if (node.left!=null && node.left.val == node.val) {
+        if (node.left != null && node.left.val == node.val) {
             left += subLeft +1;
         }
-        if (node.right!=null && node.right.val == node.val) {
+        if (node.right != null && node.right.val == node.val) {
             right += subRight +1;
         }
         //当前节点最长同值路径值

@@ -34,6 +34,7 @@ import java.util.Map;
 public class FindDuplicateSubtrees {
 
     List<TreeNode> res = new ArrayList<>();
+    //记录所有子树出现的次数
     Map<String, Integer> map = new HashMap<>();
     public List<TreeNode> findDuplicateSubtrees(TreeNode root) {
         postOrder(root);

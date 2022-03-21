@@ -1,7 +1,7 @@
 package com.maomao.test.tree;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * 二叉树中第二小的节点
@@ -40,28 +40,29 @@ public class FindSecondMinimumValue {
         if (root == null) {
             return -1;
         }
-        List<Integer> list = new ArrayList<>();
-        midOrder(root, list);
-        long min = (long)Integer.MAX_VALUE + 1;
-        long secondMin = (long)Integer.MAX_VALUE + 1;
-        for (int i=0; i<list.size(); i++) {
-            if (list.get(i) < min) {
-                secondMin = min;
-                min = list.get(i);
-            } else {
-                if (list.get(i) <= secondMin && list.get(i) > min) {
-                    secondMin = list.get(i);
-                }
+        Set<Integer> set = new HashSet<>();
+        midOrder(root, set);
+        if (set.size() == 1) {
+            return -1;
+        }
+        int first = Integer.MAX_VALUE;
+        int second = Integer.MAX_VALUE;
+        for (int i : set) {
+            if (i < first) {
+                second = first;
+                first = i;
+            } else if (i< second) {
+                second = i;
             }
         }
-        return secondMin == (long)Integer.MAX_VALUE + 1 ? -1: (int) secondMin;
+        return second;
     }
 
-    private void midOrder(TreeNode root, List<Integer> list) {
+    private void midOrder(TreeNode root, Set<Integer> set) {
         if (root != null) {
-            midOrder(root.left, list);
-            list.add(root.val);
-            midOrder(root.right, list);
+            midOrder(root.left, set);
+            set.add(root.val);
+            midOrder(root.right, set);
         }
     }
 

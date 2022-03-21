@@ -45,7 +45,7 @@ public class IsValidBST {
         if (!isValidBST(root.left)) {
             return false;
         }
-        // 访问当前节点，有效二叉搜索树当前节点的值应该大于所有左子树的值
+        // 访问当前节点，当前节点的值应该大于所有左子树的值
         if (root.val <= pre) {
             return false;
         }
