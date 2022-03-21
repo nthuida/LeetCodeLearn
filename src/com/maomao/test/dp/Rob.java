@@ -18,7 +18,7 @@ import java.util.Arrays;
  * @Author huida.mao
  * @Date 2019/10/29
  */
-public class RobII {
+public class Rob {
 
     /**
      * 标签：动态规划
@@ -118,10 +118,10 @@ public class RobII {
 
     /**
      *  动态规划
-     *  我们使用一个大小为 2 的数组来表示 int[] res = new int[2]  0 代表不偷，1 代表偷
+     *  我们使用一个大小为 2 的数组来表示 dp[] 0 代表不偷，1 代表偷
      *  任何一个节点能偷到的最大钱的状态可以定义为
      *  当前节点选择不偷：当前节点能偷到的最大钱数 = 左孩子能偷到的钱 + 右孩子能偷到的钱
-     *  当前节点选择偷：当前节点能偷到的最大钱数 = 左孩子选择自己不偷时能得到的钱 + 右孩子选择不偷时能得到的钱 + 当前节点的钱数
+     *  当前节点选择偷：当前节点能偷到的最大钱数 = 左孩子选择自己不偷时能得到的钱 + 右孩子选择自己不偷时能得到的钱 + 当前节点的钱数
      *
      */
     public int rob(TreeNode root) {
@@ -147,8 +147,8 @@ public class RobII {
 
     public static void main(String[] args) {
         int[] nums = {2,3,2};
-        System.out.println(new RobII().rob(nums));
+        System.out.println(new Rob().rob(nums));
 
-        System.out.println(new RobII().robII(nums));
+        System.out.println(new Rob().robII(nums));
     }
 }

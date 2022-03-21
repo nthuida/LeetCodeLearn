@@ -111,7 +111,8 @@ public class PathSum {
         }
         //加入路径
         list.add(root.val);
-        if (root.left == null && root.right == null && sum == root.val) {
+        sum -= root.val;
+        if (root.left == null && root.right == null && sum == 0) {
             //满足条件
             res.add(new ArrayList<>(list));
             //回溯
@@ -120,8 +121,8 @@ public class PathSum {
             return;
         }
         //不满足条件
-        dfs(root.left, sum-root.val, list);
-        dfs(root.right, sum-root.val, list);
+        dfs(root.left, sum, list);
+        dfs(root.right, sum, list);
         //回溯
         list.removeLast();
     }

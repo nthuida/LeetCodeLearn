@@ -1,4 +1,4 @@
-package com.maomao.test.array;
+package com.maomao.test.dfs;
 
 /**
  * 岛屿的周长
@@ -26,50 +26,44 @@ package com.maomao.test.array;
 public class IslandPerimeter {
 
     /**
-     * 判断相邻是否为陆地
+     * 岛屿的周长就是岛屿方格和非岛屿方格相邻的边的数量
      * @param grid
      * @return
      */
     public int islandPerimeter(int[][] grid) {
         int row = grid.length;
-        if (row == 0) {
-            return 0;
-        }
-        int res = 0;
         int col = grid[0].length;
         for (int i=0; i<row; i++) {
-            for (int j=0; j<col; j++) {
-                int val = grid[i][j];
-                if (val == 0) {
-                    continue;
+            for (int j=0; j<col;j++) {
+                if (grid[i][j] == 1) {
+                    return dfs(grid, i, j);
                 }
-                int left = j-1;
-                int right = j+1;
-                int up = i -1;
-                int down = i +1;
-                if (left <0) {
-                    res++;
-                } else if (grid[i][left] ==0) {
-                    res++;
-                }
-                if (right == col) {
-                    res++;
-                } else if (grid[i][right] == 0) {
-                    res++;
-                }
-                if (up <0) {
-                    res++;
-                } else if (grid[up][j] == 0) {
-                    res++;
-                }
-                if (down == row) {
-                    res++;
-                } else if (grid[down][j] == 0) {
-                    res++;
-                }
-
             }
         }
-        return res;
+        return 0;
+    }
+
+    /**
+     * DFS框架
+     * @param grid
+     * @param i
+     * @param j
+     * @return
+     */
+    private int dfs(int[][] grid, int i, int j){
+        //从岛屿走向网格边界
+        if (i<0 || i>=grid.length || j<0 || j>= grid[0].length) {
+            return 1;
+        }
+        //从岛屿走向水域
+        if (grid[i][j] == 0) {
+            return 1;
+        }
+        if (grid[i][j] != 1) {
+            return 0;
+        }
+        //标注已遍历过
+        grid[i][j] = 2;
+        return dfs(grid, i-1, j) + dfs(grid, i+1, j) + dfs(grid, i, j-1) + dfs(grid, i, j+1);
     }
 }

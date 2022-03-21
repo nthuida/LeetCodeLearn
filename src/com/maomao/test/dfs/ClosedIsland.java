@@ -39,6 +39,7 @@ public class ClosedIsland {
     public int closedIsland(int[][] grid) {
         int row = grid.length;
         int col = grid[0].length;
+        //去除边界的岛屿
         for (int i=0; i<row; i++) {
             //最左边
             dfs(grid, i, 0);
