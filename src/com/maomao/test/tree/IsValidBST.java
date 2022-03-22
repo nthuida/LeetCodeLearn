@@ -1,5 +1,8 @@
 package com.maomao.test.tree;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 验证二叉搜索树
  * 给定一个二叉树，判断其是否是一个有效的二叉搜索树。
@@ -36,12 +39,14 @@ public class IsValidBST {
      * @param root
      * @return
      */
+
+    //记录上一节点的值
     long pre = Long.MIN_VALUE;
     public boolean isValidBST(TreeNode root) {
         if (root == null) {
             return true;
         }
-        // 递归访问左子树
+        // 访问左子树
         if (!isValidBST(root.left)) {
             return false;
         }
@@ -49,9 +54,33 @@ public class IsValidBST {
         if (root.val <= pre) {
             return false;
         }
-        // 将前一环节的最大值赋值给 pre ，作为下一环节比较的最小值。
         pre = root.val;
         // 访问右子树
         return isValidBST(root.right);
+    }
+
+    List<Integer> list = new ArrayList<>();
+    public boolean isValidBSTII(TreeNode root) {
+        if (root == null) {
+            return true;
+        }
+        midOrder(root);
+        //判断有序
+        for (int i=0; i<list.size()-1; i++) {
+            if (list.get(i) < list.get(i+1)) {
+                continue;
+            } else {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void midOrder(TreeNode root) {
+        if (root != null) {
+            midOrder(root.left);
+            list.add(root.val);
+            midOrder(root.right);
+        }
     }
 }
