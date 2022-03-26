@@ -15,8 +15,10 @@ public class MinWindow {
 
     /**
      * 滑动窗口法
-     * 一个用于「延伸」现有窗口的 r 指针，和一个用于「收缩」窗口的 l 指针。在任意时刻，只有一个指针运动，而另一个保持静止。
-     * 我们在 s 上滑动窗口，通过移动 r 指针不断扩张窗口。当窗口包含 t 全部所需的字符后，如果能收缩，我们就收缩窗口直到得到最小窗口。
+     * 一个用于扩大现有窗口的 r 指针，和一个用于缩小窗口的 l 指针。初始化为l=r=0
+     * 先移动 r 指针不断扩张窗口，直到窗口中的字符串符合要求后停止；
+     * 然后移动 l 指针，缩小窗口，直到窗口中的字符串不符合要求，每次移动l,需要更新结果；
+     * 重复上面两步，直到 r 指针到达字符串的尽头
      *
      * @param s
      * @param t
@@ -28,42 +30,92 @@ public class MinWindow {
         }
         int left = 0;
         int right = 0;
-        //用来对原字符串的字符计数
-        int[] ori = new int[128];
-        //滑动窗口字符计数
+        //记录目标字符串字符出现次数
+        int[] need = new int[128];
+        //滑动窗口字符出现次数
         int[] window = new int[128];
         //目前窗口找到的字符数
         int count = 0;
-        //原字符串计数
+        //目标字符串计数
         for (int i=0; i<t.length(); i++) {
-            ori[t.charAt(i)]++;
+            need[t.charAt(i)]++;
         }
         String res = "";
         int min = s.length();
 
         while (right < s.length()) {
-            char ch = s.charAt(right);
-            window[ch]++;
-            if (ori[ch] > 0 && ori[ch] >= window[ch]) {
+            //移入窗口的字符
+            char r = s.charAt(right);
+            window[r]++;
+            //右移窗口
+            right++;
+            if (need[r] > 0 && need[r] >= window[r]) {
                 count++;
             }
-            //满足条件
+            //判断左侧是否要收缩
             while (count == t.length()) {
+                //更新结果
                 if (right-left <= min) {
                     min = right -left;
-                    res = s.substring(left, right+1);
+                    res = s.substring(left, right);
                 }
-                ch = s.charAt(left);
+                //移出窗口的字符
+                char l = s.charAt(left);
+                window[l]--;
                 //左边缩小窗口
-                if (ori[ch] > 0 && ori[ch] >= window[ch]) {
+                left++;
+                if (need[l] > 0 && need[l] > window[l]) {
                     count--;
                 }
-                window[ch]--;
-                left++;
             }
-
-            right++;
         }
         return res;
+    }
+
+    /**
+     * 暴力解决，超时
+     * @param s
+     * @param t
+     * @return
+     */
+    public String minWindowII(String s, String t) {
+        int m = s.length();
+        int n = t.length();
+        if (m < n) {
+            return "";
+        }
+        //截取长度n至m的字符串，分别比较
+        for(int i=n; i<=m; i++) {
+            for (int j=0; j+i<=m; j++) {
+                String temp = s.substring(j, j+i);
+                if (compare(temp, t)) {
+                    return temp;
+                }
+            }
+        }
+        return "";
+    }
+
+    /**
+     * 比较两字符串是否包含
+     * @param a
+     * @param b
+     * @return
+     */
+    private boolean compare(String a, String b) {
+        int[] ori = new int[128];
+        for (int i=0; i<a.length(); i++) {
+            ori[a.charAt(i)]++;
+        }
+        for (int j=0; j<b.length(); j++) {
+            if (ori[b.charAt(j)]-- == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new MinWindow().minWindow("a", "a"));
     }
 }

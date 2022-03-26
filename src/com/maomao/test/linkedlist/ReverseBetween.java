@@ -16,10 +16,6 @@ package com.maomao.test.linkedlist;
 public class ReverseBetween {
 
     /**
-     * 非递归
-     * 1、定义两个指针g和p，将g移动到第一个要反转的节点的前面，将p移动到第一个要反转的节点的位置上。
-     * 2、将p后面的元素删除，然后添加到g的后面。也即头插法
-     * 3、根据m和n重复步骤2
      * @param head
      * @param m
      * @param n
@@ -28,23 +24,22 @@ public class ReverseBetween {
     public ListNode reverseBetweenII(ListNode head, int m, int n) {
         ListNode dummyHead = new ListNode(0);
         dummyHead.next = head;
-        ListNode g = dummyHead;
-        ListNode p = dummyHead.next;
-
-        int step = 0;
-        while (step < m - 1) {
-            g = g.next;
-            p = p.next;
-            step ++;
+        //反转链表的的前一个节点
+        ListNode pre = dummyHead;
+        for (int i=0; i<m-1; i++) {
+            pre = pre.next;
         }
-        //头节点插入
+        //反转链表的第一个节点
+        ListNode cur = pre.next;
+        //头插法，先将 curr 的下一个节点记录为 next；
+        //执行操作 ①：把 curr 的下一个节点指向 next 的下一个节点；
+        //执行操作 ②：把 next 的下一个节点指向 pre 的下一个节点；
+        //执行操作 ③：把 pre 的下一个节点指向 next
         for (int i = 0; i < n - m; i++) {
-            //待插节点
-            ListNode removed = p.next;
-            p.next = p.next.next;
-
-            removed.next = g.next;
-            g.next = removed;
+            ListNode next = cur.next;
+            cur.next = next.next;
+            next.next = pre.next;
+            pre.next = next;
         }
         return dummyHead.next;
     }

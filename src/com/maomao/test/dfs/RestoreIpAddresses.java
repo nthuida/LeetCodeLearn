@@ -1,15 +1,15 @@
 package com.maomao.test.dfs;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
  * 复原IP地址
  * 给定一个只包含数字的字符串，复原它并返回所有可能的 IP 地址格式。
  * 有效的 IP 地址 正好由四个整数（每个整数位于 0 到 255 之间组成，且不能含有前导 0），整数之间用 '.' 分隔。
- * 例如："0.1.2.201" 和 "192.168.1.1" 是 有效的 IP 地址，但是 "0.011.255.245"、"192.168.1.312" 和 "192.168@1.1" 是 无效的 IP 地址。
- *
- *  
+ * 例如："0.1.2.201" 和 "192.168.1.1" 是 有效的 IP 地址，
+ * 但是 "0.011.255.245"、"192.168.1.312" 和 "192.168@1.1" 是 无效的 IP 地址。
  *
  * 示例 1：
  *
@@ -34,73 +34,78 @@ import java.util.List;
 public class RestoreIpAddresses {
 
     /**
-     * 回溯剪枝
+     * 回溯
      * @param s
      * @return
      */
     public List<String> restoreIpAddresses(String s) {
         int len = s.length();
         List<String> res = new ArrayList<>();
-        List<String> path = new ArrayList<>();
+        LinkedList<String> path = new LinkedList<>();
+        //长度不满足
         if (len<4 || len >12) {
             return res;
         }
-        dfs(len,0,0, s, res, path);
+        dfs(0,0, s, res, path);
         return res;
     }
 
-    private void dfs(int len, int begin, int splitCount, String s, List<String> res, List<String> path) {
-        if (begin == len) {
-            //退出
-            if (splitCount == 4) {
-                //ip分为4段
-                res.add(String.join(".", path));
-            }
+    /**
+     *
+     * @param begin      开始的索引
+     * @param splitCount 分割的层数
+     * @param s
+     * @param res
+     * @param path
+     */
+    private void dfs(int begin, int splitCount, String s, List<String> res, LinkedList<String> path) {
+        //结束条件
+        if (begin == s.length() && splitCount == 4) {
+            //ip分为4段
+            res.add(String.join(".", path));
             return;
         }
-        // 看到剩下的不够了，就退出（剪枝），len - begin 表示剩余的还未分割的字符串的位数
-        if (len - begin < (4 - splitCount) || len - begin > 3 * (4 - splitCount)) {
-            return;
+        for (int i= begin; i<s.length(); i++) {
+            // 每次分割后，判断剩下的字符串的长度是否合理，进行剪枝
+            if (s.length()-i-1 > 3 * (3 - splitCount)) {
+                continue;
+            }
+            //ip是否合法
+            if (!judgeIfIpSegment(s.substring(begin, i+1))) {
+                continue;
+            }
+            //选择
+            path.add(s.substring(begin, i+1));
+            dfs(i+1,splitCount+1, s, res, path);
+            //回溯
+            path.removeLast();
         }
 
-        for (int i=0; i<3;i++) {
-            //分割
-            if (begin + i >=len) {
-                break;
-            }
-            int ip = judgeIfIpSegment(s, begin, begin+i);
-
-            if (ip != -1) {
-                path.add(ip +"");
-                dfs(len, begin+i+1, splitCount+1, s, res, path);
-                path.remove(path.size()-1);
-            }
-        }
 
     }
 
-    private int judgeIfIpSegment(String s, int left, int right) {
-        int len = right - left + 1;
-
+    /**
+     * 判断是否是合法的Ip
+     * @param s
+     * @return
+     */
+    private boolean judgeIfIpSegment(String s) {
         // 大于 1 位的时候，不能以 0 开头
-        if (len > 1 && s.charAt(left) == '0') {
-            return -1;
+        if (s.length() > 1 && s.charAt(0) == '0') {
+            return false;
         }
-
-        // 转成 int 类型
-        int res = 0;
-        for (int i = left; i <= right; i++) {
-            res = res * 10 + s.charAt(i) - '0';
+        //大于3位
+        if (s.length() > 3) {
+            return false;
         }
-
-        if (res > 255) {
-            return -1;
+        if (Integer.parseInt(s) > 255) {
+            return false;
         }
-        return res;
+        return true;
     }
 
     public static void main(String[] args) {
-        String s = "010010";
+        String s = "25525511135";
         System.out.println(new RestoreIpAddresses().restoreIpAddresses(s));
     }
 

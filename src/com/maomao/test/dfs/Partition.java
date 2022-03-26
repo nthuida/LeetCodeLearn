@@ -1,6 +1,7 @@
-package com.maomao.test.string;
+package com.maomao.test.dfs;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 
@@ -34,19 +35,19 @@ public class Partition {
             return res;
         }
 
-        Stack<String> path = new Stack<>();
-        backtrack(0, s.length(), s, path, res);
+        LinkedList<String> path = new LinkedList<>();
+        backtrack(0, s, path, res);
         return res;
     }
 
-    private void backtrack(int start, int len, String s, Stack<String> path, List<List<String>> res) {
+    private void backtrack(int start, String s, LinkedList<String> path, List<List<String>> res) {
         //结束条件
-        if (start == len) {
+        if (start == s.length()) {
             res.add(new ArrayList<>(path));
             return;
         }
 
-        for (int i=start; i<len; i++) {
+        for (int i=start; i<s.length(); i++) {
             //不满足条件
             if (!check(start, i, s)) {
                 continue;
@@ -54,9 +55,9 @@ public class Partition {
             //选择
             path.add(s.substring(start, i+1));
             //进入下一步
-            backtrack(i+1, len, s, path, res);
+            backtrack(i+1, s, path, res);
             //回溯
-            path.pop();
+            path.removeLast();
         }
     }
 
