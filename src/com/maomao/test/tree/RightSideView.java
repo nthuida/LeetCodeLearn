@@ -56,7 +56,6 @@ public class RightSideView {
                 }
             }
             list.add(integerList);
-
         }
         return list;
     }

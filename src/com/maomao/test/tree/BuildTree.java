@@ -43,12 +43,13 @@ public class BuildTree {
         TreeNode root = new TreeNode(preorder[preorderStart]);
         //中序遍历根节点的位置
         int inorderRoot = map.get(preorder[preorderStart]);
+        //左子树的长度
         int leftNum = inorderRoot - inorderStart;
         //递归构造左子树
-        TreeNode left = buildHelper(preorder, preorderStart+1, preorderStart+1+leftNum, inorder, inorderStart,inorderRoot-1);
-        root.left = left;
+        TreeNode left = buildHelper(preorder, preorderStart+1, preorderStart+leftNum, inorder, inorderStart,inorderRoot-1);
         //递归构造右子树
         TreeNode right = buildHelper(preorder, preorderStart +leftNum +1, preorderEnd, inorder, inorderRoot+1, inorderEnd);
+        root.left = left;
         root.right = right;
         return root;
     }

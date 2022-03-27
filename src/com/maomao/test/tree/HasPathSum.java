@@ -33,10 +33,10 @@ public class HasPathSum {
         if (root == null) {
             return false;
         }
-        sum -= root.val;
-        if (root.right == null && root.left == null && sum == 0) {
-            return true;
+        //叶子节点
+        if (root.right == null && root.left == null) {
+            return root.val == sum;
         }
-        return (hasPathSum(root.left, sum) || hasPathSum(root.right, sum));
+        return (hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val));
     }
 }

@@ -46,11 +46,13 @@ public class BinaryTreePaths {
         path +=  root.val;
         if (root.right == null && root.left == null) {
             pathList.add(path);
-        } else {
-            //递归
-            path += "->";
-            path(root.left, pathList, path);
-            path(root.right, pathList, path);
+            return;
         }
+        //递归
+        path += "->";
+        //这边传递的是当前的路径，是值传递，所以不需要回溯
+        path(root.left, pathList, path);
+        path(root.right, pathList, path);
+
     }
 }

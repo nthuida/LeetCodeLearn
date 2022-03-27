@@ -38,13 +38,14 @@ public class MaxPathSum {
      * @return
      */
     public int maxPathSum(TreeNode root) {
+        //计算以root为起点的，最大单边路径和
         dfs(root);
         return max;
     }
 
     /**
      *   计算二叉树中的一个节点的最大贡献值，
-     *   具体而言，就是在以该节点为根节点的子树中寻找以该节点为起点的一条路径，使得该路径上的节点值之和最大。
+     *   就是在以该节点为根节点的子树中寻找以该节点为起点的一条路径，使得该路径上的节点值之和最大。
      *   在计算过程中，更新最大路径和
      * @param root
      * @return
@@ -53,7 +54,7 @@ public class MaxPathSum {
         if (root == null) {
             return 0;
         }
-        //左节点贡献的最大值，大于0
+        //左节点贡献的最大值，大于0，优化为负的情况
         int leftMax = Math.max(dfs(root.left),0);
         //右节点
         int rightMax = Math.max(dfs(root.right),0);
@@ -61,7 +62,7 @@ public class MaxPathSum {
         int pathLen = root.val + leftMax + rightMax;
         //路径和最大值
         max = Math.max(max, pathLen);
-        //当前节点的最大贡献值
+        //当前节点的最大单边路径
         return root.val + Math.max(leftMax, rightMax);
     }
 }

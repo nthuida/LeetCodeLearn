@@ -28,9 +28,6 @@ public class MaxSlidingWindow {
 
     public int[] maxSlidingWindow(int[] nums, int k) {
         int len = nums.length;
-        if (len < k || len == 0) {
-            return new int[]{};
-        }
         int[] res = new int[len-k+1];
         for (int i=0; i<=len-k; i++) {
             int max = Integer.MIN_VALUE;
