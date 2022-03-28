@@ -1,6 +1,5 @@
 package com.maomao.test.dfs;
 
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -46,7 +45,6 @@ import java.util.List;
  */
 public class SumNumbers {
 
-    List<List<Integer>> res = new ArrayList<>();
     public int sumNumbers(TreeNode root) {
         if (root == null) {
             return 0;
@@ -65,17 +63,18 @@ public class SumNumbers {
     }
 
     /**
-     * 路径
+     * 所有路径
      * @param root
      * @return
      */
     private List<List<Integer>> getPath(TreeNode root) {
+        List<List<Integer>> res = new ArrayList<>();
         LinkedList<Integer> temp = new LinkedList<>();
-        dfs(root, temp);
+        dfs(root, temp, res);
         return res;
     }
 
-    private void dfs(TreeNode root, LinkedList<Integer> list) {
+    private void dfs(TreeNode root, LinkedList<Integer> list, List<List<Integer>> res ) {
         if (root == null) {
             return;
         }
@@ -90,24 +89,36 @@ public class SumNumbers {
             return;
         }
         //不满足条件
-        dfs(root.left, list);
-        dfs(root.right, list);
+        dfs(root.left, list, res);
+        dfs(root.right, list, res);
         //回溯
         list.removeLast();
     }
 
+    /**
+     * 先遍历根节点；
+     * 遍历左子树，遍历左子树的时候，把走当前路径的数字带到左子树的求解中；
+     * 遍历右子树，遍历右子树的时候，把走当前路径的数字带到右子树的求解中；
+     * 更新总的和。
+     * @param root
+     * @return
+     */
     public int sumNumbersII(TreeNode root) {
         return helper(root, 0);
     }
 
     public int helper(TreeNode root, int i){
+        //终止条件
         if (root == null) {
             return 0;
         }
+        //计算当前节点的值
         int temp = i * 10 + root.val;
+        //叶子节点，一条完整的路径，直接返回
         if (root.left == null && root.right == null) {
             return temp;
         }
+        //非叶子节点，递归左右子树
         return helper(root.left, temp) + helper(root.right, temp);
     }
 
