@@ -30,7 +30,8 @@ public class SingleNumber {
     }
 
     /**
-     * 一个整型数组 nums 里除两个数字之外，其他数字都出现了两次。请写程序找出这两个只出现一次的数字。要求时间复杂度是O(n)，空间复杂度是O(1)。
+     * 一个整型数组 nums 里除两个数字之外，其他数字都出现了两次。请写程序找出这两个只出现一次的数字。
+     * 要求时间复杂度是O(n)，空间复杂度是O(1)。
      *
      * 示例 1：
      * 输入：nums = [4,1,4,6]
@@ -40,15 +41,11 @@ public class SingleNumber {
      * 输入：nums = [1,2,10,4,1,4,3,3]
      * 输出：[2,10] 或 [10,2]
      *
-     * 思路：
-     * 找到一个操作，让两个数字进行这个操作后，分为两组。其他相同的数，肯定会分在一个数组
-     * 再分别异或，求出值
-     *
-     *
      * @param nums
      * @return
      */
     public int[] singleNumbers(int[] nums) {
+        //两个不同元素的异或值
         int result = nums[0];
         for (int i=1; i<nums.length; i++) {
             result = result^nums[i];
@@ -61,7 +58,7 @@ public class SingleNumber {
         int a = 0;
         int b = 0;
         for (int i=0; i<nums.length; i++) {
-            if ((nums[i]&mark) == 0) {
+            if ((nums[i] & mark) == 0) {
                 //根据那位不同分组
                 a ^= nums[i];
             } else {
@@ -78,12 +75,10 @@ public class SingleNumber {
      * 你的算法应该具有线性时间复杂度。 你可以不使用额外空间来实现吗？
      *
      * 示例 1:
-     *
      * 输入: [2,2,3,2]
      * 输出: 3
      *
      * 示例 2:
-     *
      * 输入: [0,1,0,1,0,1,99]
      * 输出: 99
      *

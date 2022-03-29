@@ -20,6 +20,11 @@ import java.util.List;
  */
 public class ReorderList {
 
+    /**
+     * 利用线性表存储该链表，然后利用线性表可以下标访问的特点，
+     * 直接按顺序访问指定元素，重建该链表即可。
+     * @param head
+     */
     public void reorderList(ListNode head) {
         if (head == null || head.next == null || head.next.next == null) {
             return;
