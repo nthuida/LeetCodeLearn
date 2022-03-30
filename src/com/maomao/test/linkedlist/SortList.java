@@ -45,9 +45,13 @@ public class SortList {
      * @return
      */
     private ListNode midNode(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
         ListNode slow = head;
-        ListNode fast = head.next.next;
-        while (fast != null  && fast.next != null) {
+        ListNode fast = head;
+        //返回的是偶数节点的前面那个
+        while (fast.next != null  && fast.next.next != null) {
             slow = slow.next;
             fast = fast.next.next;
         }

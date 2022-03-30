@@ -48,6 +48,9 @@ public class MiddleNode {
      * @return
      */
     public ListNode middleNode1(ListNode head) {
+       if (head == null || head.next == null) {
+           return head;
+       }
        ListNode fast = head;
        ListNode slow = head;
        while (fast != null && fast.next != null) {
