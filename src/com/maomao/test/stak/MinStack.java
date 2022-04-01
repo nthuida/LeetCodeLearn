@@ -23,7 +23,7 @@ public class MinStack {
 
     public void push(int x) {
         if (x <= min) {
-            //之前的最小值
+            //保存之前的最小值
             list.addFirst(min);
             min = x;
         }
@@ -36,6 +36,7 @@ public class MinStack {
         if (top == min) {
             //之前的最小值
             min = list.getFirst();
+            //删除之前保存的最小值
             list.removeFirst();
         }
     }
@@ -53,7 +54,9 @@ public class MinStack {
         minStack.push(-2);
         minStack.push(0);
         minStack.push(-3);
+        minStack.push(-4);
         System.out.println(minStack.getMin());
+        minStack.pop();
         minStack.pop();
         System.out.println(minStack.top());
         System.out.println(minStack.getMin());

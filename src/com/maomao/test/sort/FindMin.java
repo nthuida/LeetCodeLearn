@@ -1,4 +1,4 @@
-package com.maomao.test.array;
+package com.maomao.test.sort;
 
 /**
  * 假设按照升序排序的数组在预先未知的某个点上进行了旋转。
@@ -29,17 +29,14 @@ public class FindMin {
     public int findMin(int[] nums) {
         int high = nums.length-1;
         int low = 0;
-        while (low <= high) {
+        while (low < high) {
             int mid = low + (high - low) / 2;
             if (nums[mid] > nums[high]) {
                 //mid是最小值左侧的元素
                 low = mid +1;
-            } else if(nums[mid] < nums[high]) {
-                //mid是最小值右侧的元素
+            } else {
+                //mid是最小值右侧的元素，包含当前mid元素
                 high = mid;
-            }  else {
-                //每次忽略区间的右端点
-                high -= 1;
             }
         }
         return nums[low];

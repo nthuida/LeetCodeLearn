@@ -28,8 +28,10 @@ public class ReverseWords {
         String[] str = s.trim().split(" ");
         for(int i = str.length-1; i >= 0; i--){
             if(i == 0){
+                //最后一个
                 stringBuffer.append(str[i]);
             }else{
+                //中间的空格，分割后变成""，排除掉
                 if (!str[i].equals("")) {
                     stringBuffer.append(str[i] + " ");
                 }
