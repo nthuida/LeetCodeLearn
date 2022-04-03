@@ -26,7 +26,7 @@ package com.maomao.test.tree;
 public class InvertTree {
 
     /**
-     * 递归
+     * 后序遍历，先翻转左右子树,从下往上
      * @param root
      * @return
      */
@@ -39,6 +39,25 @@ public class InvertTree {
         TreeNode invertRightTree = invertTree(root.right);
         root.left = invertRightTree;
         root.right = invertLeftTree;
+        return root;
+    }
+
+    /**
+     * 前序遍历，从上往下
+     * @param root
+     * @return
+     */
+    public TreeNode invertTreeII(TreeNode root) {
+        if (root == null) {
+            return null;
+        }
+        //先交换左右子树
+        TreeNode temp = root.left;
+        root.left = root.right;
+        root.right = temp;
+        //递归翻转左右子树
+        invertTreeII(root.left);
+        invertTreeII(root.right);
         return root;
     }
 }

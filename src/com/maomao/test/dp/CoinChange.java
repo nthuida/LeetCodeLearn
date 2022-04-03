@@ -41,11 +41,9 @@ public class CoinChange {
         Arrays.fill(dp,max);
         //金额为0，组合为0
         dp[0] = 0;
-        for (int i =1; i<=amount; i++) {
-            for (int j = 0; j < coins.length; j++) {
-                if (coins[j] <= i) {
-                    dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1);
-                }
+        for (int coin: coins) {
+            for (int i=coin; i<amount+1; i++) {
+                dp[i] = Math.min(dp[i], dp[i - coin] + 1);
             }
         }
         //值为amount+1说明不存在

@@ -27,7 +27,6 @@ public class Calculate {
 
     /**
      * 先把乘除法的值计算出来，最终将所有的运算简化成只有加法。
-     *
      * @param s
      * @return
      */
@@ -35,35 +34,35 @@ public class Calculate {
         Stack<Integer> stack = new Stack<>();
         //上一个的操作符
         char lastOp = '+';
+        int num = 0;
         for (int i=0; i<s.length(); i++) {
-            if (s.charAt(i) == ' ') {
-                continue;
-            }
             char temp = s.charAt(i);
             if (Character.isDigit(temp)) {
                 //转化为数字
-                int tempNum = temp - '0';
-                while(++i < s.length() && Character.isDigit(s.charAt(i))){
-                    tempNum = tempNum * 10 + (s.charAt(i) - '0');
+               num = num*10 + (temp - '0');
+            }
+            //不是数字，就是字符，或者到达最后一个元素，要保存之前的值
+            if ((!Character.isDigit(temp) && temp != ' ')|| i==s.length()-1){
+                switch (lastOp) {
+                    case '+' :
+                        //直接入栈
+                        stack.push(num);
+                        break;
+                    case '-' :
+                        stack.push(-num);
+                        break;
+                    case '*' :
+                        int s1 = stack.pop();
+                        //算好了，放进去
+                        stack.push(s1*num);
+                        break;
+                    case '/' :
+                        int s2 = stack.pop();
+                        stack.push(s2/num);
                 }
-                //回退到非数字
-                i--;
-                if (lastOp == '+') {
-                    //直接入栈
-                    stack.push(tempNum);
-                } else if (lastOp == '-') {
-                    stack.push(-tempNum);
-                } else if(lastOp == '*') {
-                    int s1 = stack.pop();
-                    //算好了，放进去
-                    stack.push(s1*tempNum);
-                } else {
-                    int s1 = stack.pop();
-                    stack.push(s1/tempNum);
-                }
-
-            } else {
+                //更新计算符
                 lastOp = temp;
+                num = 0;
             }
         }
         //遍历求和
@@ -110,6 +109,7 @@ public class Calculate {
             if (ch == ' ') {
                 continue;
             }
+            //计算数字
             if (Character.isDigit(ch)) {
                 num = num * 10 + (ch - '0');
             } else if (ch == '+'){

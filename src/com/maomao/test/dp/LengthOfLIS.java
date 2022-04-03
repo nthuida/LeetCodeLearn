@@ -40,6 +40,7 @@ public class LengthOfLIS {
                    dp[i] = Math.max(dp[i], dp[j] + 1);
                }
            }
+           //更新结果
            res = Math.max(res, dp[i]);
        }
         return res;

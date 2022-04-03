@@ -20,7 +20,7 @@ public class IsPalindrome {
      * @param head
      * @return
      */
-    public boolean isPalindrome(ListNode head) {
+    public boolean isPalindromeII(ListNode head) {
         if (head == null) {
             return true;
         }
@@ -45,6 +45,55 @@ public class IsPalindrome {
             }
         }
         return true;
+    }
+
+    /**
+     * 双指针+翻转链表
+     * @param head
+     * @return
+     */
+    public boolean isPalindrome(ListNode head) {
+        if (head == null || head.next == null) {
+            return true;
+        }
+        ListNode slow = head;
+        ListNode fast = head;
+        //寻找链表中点
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        //链表长度为奇数
+        if (fast != null) {
+            slow = slow.next;
+        }
+        //翻转中间节点的后半部分
+        ListNode node = reverse(slow);
+        fast = head;
+        //比较
+        while (node != null) {
+           if (node.val != fast.val) {
+               return false;
+           }
+           node = node.next;
+           fast = fast.next;
+        }
+        return true;
+    }
+
+    private ListNode reverse(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode pre = null;
+        ListNode cur = head;
+        while (cur != null) {
+            ListNode next = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = next;
+        }
+        return pre;
     }
     
 }
