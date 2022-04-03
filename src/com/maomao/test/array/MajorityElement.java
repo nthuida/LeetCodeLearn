@@ -21,7 +21,7 @@ public class MajorityElement {
      * @param nums
      * @return
      */
-    public int majorityElement(int[] nums) {
+    public int majorityElementII(int[] nums) {
         int length = nums.length;
         Map<Integer, Integer> map = new HashMap<>(length);
         for (int i=0; i<length; i++) {
@@ -35,5 +35,33 @@ public class MajorityElement {
             }
         }
         return 0;
+    }
+
+    /**
+     * 投票法
+     * “多数元素”和其他元素 两两相互抵消，抵消到最后肯定还剩余至少1个“多数元素”
+     * 时间复杂度O(n), 空间复杂度O(1)
+     * @param nums
+     * @return
+     */
+    public int majorityElement(int[] nums) {
+        int res = nums[0];
+        //投票计数
+        int count = 1;
+        for (int i=1; i<nums.length; i++) {
+            if (nums[i] == res) {
+                //相同计数
+                count++;
+            } else {
+                //不同抵消减数
+                count--;
+                if (count == 0) {
+                    //更新值，重新投票
+                    res = nums[i];
+                    count = 1;
+                }
+            }
+        }
+        return res;
     }
 }

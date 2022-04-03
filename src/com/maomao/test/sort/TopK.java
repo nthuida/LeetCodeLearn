@@ -54,12 +54,9 @@ public class TopK<T> {
 
     public static void main(String[] args) {
         int[] array = {4, 5, 1, 6, 2, 7, 3, 8};
-        TopK pq = new TopK(4, new Comparator<Integer>() {
-            @Override
-            public int compare(Integer o1, Integer o2) {
-                // 最大堆用o2 - o1，最小堆用o1 - o2
-                return (o1.compareTo(o2));
-            }
+        TopK pq = new TopK(4, (Comparator<Integer>) (o1, o2) -> {
+            // 最大堆用o2 - o1，最小堆用o1 - o2
+            return (o1.compareTo(o2));
         });
         for (int n : array) {
             pq.add(n);

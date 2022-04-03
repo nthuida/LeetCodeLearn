@@ -30,9 +30,6 @@ public class MaximalSquare {
      */
     public int maximalSquare(char[][] matrix) {
         int maxSide = 0;
-        if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
-            return maxSide;
-        }
         int rows = matrix.length;
         int columns = matrix[0].length;
         int[][] dp = new int[rows][columns];

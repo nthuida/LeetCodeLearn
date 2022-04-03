@@ -1,4 +1,4 @@
-package com.maomao.test.linkedlist;
+package com.maomao.test.sort;
 
 /**
  * 链表排序

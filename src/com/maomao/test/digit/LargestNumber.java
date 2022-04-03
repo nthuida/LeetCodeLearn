@@ -23,22 +23,20 @@ public class LargestNumber {
 
     public String largestNumber(int[] nums) {
         String[] strs = new String[nums.length];
+        //转为字符串比较
         for (int i=0;i<nums.length; i++) {
             strs[i] = nums[i] + "";
         }
-        //排序, 和大的在前
-        Arrays.sort(strs, new Comparator<String>(){
-            @Override
-            public int compare(String a, String b) {
-                String order1 = a + b;
-                String order2 = b + a;
-                return order2.compareTo(order1);
-            }
+        //通过比较(a+b)和(b+a)的大小，就可以判断出a,b两个字符串谁应该在前面
+        Arrays.sort(strs, (a, b) -> {
+            //返回值大于0，交换a和b
+            return (b+a).compareTo(a+b);
         });
         StringBuilder stringBuilder = new StringBuilder();
         for (String str : strs) {
             stringBuilder.append(str);
         }
+        //都是0的情况
         if (stringBuilder.charAt(0) == '0') {
             return "0";
         }
@@ -47,13 +45,10 @@ public class LargestNumber {
 
     public static void main(String[] args) {
         String[] str = {"30", "3", "34", "5", "9"};
-        Arrays.sort(str, new Comparator<String>(){
-            @Override
-            public int compare(String a, String b) {
-                String order1 = a + b;
-                String order2 = b + a;
-                return order2.compareTo(order1);
-            }
+        Arrays.sort(str, (a, b) -> {
+            String order1 = a + b;
+            String order2 = b + a;
+            return order2.compareTo(order1);
         });
         System.out.println(str);
     }

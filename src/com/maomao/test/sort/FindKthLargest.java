@@ -1,4 +1,4 @@
-package com.maomao.test.array;
+package com.maomao.test.sort;
 
 import java.util.*;
 
@@ -24,12 +24,17 @@ import java.util.*;
 public class FindKthLargest {
 
     public int findKthLargest(int[] nums, int k) {
-        Arrays.sort(nums);
-        return nums[nums.length-k];
+        //默认最小堆
+        PriorityQueue<Integer> queue = new PriorityQueue<>();
+        for (int i: nums) {
+            queue.add(i);
+            //超过，删除堆顶元素
+            if (queue.size() > k) {
+                queue.poll();
+            }
+        }
+        return queue.peek();
     }
 
-    public static void main(String[] args) {
-        int[] a = {3,2,3,1,2,4,5,5,6};
-        System.out.println(new FindKthLargest().findKthLargest(a, 4));
-    }
+
 }

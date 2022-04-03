@@ -24,40 +24,29 @@ import java.util.*;
 public class RightSideView {
 
     public List<Integer> rightSideView(TreeNode root) {
-        List<Integer> resultList = new ArrayList<>();
-        //层序遍历，取每一层的最后一个元素
-        List<List<Integer>> lists = levelOrder(root);
-        for (int i=0; i<lists.size(); i++) {
-            List<Integer> list = lists.get(i);
-            resultList.add(list.get(list.size()-1));
-        }
-        return resultList;
-    }
-
-    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
         if (root == null) {
-            return new ArrayList<>();
+            return res;
         }
-        List<List<Integer>> list = new ArrayList<>();
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
         while (!queue.isEmpty()) {
-            List<Integer> integerList = new ArrayList<>();
             int size = queue.size();
-            //一层的放在同一个list
-            for (int i=0; i<size; i++) {
-                TreeNode treeNode = queue.poll();
-                integerList.add(treeNode.val);
-                if (treeNode.left != null) {
-                    queue.add(treeNode.left);
+            for(int i=0;i<size; i++) {
+                TreeNode node = queue.poll();
+                if (node.left != null) {
+                    queue.add(node.left);
                 }
-                if (treeNode.right != null) {
-                    queue.add(treeNode.right);
+                if (node.right != null) {
+                    queue.add(node.right);
+                }
+                //保存每层的最后一个元素
+                if (i == size-1) {
+                    res.add(node.val);
                 }
             }
-            list.add(integerList);
         }
-        return list;
+        return res;
     }
 
 
