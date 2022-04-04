@@ -22,8 +22,7 @@ public class DiameterOfBinaryTree {
     int ans = 0;
 
     /**
-     * 每一条二叉树的「直径」长度，就是一个节点的左右子树的最大深度之和
-     * 但也有可能不经根节点，去判断
+     * 二叉树的直径，就是每个节点左右子树深度之和的最大值
      * @param root
      * @return
      */
@@ -47,8 +46,8 @@ public class DiameterOfBinaryTree {
         int leftDepth = getTreeDepth(root.left);
         int rightDepth = getTreeDepth(root.right);
         int myDepth = leftDepth + rightDepth;
-        //当前最大直径，提前判断，可能不经过根节点
+        //更新直径
         ans = Math.max(ans, myDepth);
-        return (leftDepth > rightDepth) ? (leftDepth + 1) : (rightDepth + 1);
+        return Math.max(leftDepth, rightDepth) + 1;
     }
 }

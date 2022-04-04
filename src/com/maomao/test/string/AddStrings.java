@@ -16,6 +16,7 @@ public class AddStrings {
 
     public String addStrings(String num1, String num2) {
         StringBuilder res = new StringBuilder();
+        //进位
         int sum = 0;
         for (int i=num1.length()-1, j = num2.length()-1; i>=0 || j>=0; i--,j--) {
             if (i>=0) {

@@ -1,9 +1,6 @@
 package com.maomao.test.string;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * 字符串解码
@@ -23,56 +20,46 @@ import java.util.List;
 public class DecodeString {
 
     /**
-     * 如果当前的字符为数位，解析出一个数字（连续的多个数位）并进栈
-     * 如果当前的字符为字母或者左括号，直接进栈
-     * 如果当前的字符为右括号，开始出栈，一直到左括号出栈，出栈序列反转后拼接成一个字符串，
-     * 此时取出栈顶的数字，就是这个字符串应该出现的次数，我们根据这个次数和字符串构造出新的字符串并进栈
      *
      * @param s
      * @return
      */
     public String decodeString(String s) {
-        LinkedList<String> stack = new LinkedList<>();
-        StringBuilder digit = new StringBuilder();
+        Stack<String> stackStr = new Stack<>();
+        Stack<Integer> stackNum = new Stack<>();
+        StringBuilder res = new StringBuilder();
+        //保存数字
+        int num = 0;
         for (int i=0; i<s.length(); i++) {
             char chara = s.charAt(i);
             if (Character.isDigit(chara)) {
-                //多个数字合并成一个
-                digit.append(chara);
+                num = num * 10 + (chara - '0');
             }  else if (chara == '[') {
-                stack.addLast(digit.toString());
-                digit = new StringBuilder();
-                stack.addLast(chara + "");
+                //将前面的数字和字符串进栈
+                stackNum.add(num);
+                stackStr.add(res.toString());
+                //重新计算
+                num = 0;
+                res = new StringBuilder();
             } else if (Character.isLetter(chara)) {
-                stack.addLast(chara + "");
+                res.append(chara);
             } else {
-                List<String> list = new ArrayList<>();
-                while (!"[".equals(stack.peekLast())) {
-                    list.add(stack.removeLast());
+                //拼接字符串 res = preStr + curNum * res
+                //字符串重复倍数
+                int curNum = stackNum.pop();
+                StringBuilder temp = new StringBuilder();
+                while (curNum != 0) {
+                    //当前字符串重复
+                    temp.append(res);
+                    curNum--;
                 }
-                //反转
-                Collections.reverse(list);
-                StringBuilder subStr = new StringBuilder();
-                for (String string : list) {
-                    subStr.append(string);
-                }
-                //左括号出栈
-                stack.removeLast();
-                int num = Integer.parseInt(stack.removeLast());
-                StringBuilder newStr = new StringBuilder();
-                while (num != 0) {
-                    newStr.append(subStr);
-                    num--;
-                }
-                //进栈
-                stack.addLast(newStr.toString());
+                //前一个字符串
+                String preStr = stackStr.pop();
+                //更新结果
+                res = new StringBuilder(preStr + temp);
             }
         }
-        StringBuffer result = new StringBuffer();
-        for (String string : stack) {
-            result.append(string);
-        }
-        return result.toString();
+        return res.toString();
     }
 
     public static void main(String[] args) {

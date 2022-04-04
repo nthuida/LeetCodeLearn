@@ -67,6 +67,7 @@ public class LengthOfLIS {
         if (nums.length == 0) {
             return 0;
         }
+        //最长自增子序列长度
         int res = 1;
         //以nums[i]结尾的最长子序列长度
         int[] dp = new int[nums.length];
@@ -75,16 +76,18 @@ public class LengthOfLIS {
         //初始化为1
         Arrays.fill(dp, 1);
         Arrays.fill(count, 1);
-        for (int i=0; i<nums.length; i++) {
+        for (int i=1; i<nums.length; i++) {
             for (int j=0; j<i; j++) {
                 //遍历求dp
                 if(nums[j] < nums[i]){
                     if ((dp[j] + 1)> dp[i]) {
-                        //第一次找到dp[j]+1长度且以nums[i]结尾的最长递增子序列 ?
+                        //第一次找到dp[j]+1长度的最长递增子序列
+                        //长度增加，数量不变
                         dp[i] = dp[j] + 1;
                         count[i] = count[j];
                     } else if (dp[j] + 1 == dp[i]) {
                         //这个长度的递增序列已找到过
+                        // 长度不变，数量增加
                         count[i] += count[j];
                     }
                 }
