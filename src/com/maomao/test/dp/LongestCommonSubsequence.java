@@ -1,4 +1,4 @@
-package com.maomao.test.string;
+package com.maomao.test.dp;
 
 /**
  * 最长公共子序列

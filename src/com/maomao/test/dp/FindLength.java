@@ -57,8 +57,6 @@ public class FindLength {
                 if (B[i] == A[j]) {
                     //i,j结尾的子数组相等, 因为是子数组，所以前一个为dp[i-1][j-1]
                     dp[i][j] = dp[i-1][j-1] +1;
-                } else {
-                    dp[i][j] = 0;
                 }
                 max = Math.max(max, dp[i][j]);
             }

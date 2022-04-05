@@ -5,9 +5,9 @@ package com.maomao.test.linkedlist;
  * @Date 2019/10/24
  */
 public class ListNode {
-    int val;
-    ListNode next;
-    ListNode(int x) {
+    public int val;
+    public ListNode next;
+    public ListNode(int x) {
         val = x;
     }
 }
