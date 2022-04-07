@@ -72,7 +72,7 @@ public class LongestPalindrome {
      */
     public int longestPalindrome1(String s) {
         //回文串，对称中心两侧都是偶数，
-        if(s == null || s.length() == 0) {
+        if(s.length() == 0) {
             return 0;
         }
         int[] temp = new int[128];
@@ -82,7 +82,7 @@ public class LongestPalindrome {
         }
         int res = 0;
         for (int count : temp) {
-            //先除以2取整，在乘计算总数
+            //先除以2取整，再乘计算总数
             res += count/2 * 2;
             if (count % 2 ==1 && res%2==0) {
                 //奇数个可以作为对称中心，但只能算一次，在总长度为偶数是成立
