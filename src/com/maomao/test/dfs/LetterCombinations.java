@@ -1,4 +1,4 @@
-package com.maomao.test.string;
+package com.maomao.test.dfs;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,50 +19,43 @@ import java.util.Map;
  */
 public class LetterCombinations {
 
+    String[] phone = {"", "", "abc","def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
     /**
-     * 回溯法
+     * 回溯算法
      * @param digits
      * @return
      */
     public List<String> letterCombinations(String digits) {
         List<String> res = new ArrayList<>();
-        if(digits == null ||digits.length() == 0){
+        if(digits == null || digits.length() == 0){
             return res;
         }
-        Map<String, String> map = new HashMap<>();
-        map.put("2", "abc");
-        map.put("3", "def");
-        map.put("4", "ghi");
-        map.put("5", "jkl");
-        map.put("6", "mno");
-        map.put("7", "pqrs");
-        map.put("8", "tuv");
-        map.put("9", "wxyz");
-        backtrack(res, map, digits, 0, new StringBuilder(""));
+        backtrack(res, digits, 0, new StringBuilder());
         return res;
     }
 
-    public void backtrack(List<String> list, Map<String, String> map, String digits, int depth, StringBuilder str) {
+    public void backtrack(List<String> list, String digits, int depth, StringBuilder str) {
         //退出条件
         if (depth == digits.length()) {
             list.add(str.toString());
             return;
         }
+        //电话号码
         char ch = digits.charAt(depth);
-        String chr = new StringBuffer().append(ch).toString();
-        String temp = map.get(chr);
-        for (int i=0; i<temp.length(); i++) {
+        //号码对应的字母
+        String num = phone[ch - '0'];
+        for (int i=0; i<num.length(); i++) {
             //选择
-            str.append(temp.charAt(i));
+            str.append(num.charAt(i));
             //下一层
-            backtrack(list, map, digits, depth+1, str);
+            backtrack(list, digits, depth+1, str);
             //取消选择
             str.deleteCharAt(str.length() - 1);
         }
     }
 
     public static void main(String[] args) {
-        List<String> res = new LetterCombinations().letterCombinations("23");
+        List<String> res = new LetterCombinations().letterCombinations("2");
         System.out.println(res);
     }
 }

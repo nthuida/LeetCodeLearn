@@ -20,13 +20,15 @@ import java.util.Stack;
 public class NextPermutation {
 
     /**
-     * 从最右边开始找到比i大的值，交换，且重新升序i后面的值
+     * 思路：下一个数增加的幅度尽可能的小
+     * 从最右边(len-1)寻找比i大的值，交换，且重新升序i后面的值
      * @param nums
      */
     public void nextPermutation(int[] nums) {
         int len = nums.length;
-        //从最右边开始
+        //i从len-2开始，一直往左遍历，这样增加的幅度尽可能小
         for (int i=len-2; i>=0; i--) {
+            //从最右边开始，寻找比i大的值
             for (int j=len-1; j>i; j--) {
                 if (nums[i] < nums[j]) {
                     //找到比i大的值，交换

@@ -18,57 +18,20 @@ import java.util.List;
  * @date 2019/4/23
  */
 public class ThreeSum {
-    /**
-     * 解题思路：先对数组排序，然后开始遍历，对于数组中的每一个元素，用两指针往中间夹，
-     * 直到找出所有的解。时间复杂度 O(n^2).
-     * 超时
-     * @param nums
-     * @return
-     */
-    public List<List<Integer>> threeSum(int[] nums) {
-        List<List<Integer>> result = new ArrayList<>();
-        Arrays.sort(nums);
-        for (int i=0; i<nums.length; i++) {
-            if(nums[i] > 0) {
-                // 如果当前数字大于0，则三数之和一定大于0，所以结束循环
-                break;
-            }
-            int left = i+1;
-            int right = nums.length-1;
-            while (left < right) {
-                int sum = nums[i] + nums[left] + nums[right];
-                if (sum == 0) {
-                    List<Integer> res = new ArrayList<>();
-                    res.add(nums[i]);
-                    res.add(nums[left]);
-                    res.add(nums[right]);
-                    if (!result.contains(res)) {
-                        result.add(res);
-                    }
-                    //找到，也要+1继续往前找
-                    left++;
-                    right--;
-                } else if (sum < 0) {
-                    left++;
-                } else {
-                    right--;
-                }
-            }
-        }
-        return result;
-    }
 
     /**
+     * 解题思路：先对数组排序，然后固定一个数，使用两指针往中间夹，直到找出所有的解。
+     * 时间复杂度 O(n^2).
      * 主要优化重复的情况
      * @param nums
      * @return
      */
-    public List<List<Integer>> threeSum1(int[] nums) {
+    public List<List<Integer>> threeSum(int[] nums) {
         Arrays.sort(nums);
         List<List<Integer>> res = new ArrayList<>();
         for(int k = 0; k < nums.length - 2; k++){
             if(nums[k] > 0) {
-                // 如果当前数字大于0，则三数之和一定大于0，所以结束循环
+                //如果当前数字大于0，则三数之和一定大于0，所以结束循环
                 break;
             }
             //去重
@@ -80,23 +43,30 @@ public class ThreeSum {
             while(left < right){
                 int sum = nums[k] + nums[left] + nums[right];
                 if(sum < 0){
+                    left++;
                     //去重
-                    while(left < right && nums[left] == nums[++left]) {
-                        continue;
+                    while(left < right && nums[left-1] == nums[left]) {
+                        left++;
                     }
+
                 } else if (sum > 0) {
-                    while(left < right && nums[right] == nums[--right]) {
-                        continue;
+                    right--;
+                    while(left < right && nums[right+1] == nums[right]) {
+                        right--;
                     }
                 } else {
-                    res.add(new ArrayList<Integer>(Arrays.asList(nums[k], nums[left], nums[right])));
-                    //判断左界和右界是否和下一位置重复，去重
-                    while(left < right && nums[left] == nums[++left]) {
-                        continue;
+                    res.add(new ArrayList<>(Arrays.asList(nums[k], nums[left], nums[right])));
+                    left++;
+                    right--;
+                    //去重
+                    while(left < right && nums[left-1] == nums[left]) {
+                        left++;
                     }
-                    while(left < right && nums[right] == nums[--right]) {
-                        continue;
+                    while(left < right && nums[right+1] == nums[right]) {
+                        right--;
                     }
+                    left++;
+                    right--;
                 }
             }
         }

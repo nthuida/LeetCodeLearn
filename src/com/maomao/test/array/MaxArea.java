@@ -17,10 +17,11 @@ public class MaxArea {
 
     /**
      * 循环比较
+     * 复杂度 O(N^2) 超时
      * @param height
      * @return
      */
-    public int maxArea(int[] height) {
+    public int maxAreaII(int[] height) {
         int max = 0;
         for (int i = 0; i < height.length; i++) {
             for (int j=i+1; j<height.length; j++) {
@@ -34,6 +35,32 @@ public class MaxArea {
         }
         return max;
     }
+
+
+    /**
+     * 双指针法
+     * @param height
+     * @return
+     */
+    public int maxArea(int[] height) {
+        int left = 0;
+        int right = height.length-1;
+        int max = 0;
+        while (left < right) {
+            //从两端开始计算面积
+            int area = (right-left) * Math.min(height[left], height[right]);
+            max = Math.max(area, max);
+            if (height[left] < height[right]) {
+                //左边比右边的高度低，只有左移，面积才有可能更大
+                left++;
+            } else {
+                right--;
+            }
+        }
+        return max;
+    }
+
+
 
     public static void main(String[] args) {
         int[] area = {1,8,6,2,5,4,8,3,7};
