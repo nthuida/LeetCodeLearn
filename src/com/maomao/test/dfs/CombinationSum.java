@@ -35,38 +35,39 @@ public class CombinationSum {
         if (candidates.length == 0) {
             return result;
         }
-        Arrays.sort(candidates);
-        backtrack(candidates, track, result, target, 0);
+        backtrack(candidates, track, result, target, 0, 0);
         return result;
     }
 
-    public void backtrack(int[] nums, LinkedList<Integer> track, List<List<Integer>> result, int residue, int start) {
+    public void backtrack(int[] nums, LinkedList<Integer> track, List<List<Integer>> result, int target, int start, int sum) {
         //结束条件
-        if (residue == 0) {
+        if (sum == target) {
             result.add(new LinkedList(track));
             return;
         }
-        for (int i = start; i < nums.length && residue - nums[i] >= 0; i++) {
+        if (sum > target) {
+            return;
+        }
+        for (int i = start; i < nums.length; i++) {
             //选择
             track.add(nums[i]);
+            sum += nums[i];
             //递归
-            backtrack(nums, track, result, residue - nums[i], i);
+            backtrack(nums, track, result, target, i, sum);
+            sum -= nums[i];
             //取消选择
             track.removeLast();
         }
     }
 
     /**
-     * 给定一个数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合。
-     *
+     * 给定一个数组 candidates 和一个目标数 target ，找出 candidates 中所有可以使数字和为 target 的组合
      * candidates 中的每个数字在每个组合中只能使用一次。
-     *
      * 说明：
-     *
      * 所有数字（包括目标数）都是正整数。
      * 解集不能包含重复的组合。 
-     * 示例 1:
      *
+     * 示例 1:
      * 输入: candidates = [10,1,2,7,6,1,5], target = 8,
      * 所求解集为:
      * [
@@ -88,26 +89,31 @@ public class CombinationSum {
             return result;
         }
         Arrays.sort(candidates);
-        backtrack2(candidates, track, result, target, 0);
+        backtrack2(candidates, track, result, target, 0, 0);
         return result;
     }
 
-    public void backtrack2(int[] nums, LinkedList<Integer> track, List<List<Integer>> result, int residue, int start) {
+    public void backtrack2(int[] nums, LinkedList<Integer> track, List<List<Integer>> result, int target, int start, int sum) {
         //结束条件
-        if (residue == 0) {
+        if (target == sum) {
             result.add(new LinkedList(track));
             return;
         }
-        for (int i = start; i < nums.length && residue - nums[i] >= 0; i++) {
+        if (sum > target) {
+            return;
+        }
+        for (int i = start; i < nums.length; i++) {
             //排好序，防止得到的组合重复
             if (i > start && nums[i-1] == nums[i]) {
                 continue;
             }
             //选择
             track.add(nums[i]);
+            sum += nums[i];
             //递归 区别：i+1 从下一个索引开始
-            backtrack(nums, track, result, residue - nums[i], i+1);
+            backtrack2(nums, track, result, target, i+1, sum);
             //取消选择
+            sum -= nums[i];
             track.removeLast();
         }
     }
@@ -134,13 +140,13 @@ public class CombinationSum {
     public List<List<Integer>> combinationSum3(int k, int n) {
         List<List<Integer>> res = new ArrayList<>();
         LinkedList<Integer> track = new LinkedList<>();
-        backtrack3(res, 1, k,n, track);
+        backtrack3(res, 1, 0, k, n, track);
         return res;
     }
 
-    private void backtrack3(List<List<Integer>> res, int start, int k, int n, LinkedList<Integer> track) {
+    private void backtrack3(List<List<Integer>> res, int start, int sum, int k, int n, LinkedList<Integer> track) {
         //终止条件
-        if (track.size() == k && n==0) {
+        if (track.size() == k && n==sum) {
             res.add(new ArrayList<>(track));
             return;
         }
@@ -149,9 +155,11 @@ public class CombinationSum {
         for (int i=start; i<=9; i++) {
             //选择
             track.add(i);
+            sum += i;
             //递归
-            backtrack3(res, i+1, k, n-i, track);
+            backtrack3(res, i+1, sum, k, n, track);
             //回溯
+            sum -= i;
            track.removeLast();
         }
     }
@@ -159,8 +167,10 @@ public class CombinationSum {
 
 
     public static void main(String[] args) {
-        int[] nums = {2,3,6,7};
-        System.out.println(new CombinationSum().combinationSum(nums, 7));
+        int[] nums = {10,1,2,7,6,1,5};
+        int[] nums1 = {1,2,3};
+        System.out.println(new CombinationSum().combinationSum(nums1, 4));
+        System.out.println(new CombinationSum().combinationSum2(nums, 8));
         System.out.println(new CombinationSum().combinationSum3(3,9));
     }
 }

@@ -25,11 +25,11 @@ import java.util.Stack;
 public class LongestValidParentheses {
 
     /**
-     * 栈底保存遍历过程中最后一个没有被匹配的右括号的下标
-     *
-     * 扫描到右括号，就将栈顶出栈（代表栈顶的左括号匹配到了右括号），然后分两种情况。
-     * 1、栈不空，那么就用当前的位置减去栈顶的存的位置，然后就得到当前合法序列的长度，然后更新一下最长长度。
-     * 2、栈是空的，说明之前没有与之匹配的左括号，那么就将当前的位置入栈。
+     * 思路：当前索引 - 出栈后新的栈顶索引
+     * 两种索引会入栈：1、等待被匹配的左括号索引； 2、充当「参照物」的右括号索引
+     * 扫描到右括号，就将栈顶出栈，然后分两种情况。
+     * 1、栈不空，就用当前的位置减去栈顶的位置，得到当前合法序列的长度；
+     * 2、栈是空的，说明之前没有与之匹配的左括号，就将当前的位置入栈当参照；
      *
      * @param s
      * @return
@@ -61,5 +61,9 @@ public class LongestValidParentheses {
 
         }
         return max;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new LongestValidParentheses().longestValidParentheses("()(()))"));
     }
 }
