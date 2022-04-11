@@ -89,10 +89,8 @@ public class Permute {
      * @return
      */
     public List<List<Integer>> permuteUnique(int[] nums) {
-        //路径
         LinkedList<Integer> track = new LinkedList<>();
         List<List<Integer>> result = new ArrayList<>();
-        //排序，判断相邻
         Arrays.sort(nums);
         boolean[] visited = new boolean[nums.length];
         backtrackII(nums, track, result, visited);
@@ -100,7 +98,6 @@ public class Permute {
     }
 
     /**
-     * 由于返回所有不重复的全排列，有限制条件，所以需要进行剪枝。
      *
      * 首先，先要给nums进行排序，这样的做目的是方便剪枝
      * 其次，我们已经选择过的不需要再放进去了

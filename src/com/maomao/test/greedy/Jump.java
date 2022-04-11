@@ -61,7 +61,7 @@ public class Jump {
      *
      * 思路：
      * 1、如果某一个作为 起跳点 的格子可以跳跃的距离是 3，那么表示后面 3 个格子都可以作为 起跳点。
-     * 2、可以对每一个能作为 起跳点 的格子都尝试跳一次，把 能跳到最远的距离 不断更新。
+     * 2、可以对每一个能作为 起跳点 的格子都尝试跳一次，把能跳到最远的距离不断更新。
      * 3、如果可以一直跳到最后，就成功了
      *
      * @param nums
@@ -71,14 +71,43 @@ public class Jump {
         if (nums.length == 0) {
             return false;
         }
+        //当前能到达的最远距离
         int k = 0;
         for (int i=0; i<nums.length; i++) {
             if (i > k) {
-                //关键  跳不出去
+                //当前元素下标大于max，说明永远达不到，直接返回
                 return false;
             }
+            //更新最远距离
             k = Math.max(k, i + nums[i]);
         }
         return true;
+    }
+
+    /**
+     * 动态规划
+     * dp[i], 表示第i个位置能否到达
+     * @param nums
+     * @return
+     */
+    public boolean canJump1(int[] nums) {
+        int len = nums.length;
+        boolean[] dp = new boolean[len];
+        dp[0] = true;
+        for (int i=1; i<len; i++) {
+            for (int j=0; j<i; j++) {
+                //遍历，前面的格子j可以到达，且可跳跃格数大于i-j
+                if (dp[j] && nums[j] >= (i-j)) {
+                    dp[i] = true;
+                    break;
+                }
+            }
+        }
+        return dp[len-1];
+    }
+
+    public static void main(String[] args) {
+        int[] a = {2,3,1,1,4};
+        System.out.println(new Jump().jump(a));
     }
 }

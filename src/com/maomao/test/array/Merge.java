@@ -69,7 +69,9 @@ public class Merge {
      */
     public int[][] merge(int[][] intervals) {
         //按左端点从小到大排序
-        Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]));
+        Arrays.sort(intervals, (a,b) -> {
+            return a[0] - b[0];
+        });
         LinkedList<int[]> res = new LinkedList<>();
         res.add(intervals[0]);
         for (int i=1; i<intervals.length; i++) {
