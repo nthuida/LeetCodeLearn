@@ -1,7 +1,5 @@
 package com.maomao.test.dp;
 
-import java.util.HashMap;
-
 /**
  * 编辑距离
  * 给你两个单词 word1 和 word2，请你计算出将 word1 转换成 word2 所使用的最少操作数。
@@ -38,7 +36,8 @@ public class MinDistance {
     /**
      * 动态规划
      * 最后一个字母不同：dp[i][j] = min(dp[i-1][j-1]+1, dp[i-1][j]+1, dp[i][j-1]+1)
-     * 最后一个字母相同：dp[i][j] = min(dp[i-1][j-1], dp[i-1][j]+1, dp[i][j-1]+1)
+     * dp[i-1][j-1]表示替换，dp[i-1][j]表示删除，dp[i][j-1]表示添加
+     * 最后一个字母相同：dp[i][j] = dp[i-1][j-1]
      * @param word1
      * @param word2
      * @return
@@ -69,8 +68,7 @@ public class MinDistance {
             for (int j = 1; j < m + 1; j++) {
                 if (word1.charAt(i-1) == word2.charAt(j-1)) {
                     //相等, 下标从0开始
-                    int min = Math.min(dp[i-1][j] + 1, dp[i][j-1] +1);
-                    dp[i][j] = Math.min(min, dp[i-1][j-1]);
+                    dp[i][j] = dp[i-1][j-1];
                 } else {
                     int min = Math.min(dp[i-1][j] + 1, dp[i][j-1] +1);
                     dp[i][j] = Math.min(min, dp[i-1][j-1] + 1);

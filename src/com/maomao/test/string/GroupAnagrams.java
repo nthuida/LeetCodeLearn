@@ -21,28 +21,57 @@ import java.util.*;
  */
 public class GroupAnagrams {
 
+    /**
+     * 排序，字母异或词排序后相等，作为Map的键
+     * @param strs
+     * @return
+     */
     public List<List<String>> groupAnagrams(String[] strs) {
         Map<String, List<String>> map = new HashMap<>();
-        for (int i=0; i<strs.length; i++) {
-            char[] chars = strs[i].toCharArray();
+        for (String str : strs) {
+            char[] chars = str.toCharArray();
             //排序
             Arrays.sort(chars);
             //转为字符串
-            String str = String.valueOf(chars);
-            if (map.containsKey(str)) {
-                map.get(str).add(strs[i]);
-            } else {
-                List<String> list = new ArrayList<>();
-                list.add(strs[i]);
-                map.put(str, list);
-            }
+            String key = new String(chars);
+            List<String> list = map.getOrDefault(key, new ArrayList<>());
+            list.add(str);
+            map.put(key, list);
         }
         return new ArrayList<>(map.values());
     }
 
+
+    /**
+     * 计数，对字符串中的字符出现的次数计数，然后序列化成相同的字符串
+     * @param strs
+     * @return
+     */
+    public List<List<String>> groupAnagrams1(String[] strs) {
+        Map<String, List<String>> map = new HashMap<>();
+        for (String str : strs) {
+            //编码
+            String key = encode(str);
+            List<String> list = map.getOrDefault(key, new ArrayList<>());
+            list.add(str);
+            map.put(key, list);
+        }
+        return new ArrayList<>(map.values());
+    }
+
+    private String encode(String str) {
+        char[] count = new char[26];
+        for(char ch : str.toCharArray()) {
+            count[ch-'a']++;
+        }
+        return new String(count);
+    }
+
+
+
     public static void main(String[] args) {
         String[] s = {"eat", "tea", "tan", "ate", "nat", "bat"};
-        List<List<String>> lists = new GroupAnagrams().groupAnagrams(s);
+        List<List<String>> lists = new GroupAnagrams().groupAnagrams1(s);
         System.out.println(lists);
     }
 }
