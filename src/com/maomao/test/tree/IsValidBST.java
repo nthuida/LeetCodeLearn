@@ -35,7 +35,8 @@ import java.util.List;
 public class IsValidBST {
 
     /**
-     * 中序遍历判断
+     * 中序遍历,判断当前节点是否大于中序遍历的前一个节点，
+     * 如果大于，说明满足 BST，继续遍历；否则直接返回 false。
      * @param root
      * @return
      */

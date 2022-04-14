@@ -39,7 +39,10 @@ public class IsSymmetric {
         if (t1 == null || t2 == null) {
             return false;
         }
-        return (t1.val == t2.val) && isMirror(t1.right, t2.left) && isMirror(t1.left, t2.right);
+        if (t1.val != t2.val) {
+            return false;
+        }
+        return isMirror(t1.right, t2.left) && isMirror(t1.left, t2.right);
     }
 
 
