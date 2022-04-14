@@ -35,7 +35,7 @@ public class LongestSubstring {
         int len = s.length();
         //set作为窗口保存元素
         HashSet<Character> hashSet = new HashSet<>();
-        while (left < len && right < len) {
+        while (right < len) {
             if (!hashSet.contains(s.charAt(right))) {
                 //窗口中不包含，右边界向右移动
                 hashSet.add(s.charAt(right));
@@ -58,7 +58,7 @@ public class LongestSubstring {
             //i相当于右边界
             if (map.containsKey(s.charAt(i))) {
                 //左边界右移
-                left = Math.max(left, map.get(s.charAt(i) + 1));
+                left = Math.max(left, map.get(s.charAt(i)) + 1);
             }
             //更新当前字符位置
             map.put(s.charAt(i), i);
@@ -68,4 +68,7 @@ public class LongestSubstring {
         return result;
     }
 
+    public static void main(String[] args) {
+        System.out.println(new LongestSubstring().lengthOfLongestSubstring2("bbbbbb"));
+    }
 }

@@ -23,52 +23,54 @@ package com.maomao.test.dfs;
  */
 public class Exist {
 
-    private boolean[][] visited;
+    //定义四个方向
     int[][] direction = new int[][]{{0,-1},{0,1},{1,0},{-1,0}};
 
     public boolean exist(char[][] board, String word) {
-        if (board.length == 0) {
-            return false;
-        }
         int row = board.length;
         int col = board[0].length;
         if (row*col < word.length()) {
             return false;
         }
-        visited = new boolean[row][col];
+        boolean[][] visited = new boolean[row][col];
         for (int i=0; i<row; i++) {
             for (int j=0; j<col; j++) {
-                //从(0, 0)开始匹配
-                if (dfs(board, i, j, word,0)) {
-                    return true;
-                }
+                //从第一个相同的元素开始
+                //if (board[i][j] == word.charAt(0)) {
+                    if (dfs(board, i, j, word,0, visited)) {
+                        return true;
+                    }
+                //}
             }
         }
         return false;
     }
 
-    private boolean dfs(char[][] board, int i, int j, String word, int index) {
-        //最后一个元素或者只有一个元素{{a}}
-        if (index == word.length()-1) {
-            return board[i][j] == word.charAt(index);
+    private boolean dfs(char[][] board, int x, int y, String word, int index, boolean[][] visited) {
+        //下标索引等于字符的长度，说明已找到，退出
+        if (index == word.length()) {
+            return true;
         }
-        if (board[i][j] == word.charAt(index)) {
-            visited[i][j] = true;
-            //四个方向搜索
-            for (int k = 0; k < 4; k++) {
-                int newX = i + direction[k][0];
-                int newY = j + direction[k][1];
-                if(newX >= board.length || newX < 0 || newY >= board[0].length || newY < 0 || visited[newX][newY]) {
-                    // 满足条件才有搜索的必要
-                    continue;
-                }
-                if (dfs(board, newX, newY, word, index+1)) {
-                    return true;
-                }
+        //越界
+        if(x >= board.length || x < 0 || y >= board[0].length || y<0) {
+            return false;
+        }
+        //已访问或者不相等
+        if (visited[x][y] || board[x][y] != word.charAt(index)) {
+            return false;
+        }
+
+        visited[x][y] = true;
+        //四个方向搜索
+        for (int[] direct : direction) {
+            int newX = x + direct[0];
+            int newY = y + direct[1];
+            if (dfs(board, newX, newY, word, index+1, visited)) {
+                return true;
             }
-            //失败的时候回溯
-            visited[i][j] = false;
         }
+        //回溯
+        visited[x][y] = false;
         return false;
     }
 

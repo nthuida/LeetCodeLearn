@@ -1,4 +1,4 @@
-package com.maomao.test.string;
+package com.maomao.test.slidingWindow;
 
 /**
  * 最小覆盖子串
@@ -25,12 +25,12 @@ public class MinWindow {
      * @return
      */
     public String minWindow(String s, String t) {
-        if (s == null || t == null || s.length() < t.length()) {
+        if (s.length() < t.length()) {
             return "";
         }
         int left = 0;
         int right = 0;
-        //记录目标字符串字符出现次数
+        //目标字符串字符出现次数
         int[] need = new int[128];
         //滑动窗口字符出现次数
         int[] window = new int[128];
@@ -50,6 +50,7 @@ public class MinWindow {
             //右移窗口
             right++;
             if (need[r] > 0 && need[r] >= window[r]) {
+                //目标字符出现次数大于等于1
                 count++;
             }
             //判断左侧是否要收缩

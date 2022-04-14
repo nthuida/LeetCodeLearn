@@ -76,18 +76,17 @@ public class FindWords {
         if (board[i][j] == word.charAt(index)) {
             visited[i][j] = true;
             //四个方向搜索
-            for (int k = 0; k < 4; k++) {
-                int newX = i + direction[k][0];
-                int newY = j + direction[k][1];
+            for (int[] direct : direction) {
+                int newX = i + direct[0];
+                int newY = j + direct[1];
                 if(newX >= board.length || newX < 0 || newY >= board[0].length || newY < 0 || visited[newX][newY]) {
-                    // 满足条件才有搜索的必要
                     continue;
                 }
                 if (dfs(board, newX, newY, word, index+1, visited)) {
                     return true;
                 }
             }
-            //失败的时候回溯
+            //回溯
             visited[i][j] = false;
         }
         return false;
