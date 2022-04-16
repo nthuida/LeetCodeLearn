@@ -33,20 +33,15 @@ import com.maomao.test.tree.TreeNode;
  * @date 2020/7/1
  */
 public class MaxPathSum {
-    int max = Integer.MIN_VALUE;
 
-    /**
-     * @param root
-     * @return
-     */
+    int max = Integer.MIN_VALUE;
     public int maxPathSum(TreeNode root) {
-        //计算以root为起点的，最大单边路径和
         dfs(root);
         return max;
     }
 
     /**
-     *   计算二叉树中的一个节点的最大贡献值，
+     *   计算以root为起点的，最大单边路径和
      *   就是在以该节点为根节点的子树中寻找以该节点为起点的一条路径，使得该路径上的节点值之和最大。
      *   在计算过程中，更新最大路径和
      * @param root

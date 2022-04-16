@@ -31,9 +31,9 @@ public class WordBreak {
 
     /**
      * 动态规划
+     * dp[i]表示前i个字符能否拆分
      * 转移方程：dp[j] = dp[i] && check(s[i+1, j]);
-     * dp[i]表示s前i个字符能否拆分
-     * check(s[i+1, j])就是判断i+1到j这一段字符是否能够拆分，等价于s[i+1, j]是否是wordDict中的元素
+     * check(s[i+1, j])就是判断s[i+1, j]是否是wordDict中的元素
      * 假如wordDict=["apple", "pen", "code"],s = "applepencode";
      * dp[8] = dp[5] + check("pen")
      *
@@ -44,10 +44,11 @@ public class WordBreak {
     public boolean wordBreak(String s, List<String> wordDict) {
         Set<String> set = new HashSet<>(wordDict);
         boolean[] dp = new boolean[s.length()+1];
+        //空字符串，初始化为true
         dp[0] = true;
         for (int i=1; i<=s.length(); i++) {
             for (int j=0; j<i; j++) {
-                //判断dp[j]是否可以且j->i的元素是否在字典内，s.substring(j, i)，不包括i，正好可以取出前i个元素
+                //判断dp[j]，以及【j,i】的元素是否在字典内
                 if (dp[j] && set.contains(s.substring(j, i))) {
                     dp[i] = true;
                     break;
@@ -116,7 +117,7 @@ public class WordBreak {
             if (wordDict.contains(s.substring(i, s.length()))) {
                 if (i == 0) {
                     //直接加入
-                    res.add(s.substring(i, s.length()));
+                    res.add(s.substring(i));
                 } else {
                     //递归得到剩余字符串的结果
                     List<String> temp = wordBreakHelper(s.substring(0, i), wordDict, map);
