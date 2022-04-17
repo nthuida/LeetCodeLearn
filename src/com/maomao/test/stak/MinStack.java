@@ -21,6 +21,10 @@ public class MinStack {
 
     }
 
+    /**
+     * 同时保存当前最小值和上一个最小值
+     * @param x
+     */
     public void push(int x) {
         if (x <= min) {
             //保存之前的最小值
@@ -34,7 +38,7 @@ public class MinStack {
         int top = list.getFirst();
         list.removeFirst();
         if (top == min) {
-            //之前的最小值
+            //更新最小值为上一保存的最小值
             min = list.getFirst();
             //删除之前保存的最小值
             list.removeFirst();
