@@ -24,8 +24,8 @@ public class Rob {
 
     /**
      * 标签：动态规划
-     * 动态规划方程：dp[n] = MAX( dp[n-1], dp[n-2] + num )
-     * 由于不可以在相邻的房屋闯入，所以在当前位置 n 房屋可盗窃的最大值，要么就是 n-1 房屋可盗窃的最大值，
+     * 转移方程：dp[n] = MAX( dp[n-1], dp[n-2] + num )
+     * 在当前位置 n 房屋可盗窃的最大值，要么就是 n-1 房屋可盗窃的最大值，
      * 要么就是 n-2 房屋可盗窃的最大值加上当前房屋的值，二者之间取最大值
      *
      * @param nums
@@ -33,16 +33,13 @@ public class Rob {
      */
     public int rob(int[] nums) {
         int len = nums.length;
-        if (len == 0) {
-            return 0;
-        }
         int[] dp = new int[len + 1];
         //打劫到第0家
         dp[0] = 0;
         //打劫到第1家
         dp[1] = nums[0];
         for (int i = 2; i <= len; i++) {
-            //重要的状态转移方程
+            //前一家不偷：dp[i-2] + num, 前一家偷：dp[i-1]
             dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i - 1]);
         }
         return dp[len];
@@ -135,41 +132,16 @@ public class Rob {
         if (root == null) {
             return new int[]{0, 0};
         }
-        int[] dp = new int[2];
-
         int[] left = dp(root.left);
         int[] right = dp(root.right);
+
+        int[] dp = new int[2];
         //dp[0]当前节点不偷
         dp[0] = Math.max(left[0], left[1]) + Math.max(right[0], right[1]);
         //dp[1]当前节点偷
         dp[1] = root.val + left[0] + right[0];
 
         return dp;
-    }
-
-    public List<Integer> rightSideView(TreeNode root) {
-        List<Integer> res = new ArrayList<>();
-        if (root == null) {
-            return res;
-        }
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.add(root);
-        while (!queue.isEmpty()) {
-            int size = queue.size();
-            for(int i=0;i<size; i++) {
-                TreeNode node = queue.poll();
-                if (node.left != null) {
-                    queue.add(node.left);
-                }
-                if (node.right != null) {
-                    queue.add(node.right);
-                }
-                if (i == size-1) {
-                    res.add(node.val);
-                }
-            }
-        }
-        return res;
     }
 
     public static void main(String[] args) {

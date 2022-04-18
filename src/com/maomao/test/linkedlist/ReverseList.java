@@ -42,10 +42,10 @@ public class ReverseList {
         //链表原地反转
         ListNode prev = null;
         while (head != null) {
-            ListNode temp = head.next;
+            ListNode next = head.next;
             head.next = prev;
             prev = head;
-            head = temp;
+            head = next;
         }
         return prev;
     }
