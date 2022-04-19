@@ -15,10 +15,7 @@ package com.maomao.test.string;
  * @date 2019/5/21
  */
 public class IsPalindrome {
-    /**
-     * @param s
-     * @return
-     */
+
     public boolean isPalindrome(String s) {
         if (s == null) {
             return true;
