@@ -1,4 +1,4 @@
-package com.maomao.test.stak;
+package com.maomao.test.stack;
 
 import java.util.LinkedList;
 

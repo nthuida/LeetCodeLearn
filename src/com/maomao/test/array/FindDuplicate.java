@@ -25,35 +25,29 @@ package com.maomao.test.array;
 public class FindDuplicate {
 
     /**
-     * 二分法
-     * 先猜一个数（有效范围 [left, right]里的中间数 mid），然后统计原始数组中小于等于这个中间数的元素的个数 cnt，
-     * 如果 cnt 大于等于 mid。根据抽屉原理，重复元素就在区间 [left, mid-1] 里，否则在[mid+1,right]
-     *
+     * 数组当作一个链表来看，数组的下标就是指向元素的指针，把数组的元素也看作指针
+     * 1.数组中有一个重复的整数 <==> 链表中存在环
+     * 2.找到数组中的重复整数 <==> 找到链表的环入口
      * @param nums
      * @return
      */
     public int findDuplicate(int[] nums) {
-        int n = nums.length;
-        int left = 1;
-        int right = n - 1;
-        while (left <= right) {
-            int mid = left + (right-left)/2;
-            int cnt = 0;
-            //统计个数
-            for (int i = 0; i < n; ++i) {
-                if (nums[i] <= mid) {
-                    cnt++;
-                }
-            }
-            if (cnt <= mid) {
-                //在右边
-                left = mid + 1;
-            } else {
-                //左边
-                right = mid - 1;
+        int slow = 0, fast = 0;
+        //判断有环
+        while(true) {
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+            if (slow == fast) {
+                break;
             }
         }
-        return left;
+        //找入环口
+        fast = 0;
+        while (fast != slow) {
+            fast = nums[fast];
+            slow = nums[slow];
+        }
+        return slow;
     }
 
     public static void main(String[] args) {

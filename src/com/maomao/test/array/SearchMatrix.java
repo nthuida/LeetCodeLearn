@@ -36,15 +36,10 @@ public class SearchMatrix {
 
     public boolean searchMatrix(int[][] matrix, int target) {
         int row = matrix.length;
-        if (row == 0) {
-            return false;
-        }
         int col = matrix[0].length;
-        if (col == 0) {
-            return false;
-        }
         int rowTemp = 0;
         for (int i=0; i<row; i++) {
+            //找到对应的行数
             if (target <= matrix[i][col-1]) {
                 rowTemp = i;
                 break;

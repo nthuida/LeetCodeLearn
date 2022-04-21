@@ -1,4 +1,4 @@
-package com.maomao.test.array;
+package com.maomao.test.stack;
 
 import java.util.Stack;
 

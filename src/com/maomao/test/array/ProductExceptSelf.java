@@ -17,7 +17,7 @@ package com.maomao.test.array;
 public class ProductExceptSelf {
 
     /**
-     * 对于给定索引 ii，等于左边所有数字的乘积乘以右边所有数字的乘积
+     * 对于给定索引i，等于左边所有数字的乘积乘以右边所有数字的乘积
      * @param nums
      * @return
      */

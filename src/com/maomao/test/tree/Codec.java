@@ -38,11 +38,12 @@ public class Codec {
     private void mySerialize(TreeNode root, StringBuilder stringBuilder) {
         if (root == null) {
             stringBuilder.append("null,");
-        } else {
-            stringBuilder.append(root.val).append(",");
-            mySerialize(root.left, stringBuilder);
-            mySerialize(root.right,stringBuilder);
+            return;
         }
+        stringBuilder.append(root.val).append(",");
+        mySerialize(root.left, stringBuilder);
+        mySerialize(root.right,stringBuilder);
+
     }
 
     /**
@@ -51,17 +52,17 @@ public class Codec {
      * @return
      */
     public TreeNode deserialize(String data) {
-        List<String> list = new LinkedList<>(Arrays.asList(data.split(",")));
+        LinkedList<String> list = new LinkedList<>(Arrays.asList(data.split(",")));
         return myDeserialize(list);
     }
 
-    private TreeNode myDeserialize(List<String> list) {
-        if (list.get(0).equals("null")) {
-            list.remove(0);
+    private TreeNode myDeserialize(LinkedList<String> list) {
+        if (list.getFirst().equals("null")) {
+            list.removeFirst();
             return null;
         }
-        TreeNode root = new TreeNode(Integer.valueOf(list.get(0)));
-        list.remove(0);
+        TreeNode root = new TreeNode(Integer.valueOf(list.getFirst()));
+        list.removeFirst();
         root.left = myDeserialize(list);
         root.right = myDeserialize(list);
         return root;
