@@ -30,20 +30,17 @@ public class MaxProfit {
      */
     public int maxProfit(int[] prices) {
 
-        if (prices.length == 0) {
-            return 0;
-        }
         int n = prices.length;
 
         int[][] dp = new int[n][3];
         //第0天持股，收益为负-prices[0]
         dp[0][0] = -prices[0];
         for (int i=1; i<n; i++) {
-            //持股：前一天持股或者前一天不持股，不处于冷冻期
+            //持股：前一天持股或者前一天不持股，不处于冷冻期，今天买入
             dp[i][0] = Math.max(dp[i-1][0], dp[i-1][1]-prices[i]);
             //不持股，不在冷冻期：前一天卖出，冷冻期或者前一天也是非冷冻
             dp[i][1] = Math.max(dp[i-1][2], dp[i-1][1]);
-            //不持股，在冷冻期:当天卖出
+            //不持股，在冷冻期: 当天卖出
             dp[i][2] = dp[i-1][0] + prices[i];
         }
 
