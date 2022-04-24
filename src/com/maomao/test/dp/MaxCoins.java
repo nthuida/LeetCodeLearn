@@ -1,5 +1,7 @@
 package com.maomao.test.dp;
 
+import java.util.Map;
+
 /**
  *  戳气球
  * 有 n 个气球，编号为0 到 n-1，每个气球上都标有一个数字，这些数字存在数组 nums 中。
@@ -24,35 +26,50 @@ package com.maomao.test.dp;
 public class MaxCoins {
 
     /**
-     * (i,j) 开区间只有三个数字的时候开始计算，储存每个小区间可以得到金币的最大值
-     * 然后慢慢扩展到更大的区间，利用小区间里已经算好的数字来算更大的区间
      * 动态规划
+     * dp[i][j]，表示戳破气球i和气球j之间（开区间，不包括i和j）的所有气球，可以获得的最高分数
+     * dp[i][j] = dp[i][k] + dp[k][j] + points[i]*points[k]*points[j]，k为最后一个戳破的气球
+     * 状态转移方程，穷举i < k < j的所有气球k，选择得分最高的作为dp[i][j]
+     * dp[i][j] = max(dp[i][j], dp[i][k] + dp[k][j] + points[i]*points[k]*points[j]) i<k<j
+     *
+     * 怎么穷举i和j
+     * 关于「状态」的穷举，最重要的一点就是：状态转移所依赖的状态必须被提前计算出来。
+     * dp[i][j] 所依赖的状态是 dp[i][k] 和 dp[k][j]，那么我们必须保证：
+     * 在计算 dp[i][j] 时，dp[i][k] 和 dp[k][j] 已经被计算出来了
+     *
+     * dp[i][k] 在 dp[i][j] 的 左边
+     *             dp[k][j] 在 dp[i][j] 的 下面
+     *             遍历顺序  i 从下往上 j 从左往右
+     *             --> --> -->     4   5   6
+     *                 --> -->         2   3
+     *                     -->             1
+     *             j 从左往右 i 从下往上
+     *             ↑   ↑   ↑       1   3   6
+     *                 ↑   ↑           2   5
+     *                     ↑               4
      * @param nums
      * @return
      */
     public int maxCoins(int[] nums) {
         int n = nums.length;
-        //加入头和尾1，方便计算
+        //加入头和尾1的虚拟气球，方便计算
         int[] temp = new int[n+2];
         temp[0] = 1;
         temp[n+1] = 1;
         for (int i=0;i<n; i++ ) {
             temp[i+1] = nums[i];
         }
+        //初始化为0
         int[][] dp = new int[n+2][n+2];
-        //从小区间扩大到大区间
-        for (int len=3; len<=n+2; len++) {
-            //左开区间范围,最大n+2-len
-            for (int left = 0; left<=n+2-len; left++) {
-                int res = 0;
-                //k为开区间(left, left+len-1)内的索引
-                for (int k=left+1; k<left+len-1; k++) {
-                    int leftVal = dp[left][k];
-                    int rightVal = dp[k][left+len-1];
-                    res = Math.max(res, leftVal + temp[left]*temp[k]*temp[left+len-1] + rightVal);
+        //i从下往上遍历
+        for (int i=n; i>=0; i--) {
+            //j从左往右遍历
+            for (int j = i+1; j<n+2; j++) {
+                //穷举k,计算
+                for (int k=i+1; k<j; k++) {
+                    dp[i][j] = Math.max(dp[i][j], dp[i][k] + temp[i]*temp[k]*temp[j] + dp[k][j]);
                 }
-                //保存值
-                dp[left][left+len-1] = res;
+
             }
         }
         return dp[0][n+1];

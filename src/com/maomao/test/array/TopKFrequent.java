@@ -31,18 +31,17 @@ public class TopKFrequent {
         for (int i : nums) {
             map.put(i, map.getOrDefault(i, 0) + 1);
         }
-        //优先队列:底层使用堆来实现, 最小堆
-        Queue<Integer> minHeap = new PriorityQueue<>(Comparator.comparingInt(map::get));
-
+        //优先队列: 最小堆 保存频率最大的k个数
+        //比较的是map的value
+        Queue<Integer> minHeap = new PriorityQueue<>((a, b) -> map.get(a) - map.get(b));
         for (int key : map.keySet()) {
-            minHeap.offer(key);
+            minHeap.add(key);
             if (minHeap.size() > k) {
                 //保持最小堆
                 minHeap.poll();
             }
         }
 
-        //保存结果
         int[] res = new int[k];
         for (int i = 0; i < k; i++) {
             res[i] = minHeap.poll();

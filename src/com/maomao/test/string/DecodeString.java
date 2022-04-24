@@ -20,12 +20,15 @@ import java.util.*;
 public class DecodeString {
 
     /**
-     *
+     * 碰到'[',当前字符串和数字进栈
+     * 碰到']'，数字和字符串出栈，重新拼接
      * @param s
      * @return
      */
     public String decodeString(String s) {
+        //保存当前字符串
         Stack<String> stackStr = new Stack<>();
+        //保存倍数
         Stack<Integer> stackNum = new Stack<>();
         StringBuilder res = new StringBuilder();
         //保存数字
