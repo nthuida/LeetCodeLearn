@@ -52,10 +52,7 @@ import java.util.Map;
  * @Date 2019/10/14
  */
 public class RomanToInt {
-    /**
-     * @param s
-     * @return
-     */
+
     public int romanToInt(String s) {
         Map<Character, Integer> map = new HashMap<>();
         map.put('I', 1);
@@ -80,8 +77,8 @@ public class RomanToInt {
     /**
      * 给定一个整数，将其转为罗马数字。输入确保在 1 到 3999 的范围内。
      *
-     *目的是“分解的整数个数”尽可能少，因此，对于这道问题，类似于用最少的纸币凑成一个整数，贪心算法的规则如下：
-     *每一步都使用当前较大的罗马数字作为加法因子，最后得到罗马数字表示就是长度最少的。
+     * 目的是“分解的整数个数”尽可能少，因此，对于这道问题，类似于用最少的纸币凑成一个整数，贪心算法的规则如下：
+     * 每一步都使用当前较大的罗马数字作为加法因子，最后得到罗马数字表示就是长度最少的。
      * @param num
      * @return
      */

@@ -23,35 +23,6 @@ package com.maomao.test.greedy;
 public class MonotoneIncreasingDigits {
 
     /**
-     * 超时
-     * @param N
-     * @return
-     */
-    public int monotoneIncreasingDigits(int N) {
-        for (int i=N ;i>0; i--) {
-            if (judge(i)) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    private boolean judge(int n) {
-        if (n < 10){
-            return true;
-        }
-        char[] chars = (n + "").toCharArray();
-        for (int i=1; i<chars.length; i++) {
-            if (chars[i] >= chars[i-1]) {
-                continue;
-            } else {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    /**
      * 贪心算法，高位尽可能不变，如果不满足n[i]<n[i+1]，则n[i]-1,后面的都设为9
      * n    = 2333332
      * res  = 2299999

@@ -35,7 +35,6 @@ public class EraseOverlapIntervals {
      * 1、从区间集合 intvs 中选择一个区间 x，这个 x 是在当前所有区间中结束最早的（end 最小）。
      * 2、把所有与 x 区间相交的区间从区间集合 intvs 中删除。
      * 3、重复步骤 1 和 2，直到 intvs 为空为止。之前选出的那些 x 就是最大不相交子集。
-     *
      * @param intervals
      * @return
      */
@@ -44,11 +43,7 @@ public class EraseOverlapIntervals {
             return 0;
         }
         //end从小到大排序
-        Arrays.sort(intervals, new Comparator<int[]>() {
-            public int compare(int[] a, int[] b) {
-                return a[1] - b[1];
-            }
-        });
+        Arrays.sort(intervals, (a,b) -> a[1]-b[1]);
         int len = intervals.length;
         int count = 1;
         int end = intervals[0][1];
@@ -60,8 +55,11 @@ public class EraseOverlapIntervals {
                 end = ints[1];
             }
         }
-
         return len-count;
+    }
 
+    public static void main(String[] args) {
+        int[][] a = {{1,2}, {1,2}, {1,2}};
+        System.out.println(new EraseOverlapIntervals().eraseOverlapIntervals(a));
     }
 }
