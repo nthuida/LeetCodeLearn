@@ -1,4 +1,4 @@
-package com.maomao.test.digit;
+package com.maomao.test.dp;
 
 /**
  * 硬币。给定数量不限的硬币，币值为25分、10分、5分和1分，编写代码计算n分有几种表示法。

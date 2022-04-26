@@ -6,9 +6,8 @@ package com.maomao.test.digit;
  * 编写一个函数，输入是一个无符号整数，返回其二进制表达式中数字位数为 ‘1’ 的个数（也被称为汉明重量）。
  *
  * 示例 1：
- * 输入：00000000000000000000000000001011
+ * 输入：001011
  * 输出：3
- * 解释：输入的二进制串 00000000000000000000000000001011 中，共有三位为 '1'。
  *
  * @Author huida.mao
  * @Date 2019/10/29
@@ -44,8 +43,7 @@ public class HammingWeight {
     /**
      * 两个整数之间的汉明距离指的是这两个数字对应二进制位不同的位置的数目。
      * 给出两个整数 x 和 y，计算它们之间的汉明距离。
-     * 注意：
-     * 0 ≤ x, y < 2^31.
+     * 注意：0 ≤ x, y < 2^31.
      *
      * 示例:
      * 输入: x = 1, y = 4
@@ -70,7 +68,4 @@ public class HammingWeight {
         return sum;
     }
 
-    public static void main(String[] args) {
-        System.out.println(new HammingWeight().hammingWeight(3));
-    }
 }
