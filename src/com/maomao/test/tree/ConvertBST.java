@@ -16,7 +16,6 @@ package com.maomao.test.tree;
  *           20     13
  */
 public class ConvertBST {
-    public int rightSum = 0;
 
     /**
      * 先将右子树转换为累加树；并记录右子树的累加和rightSum;
@@ -25,14 +24,17 @@ public class ConvertBST {
      * @param root
      * @return
      */
+    int sum = 0;
     public TreeNode convertBST(TreeNode root) {
         if(root == null){
-            return root;
+            return null;
         }
-        //从大到小
+        //右子树
         convertBST(root.right);
-        rightSum += root.val;
-        root.val = rightSum;
+        //累加和
+        sum += root.val;
+        //根节点
+        root.val = sum;
         convertBST(root.left);
         return root;
     }

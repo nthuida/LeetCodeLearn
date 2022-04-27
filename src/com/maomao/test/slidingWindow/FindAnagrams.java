@@ -1,4 +1,4 @@
-package com.maomao.test.string;
+package com.maomao.test.slidingWindow;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -116,8 +116,8 @@ public class FindAnagrams {
     }
 
     public static void main(String[] args) {
-        String s = "cbaebabacd";
+        String s = "wawwwwwcbaebabacd";
         String p = "abc";
-        System.out.println(new FindAnagrams().findAnagramsII(s, p));
+        System.out.println(new FindAnagrams().findAnagrams(s, p));
     }
 }
