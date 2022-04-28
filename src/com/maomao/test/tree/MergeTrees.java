@@ -30,7 +30,7 @@ package com.maomao.test.tree;
 public class MergeTrees {
 
     /**
-     * 递归合并当前节点 + 合并左子树 + 合并右子树
+     * 前序遍历
      * 两棵树同时进行前序遍历，并将对应的节点进行合并
      * @param t1
      * @param t2
@@ -54,5 +54,28 @@ public class MergeTrees {
         t1.right = mergeTrees(t1.right, t2.right);
 
         return t1;
+    }
+
+    /**
+     * 后序遍历实现
+     * @param root1
+     * @param root2
+     * @return
+     */
+    public TreeNode mergeTreesII(TreeNode root1, TreeNode root2) {
+        if (root1 == null) {
+            return root2;
+        }
+        if (root2 == null) {
+            return root1;
+        }
+        TreeNode left = mergeTrees(root1.left, root2.left);
+        TreeNode right = mergeTrees(root1.right, root2.right);
+
+        TreeNode root = new TreeNode(root1.val + root2.val);
+        root.left = left;
+        root.right = right;
+        return root;
+
     }
 }

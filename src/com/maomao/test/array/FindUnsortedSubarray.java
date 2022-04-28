@@ -19,30 +19,29 @@ import java.util.Arrays;
 public class FindUnsortedSubarray {
 
     /**
-     * 我们将数组 nums进行排序，记为 nums_sorted 。然后我们比较 nums 和 nums_sorted 的元素来决定最左边和最右边不匹配的元素。
+     * 将数组 nums进行排序，记为 numsSorted 。
+     * 比较 nums 和 numsSorted 的元素来决定最左边和最右边不匹配的元素。
      * 它们之间的子数组就是要求的最短无序子数组
      *
      * @param nums
      * @return
      */
     public int findUnsortedSubarray(int[] nums) {
-        if (nums == null || nums.length <2) {
-            return 0;
+        //排序后的数组
+        int[] numsSorted = nums.clone();
+        Arrays.sort(numsSorted);
+        int len = nums.length;
+        //左边界
+        int left = 0;
+        //右边界
+        int right = len-1;
+        while (left <= right && nums[left] == numsSorted[left]) {
+            left++;
         }
-        int[] temp = new int[nums.length];
-        for (int i=0; i<nums.length; i++) {
-            temp[i] = nums[i];
-        }
-        Arrays.sort(nums);
-        int start = nums.length-1;
-        int end = 0;
-        for (int i=0; i< nums.length; i++) {
-            if (temp[i] != nums[i]) {
-                start = Math.min(i, start);
-                end = Math.max(i, end);
-            }
+        while (left <= right && nums[right] == numsSorted[right]) {
+            right--;
         }
 
-        return (end - start >= 0 ? end - start + 1 : 0);
+        return right - left + 1;
     }
 }

@@ -22,26 +22,48 @@ public class CountSubstrings {
 
     /**
      *  中心扩展法
-     *  2n-1个中心,
+     *  枚举2n-1个中心，统计回文数
      * @param s
      * @return
      */
     public int countSubstrings(String s) {
-        if (s == null || s.length() == 0) {
-            return 0;
-        }
         int count = 0;
-        for (int i=0; i < 2*s.length()-1; i++) {
-            //左右边界，可能是一个，也可能是两个
-            int left = i/2;
-            int right = left + i%2;
-            while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
-                left--;
-                right++;
-                count++;
+        for (int i=0; i < s.length(); i++) {
+            //奇数中心
+            count += countPalindrome(s, i,i);
+            //偶数中心
+            count += countPalindrome(s,i,i+1);
+        }
+        return count;
+    }
+
+    private int countPalindrome(String s, int left, int right) {
+        int count = 0;
+        while (left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
+            count++;
+            left--;
+            right++;
+        }
+        return count;
+    }
+
+    /**
+     * 暴力
+     * @param s
+     * @return
+     */
+    public int countSubstringsII(String s) {
+        int count = 0;
+        int len = s.length();
+        for (int i=0; i<len; i++) {
+            for (int end=i; end<len; end++) {
+                String str = s.substring(i,end+1);
+                String reverse = new StringBuilder(str).reverse().toString();
+                if (str.equals(reverse)) {
+                    count++;
+                }
             }
         }
         return count;
-
     }
 }
