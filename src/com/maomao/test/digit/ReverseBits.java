@@ -35,7 +35,4 @@ public class ReverseBits {
         return result;
     }
 
-    public static void main(String[] args) {
-        System.out.println(new ReverseBits().reverseBits(-3));
-    }
 }

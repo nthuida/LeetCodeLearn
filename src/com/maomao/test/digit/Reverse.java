@@ -37,11 +37,4 @@ public class Reverse {
         return result;
     }
 
-    public static void main(String[] args) {
-        System.out.println(new Reverse().reverse(-123));
-        System.out.println(new Reverse().reverse(-1230));
-        System.out.println(new Reverse().reverse(123));
-        System.out.println(new Reverse().reverse(1230));
-        System.out.println(new Reverse().reverse(1534236469));
-    }
 }

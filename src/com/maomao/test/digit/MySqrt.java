@@ -53,7 +53,4 @@ public class MySqrt {
         return -1;
     }
 
-    public static void main(String[] args) {
-        System.out.println(new MySqrt().mySqrt(16));
-    }
 }

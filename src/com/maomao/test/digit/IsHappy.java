@@ -50,7 +50,4 @@ public class IsHappy {
         return result;
     }
 
-    public static void main(String[] args) {
-        System.out.println(new IsHappy().isHappy(19));
-    }
 }

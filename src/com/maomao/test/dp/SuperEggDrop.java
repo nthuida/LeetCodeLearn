@@ -1,4 +1,4 @@
-package com.maomao.test.digit;
+package com.maomao.test.dp;
 
 import java.util.HashMap;
 import java.util.Map;

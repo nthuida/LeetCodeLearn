@@ -1,4 +1,4 @@
-package com.maomao.test.digit;
+package com.maomao.test.slidingWindow;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,8 +56,4 @@ public class FindContinuousSequence {
         return res.toArray(new int[res.size()][]);
     }
 
-    public static void main(String[] args) {
-        int[][] res = new FindContinuousSequence().findContinuousSequence(9);
-        System.out.println(res);
-    }
 }

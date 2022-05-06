@@ -43,13 +43,4 @@ public class LargestNumber {
         return stringBuilder.toString();
     }
 
-    public static void main(String[] args) {
-        String[] str = {"30", "3", "34", "5", "9"};
-        Arrays.sort(str, (a, b) -> {
-            String order1 = a + b;
-            String order2 = b + a;
-            return order2.compareTo(order1);
-        });
-        System.out.println(str);
-    }
 }

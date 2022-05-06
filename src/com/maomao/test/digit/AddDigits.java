@@ -26,7 +26,4 @@ public class AddDigits {
         }
     }
 
-    public static void main(String[] args) {
-        System.out.println(new AddDigits().addDigits(12));
-    }
 }
