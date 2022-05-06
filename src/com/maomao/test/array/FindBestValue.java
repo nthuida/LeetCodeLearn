@@ -75,8 +75,4 @@ public class FindBestValue {
         return sum;
     }
 
-    public static void main(String[] args) {
-        int[] a = {4,9,3};
-        System.out.println(new FindBestValue().findBestValue(a, 10));
-    }
 }

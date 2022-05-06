@@ -1,4 +1,4 @@
-package com.maomao.test.linkedlist;
+package com.maomao.test.design;
 
 import java.util.LinkedHashMap;
 

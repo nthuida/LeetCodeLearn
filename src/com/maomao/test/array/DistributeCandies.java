@@ -51,11 +51,5 @@ public class DistributeCandies {
         return distribute;
     }
 
-    public static void main(String[] args) {
-        int[] a = new DistributeCandies().distributeCandies(7,4);
-        for (int i : a){
-            System.out.println(i);
-        }
-    }
 
 }

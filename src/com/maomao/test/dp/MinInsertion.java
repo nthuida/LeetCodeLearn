@@ -1,4 +1,4 @@
-package com.maomao.test.string;
+package com.maomao.test.dp;
 
 /**
  * 让字符串成为回文串的最少插入次数

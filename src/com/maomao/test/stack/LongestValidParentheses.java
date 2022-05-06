@@ -1,4 +1,4 @@
-package com.maomao.test.string;
+package com.maomao.test.stack;
 
 import java.util.Stack;
 
@@ -63,7 +63,4 @@ public class LongestValidParentheses {
         return max;
     }
 
-    public static void main(String[] args) {
-        System.out.println(new LongestValidParentheses().longestValidParentheses("()(()))"));
-    }
 }

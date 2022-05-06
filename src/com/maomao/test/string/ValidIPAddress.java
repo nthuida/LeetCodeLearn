@@ -88,7 +88,4 @@ public class ValidIPAddress {
         return "Neither";
     }
 
-    public static void main(String[] args) {
-        System.out.println(new ValidIPAddress().validIPAddress("2001:db8:85a3:0::8a2E:0370:7334"));
-    }
 }

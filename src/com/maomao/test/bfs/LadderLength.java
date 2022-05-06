@@ -1,4 +1,4 @@
-package com.maomao.test.string;
+package com.maomao.test.bfs;
 
 import java.util.*;
 
@@ -101,12 +101,4 @@ public class LadderLength {
 
     }
 
-    public static void main(String[] args) {
-        String begin = "hot";
-        String end = "dog";
-        List<String> list = new ArrayList<>();
-        list.add("hot");
-        list.add("dog");
-        System.out.println(new LadderLength().ladderLength(begin, end, list));
-    }
 }

@@ -43,9 +43,4 @@ public class MinSubArrayLen {
             return min;
         }
     }
-
-    public static void main(String[] args) {
-        int[] a = {2,3,1,2,4,3};
-        System.out.println(new MinSubArrayLen().minSubArrayLen(7,a));
-    }
 }

@@ -1,4 +1,4 @@
-package com.maomao.test.tree;
+package com.maomao.test.design;
 
 /**
  * 前缀树

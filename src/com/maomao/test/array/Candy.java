@@ -61,8 +61,4 @@ public class Candy {
         return res;
     }
 
-    public static void main(String[] args) {
-        int[] a = {1,2,2};
-        System.out.println(new Candy().candy(a));
-    }
 }

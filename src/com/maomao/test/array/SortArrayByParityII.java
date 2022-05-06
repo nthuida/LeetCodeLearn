@@ -40,9 +40,4 @@ public class SortArrayByParityII {
         return A;
     }
 
-    public static void main(String[] args) {
-        int[] A = {4,2,5,7};
-        int[] B = new SortArrayByParityII().sortArrayByParityII(A);
-        System.out.println(B);
-    }
 }

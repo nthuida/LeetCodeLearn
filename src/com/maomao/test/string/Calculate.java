@@ -142,10 +142,4 @@ public class Calculate {
         return res;
     }
 
-    public static void main(String[] args) {
-        String a = "3+2*2";
-        System.out.println(new Calculate().calculate(a));
-        String b = "(1+(4+5-2)-3) + (6+2)";
-        System.out.println(new Calculate().calculate1(b));
-    }
 }

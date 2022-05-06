@@ -36,12 +36,7 @@ public class AllCellsDistOrder {
                 res[i*C+j][1] = j;
             }
         }
-        Arrays.sort(res, new Comparator<int[]>() {
-            @Override
-            public int compare(int[] a, int[] b) {
-                return (Math.abs(a[0] - r0) + Math.abs(a[1]- c0)) - (Math.abs(b[0]- r0) + Math.abs(b[1]-c0));
-            }
-        });
+        Arrays.sort(res, (a, b) -> (Math.abs(a[0] - r0) + Math.abs(a[1]- c0)) - (Math.abs(b[0]- r0) + Math.abs(b[1]-c0)));
         return res;
     }
 }

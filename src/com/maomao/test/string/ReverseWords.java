@@ -75,11 +75,4 @@ public class ReverseWords {
         }
         return new String(ch);
     }
-
-    public static void main(String[] args) {
-        String a = "a good   example";
-        System.out.println(new ReverseWords().reverseWords(a));
-        String b = "Let's take LeetCode contest";
-        System.out.println(new ReverseWords().reverseWordsII(b));
-    }
 }

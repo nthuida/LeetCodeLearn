@@ -41,12 +41,7 @@ public class GetSkyline {
             map.get(build[1]).add(build[2]);
         }
         //保留当前位置的所有高度 重定义排序：从大到小
-        Map<Integer, Integer> heights = new TreeMap<>(new Comparator<Integer>() {
-            @Override
-            public int compare(Integer o1, Integer o2) {
-                return o2 - o1;
-            }
-        });
+        Map<Integer, Integer> heights = new TreeMap<>((o1, o2) -> o2 - o1);
         //保留上一个位置的横坐标及高度
         int[] last = {0, 0};
 

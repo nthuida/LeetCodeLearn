@@ -35,8 +35,4 @@ public class KthSmallest {
         return nums[k-1];
     }
 
-    public static void main(String[] args) {
-        int[][] matrix = { {1,  5,  9},{10, 11, 13},{12, 13, 15}};
-        System.out.println(new KthSmallest().kthSmallest(matrix, 8));
-    }
 }

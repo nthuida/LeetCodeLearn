@@ -73,12 +73,4 @@ public class SpiralOrder {
         }
         return res;
     }
-
-    public static void main(String[] args) {
-        int[][] matrix = {{1,2,3,4}, {5,6 ,7,8}, {9,10,11,12}};
-        List<Integer> result = new SpiralOrder().spiralOrder(matrix);
-        for (int i : result) {
-            System.out.println(i);
-        }
-    }
 }

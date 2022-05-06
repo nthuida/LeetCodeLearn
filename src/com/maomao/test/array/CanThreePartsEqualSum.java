@@ -52,8 +52,4 @@ public class CanThreePartsEqualSum {
         }
     }
 
-    public static void main(String[] args) {
-        int[] a= {3,3,6,5,-2,2,5,1,-9,4};
-        System.out.println(new CanThreePartsEqualSum().canThreePartsEqualSum(a));
-    }
 }

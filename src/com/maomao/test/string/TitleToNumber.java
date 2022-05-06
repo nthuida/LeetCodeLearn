@@ -85,7 +85,4 @@ public class TitleToNumber {
         return stringBuffer.reverse().toString();
     }
 
-    public static void main(String[] args) {
-        System.out.println(new TitleToNumber().convertToTitle(701));
-    }
 }

@@ -1,4 +1,4 @@
-package com.maomao.test.array;
+package com.maomao.test.dfs;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,8 +92,4 @@ public class JudgePoint24 {
         return false;
     }
 
-    public static void main(String[] args) {
-        int[] a= {1,2,1,2};
-        System.out.println(new JudgePoint24().judgePoint24(a));
-    }
 }

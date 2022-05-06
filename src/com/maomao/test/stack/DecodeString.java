@@ -1,4 +1,4 @@
-package com.maomao.test.string;
+package com.maomao.test.stack;
 
 import java.util.*;
 
@@ -65,8 +65,4 @@ public class DecodeString {
         return res.toString();
     }
 
-    public static void main(String[] args) {
-        String a = "3[z]2[2[y]pq4[2[jk]e1[f]]]ef";
-        System.out.println(new DecodeString().decodeString(a));
-    }
 }

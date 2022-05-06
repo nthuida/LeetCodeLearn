@@ -42,9 +42,4 @@ public class WiggleSort {
         }
     }
 
-    public static void main(String[] args) {
-        int[] a = {4,5,5,6};
-        new WiggleSort().wiggleSort(a);
-        System.out.println(a);
-    }
 }

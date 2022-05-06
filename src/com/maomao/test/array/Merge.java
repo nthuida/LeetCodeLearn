@@ -89,13 +89,4 @@ public class Merge {
         return res.toArray(new int[res.size()][2]);
     }
 
-    public static void main(String[] args) {
-        int[][] a = {{1,3},{2,6},{8,10},{15,18}};
-        int[][] res = new Merge().merge(a);
-        for (int i=0; i<res.length; i++) {
-            for (int j=0; j<res[i].length; j++) {
-                System.out.println(res[i][j]);
-            }
-        }
-    }
 }

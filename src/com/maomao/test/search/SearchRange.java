@@ -1,4 +1,4 @@
-package com.maomao.test.array;
+package com.maomao.test.search;
 
 /**
  * 给定一个按照升序排列的整数数组 nums，和一个目标值 target。找出给定目标值在数组中的开始位置和结束位置。
@@ -72,9 +72,4 @@ public class SearchRange {
         return high;
     }
 
-    public static void main(String[] args) {
-        int[] nums = {5,7,7,8,8,10};
-        int[] res = new SearchRange().searchRange(nums, 1);
-        System.out.println(res);
-    }
 }

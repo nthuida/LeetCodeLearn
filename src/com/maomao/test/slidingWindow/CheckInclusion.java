@@ -1,4 +1,4 @@
-package com.maomao.test.string;
+package com.maomao.test.slidingWindow;
 
 /**
  * 字符串的排列
@@ -66,9 +66,4 @@ public class CheckInclusion {
         return false;
     }
 
-    public static void main(String[] args) {
-        String s1 = "ab";
-        String s2 = "eidboaoo";
-        System.out.println(new CheckInclusion().checkInclusion(s1, s2));
-    }
 }

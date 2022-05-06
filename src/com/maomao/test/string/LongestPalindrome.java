@@ -92,7 +92,4 @@ public class LongestPalindrome {
         return res;
     }
 
-    public static void main(String[] args) {
-        System.out.println(new LongestPalindrome().longestPalindrome("babad"));
-    }
 }

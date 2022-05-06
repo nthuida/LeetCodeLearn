@@ -1,4 +1,4 @@
-package com.maomao.test.string;
+package com.maomao.test.slidingWindow;
 
 import java.util.ArrayList;
 import java.util.HashMap;

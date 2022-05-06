@@ -40,8 +40,4 @@ public class SubarraysDivByK {
         return ans;
     }
 
-    public static void main(String[] args) {
-        int[] a = {4,5,0,-2,-3,1};
-        System.out.println(new SubarraysDivByK().subarraysDivByK(a, 5));
-    }
 }

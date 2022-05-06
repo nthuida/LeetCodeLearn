@@ -14,20 +14,6 @@ package com.maomao.test.array;
  */
 public class ReversePairs {
 
-    public int reversePairs2(int[] nums) {
-        int count = 0;
-        //双循环，超时
-        for (int i=0; i<nums.length; i++) {
-            int j = i+1;
-            while (j < nums.length) {
-                if (nums[i] > nums[j]) {
-                    count++;
-                }
-                j++;
-            }
-        }
-        return count;
-    }
 
     /**
      *
@@ -109,11 +95,6 @@ public class ReversePairs {
             }
         }
         return count;
-    }
-
-    public static void main(String[] args) {
-        int[] a = {7,5,6,4};
-        System.out.println(new ReversePairs().reversePairs(a));
     }
 
 }

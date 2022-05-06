@@ -60,8 +60,4 @@ public class MinEatingSpeed {
         return sum;
     }
 
-    public static void main(String[] args) {
-        int[] a = {3,6,7,11};
-        System.out.println(new MinEatingSpeed().minEatingSpeed(a, 8));
-    }
 }

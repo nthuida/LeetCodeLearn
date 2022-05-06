@@ -14,10 +14,7 @@ package com.maomao.test.string;
  * @Date 2019/10/14
  */
 public class LengthOfLastWord {
-    /**
-     * @param s
-     * @return
-     */
+
     public int lengthOfLastWord(String s) {
         if (s == "" || s == null) {
             return 0;

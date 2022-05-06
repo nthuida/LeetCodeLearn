@@ -50,7 +50,4 @@ public class IsAnagram {
         return Arrays.equals(str1, str2);
     }
 
-    public static void main(String[] args) {
-        System.out.println(new IsAnagram().isAnagram1("anagram", "nagaram"));
-    }
 }

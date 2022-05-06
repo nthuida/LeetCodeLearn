@@ -1,4 +1,4 @@
-package com.maomao.test.string;
+package com.maomao.test.stack;
 
 import java.util.Stack;
 
@@ -45,7 +45,4 @@ public class BackspaceCompare {
         return a.equals(b);
     }
 
-    public static void main(String[] args) {
-        System.out.println(new BackspaceCompare().backspaceCompare("ab#c", "ad#c"));
-    }
 }

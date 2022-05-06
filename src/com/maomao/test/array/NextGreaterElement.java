@@ -82,8 +82,4 @@ public class NextGreaterElement {
 
     }
 
-    public static void main(String[] args) {
-        int[] a = {1,2,1};
-        System.out.println(new NextGreaterElement().nextGreaterElements(a));
-    }
 }

@@ -1,4 +1,4 @@
-package com.maomao.test.string;
+package com.maomao.test.stack;
 
 import java.util.Stack;
 
@@ -15,10 +15,7 @@ import java.util.Stack;
  * @Date 2019/10/14
  */
 public class IsValid {
-    /**
-     * @param s
-     * @return
-     */
+
     public boolean isValid(String s) {
         Stack<Character> stack = new Stack<>();
         if (s == null || s == "") {

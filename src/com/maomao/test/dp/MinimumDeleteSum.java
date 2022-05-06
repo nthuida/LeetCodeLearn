@@ -1,4 +1,4 @@
-package com.maomao.test.string;
+package com.maomao.test.dp;
 
 /**
  *
@@ -59,7 +59,4 @@ public class MinimumDeleteSum {
         return sum - dp[n][m]*2;
     }
 
-    public static void main(String[] args) {
-        System.out.println(new MinimumDeleteSum().minimumDeleteSum("sea", "eat"));
-    }
 }

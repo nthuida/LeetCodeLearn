@@ -136,9 +136,5 @@ public class PatternMatching {
         return false;
     }
 
-    public static void main(String[] args) {
-        String pa = "abba";
-        String s = "dogdogdogdog";
-        System.out.println(new PatternMatching().patternMatching(pa, s));
-    }
+
 }

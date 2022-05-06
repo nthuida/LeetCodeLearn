@@ -1,4 +1,4 @@
-package com.maomao.test.array;
+package com.maomao.test.dp;
 
 import java.util.List;
 

@@ -59,8 +59,4 @@ public class GenerateMatrix {
         return res;
     }
 
-    public static void main(String[] args) {
-        int[][] res = new GenerateMatrix().generateMatrix(3);
-        System.out.println(res);
-    }
 }

@@ -51,8 +51,4 @@ public class JudgeCircle {
 
     }
 
-    public static void main(String[] args) {
-        String a = "UD";
-        System.out.println(new JudgeCircle().judgeCircle(a));
-    }
 }

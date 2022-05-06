@@ -84,8 +84,4 @@ public class EvalRPN {
         return res;
     }
 
-    public static void main(String[] args) {
-        String[] tokens = {"10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"};
-        System.out.println(new EvalRPN().evalRPN(tokens));
-    }
 }

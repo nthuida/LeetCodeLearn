@@ -67,9 +67,4 @@ public class ValidPalindrome {
         return true;
     }
 
-
-    public static void main(String[] args) {
-        String s = "abca";
-        System.out.println(new ValidPalindrome().validPalindrome(s));
-    }
 }

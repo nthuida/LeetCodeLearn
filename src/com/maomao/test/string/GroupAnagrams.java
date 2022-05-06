@@ -67,11 +67,4 @@ public class GroupAnagrams {
         return new String(count);
     }
 
-
-
-    public static void main(String[] args) {
-        String[] s = {"eat", "tea", "tan", "ate", "nat", "bat"};
-        List<List<String>> lists = new GroupAnagrams().groupAnagrams1(s);
-        System.out.println(lists);
-    }
 }

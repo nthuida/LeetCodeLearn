@@ -66,8 +66,4 @@ public class LemonadeChange {
         return true;
     }
 
-    public static void main(String[] args) {
-        int[] bills = {5,5,10,10,20};
-        System.out.println(new LemonadeChange().lemonadeChange(bills));
-    }
 }

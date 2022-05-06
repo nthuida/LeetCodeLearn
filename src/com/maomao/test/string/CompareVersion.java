@@ -63,10 +63,4 @@ public class CompareVersion {
         return 0;
     }
 
-    public static void main(String[] args) {
-        System.out.println(new CompareVersion().compareVersion("0.1", "1.1"));
-        Pattern pattern = Pattern.compile("[a-fA-F0-9]*");
-        Matcher isNum = pattern.matcher("8A2E");
-        System.out.println(isNum.matches());
-    }
 }

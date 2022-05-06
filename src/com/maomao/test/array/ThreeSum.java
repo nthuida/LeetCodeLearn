@@ -73,12 +73,4 @@ public class ThreeSum {
         return res;
     }
 
-    public static void main(String[] args) {
-        int[] nums = {-2,0,1,1,2};
-        List<List<Integer>> result = new ThreeSum().threeSum(nums);
-        for (List<Integer> list : result) {
-            System.out.println(list);
-        }
-
-    }
 }

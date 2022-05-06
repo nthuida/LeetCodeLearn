@@ -62,10 +62,4 @@ public class RelativeSortArray {
 
     }
 
-    public static void main(String[] args) {
-        int[] a = {2,3,1,3,2,4,6,7,9,2,19};
-        int[] b = {2,1,4,3,9,6};
-        int[] c = new RelativeSortArray().relativeSortArray(a, b);
-        System.out.println(c);
-    }
 }

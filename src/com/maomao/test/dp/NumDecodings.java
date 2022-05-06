@@ -1,4 +1,4 @@
-package com.maomao.test.string;
+package com.maomao.test.dp;
 
 /**
  * 解码方法
@@ -62,7 +62,4 @@ public class NumDecodings {
         return dp[0];
     }
 
-    public static void main(String[] args) {
-        System.out.println(new NumDecodings().numDecodings("220"));
-    }
 }

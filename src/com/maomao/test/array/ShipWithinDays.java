@@ -79,8 +79,4 @@ public class ShipWithinDays {
         return day;
     }
 
-    public static void main(String[] args) {
-        int[] a = {1,2,3,1,1};
-        System.out.println(new ShipWithinDays().shipWithinDays(a, 4));
-    }
 }

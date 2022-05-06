@@ -60,10 +60,4 @@ public class MaxArea {
         return max;
     }
 
-
-
-    public static void main(String[] args) {
-        int[] area = {1,8,6,2,5,4,8,3,7};
-        System.out.println(new MaxArea().maxArea(area));
-    }
 }

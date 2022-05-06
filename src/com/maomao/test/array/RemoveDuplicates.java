@@ -101,21 +101,4 @@ public class RemoveDuplicates {
         return number;
     }
 
-    public static void main(String[] args) {
-        int[] ints = {0,0,1,1,1,2,2,3,3,4};
-        System.out.println(new RemoveDuplicates().removeDuplicates(ints));
-        for (int i=0;i<ints.length;i++) {
-            System.out.println(ints[i]);
-        }
-        System.out.println();
-
-        int[] nums = {0,1,2,2,3,0,4,2};
-        System.out.println(new RemoveDuplicates().removeElement(nums, 2));
-        for (int i=0; i<nums.length;i++) {
-            System.out.println(nums[i]);
-        }
-
-        int[] numss = {1,1,1,2,2,3};
-        System.out.println(new RemoveDuplicates().removeDuplicatesII(numss));
-    }
 }

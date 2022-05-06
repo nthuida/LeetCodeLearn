@@ -1,4 +1,4 @@
-package com.maomao.test.array;
+package com.maomao.test.dfs;
 
 /**
  * 解数独

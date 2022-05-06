@@ -1,4 +1,4 @@
-package com.maomao.test.array;
+package com.maomao.test.slidingWindow;
 
 /**
  * 统计「优美子数组」
@@ -26,39 +26,6 @@ package com.maomao.test.array;
 public class NumberOfSubarrays {
 
     /**
-     * 超时
-     * @param nums
-     * @param k
-     * @return
-     */
-    public int numberOfSubarrays(int[] nums, int k) {
-        int oddCount = 0;
-        for (int i=0; i<nums.length; i++) {
-            if (nums[i] % 2 == 1) {
-                oddCount++;
-            }
-        }
-        if (oddCount < k) {
-            return 0;
-        }
-        int subCount = 0;
-        for (int i=0; i<nums.length; i++) {
-            int count = 0;
-            int j = i;
-            while (j < nums.length) {
-                if (nums[j] % 2 == 1) {
-                    count++;
-                }
-                if (count == k) {
-                    subCount++;
-                }
-                j++;
-            }
-        }
-        return subCount;
-    }
-
-    /**
      * 滑动窗口法
      *
      * 不断右移 right 指针来扩大滑动窗口，使其包含 k 个奇数；
@@ -72,7 +39,7 @@ public class NumberOfSubarrays {
      * @param k
      * @return
      */
-    public int numberOfSubarrays1(int[] nums, int k) {
+    public int numberOfSubarrays(int[] nums, int k) {
         int count = 0;
         int left = 0;
         int right = 0;
@@ -107,8 +74,4 @@ public class NumberOfSubarrays {
         return count;
     }
 
-    public static void main(String[] args) {
-        int[] a = {2,2,2,1,2,2,1,2,2,2};
-        System.out.println(new NumberOfSubarrays().numberOfSubarrays1(a,2));
-    }
 }

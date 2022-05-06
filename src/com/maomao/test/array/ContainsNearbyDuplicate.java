@@ -73,8 +73,4 @@ public class ContainsNearbyDuplicate {
         return false;
     }
 
-    public static void main(String[] args) {
-        int[] nums = {1,2,3,1,2,3};
-        System.out.println(new ContainsNearbyDuplicate().containsNearbyDuplicate1(nums, 2));
-    }
 }

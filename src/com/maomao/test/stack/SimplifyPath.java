@@ -1,4 +1,4 @@
-package com.maomao.test.string;
+package com.maomao.test.stack;
 
 import java.util.Stack;
 
@@ -76,8 +76,4 @@ public class SimplifyPath {
         return stringBuilder.toString();
     }
 
-    public static void main(String[] args) {
-        String str = "/a/../../b/../c//.//";
-        System.out.println(new SimplifyPath().simplifyPath(str));
-    }
 }

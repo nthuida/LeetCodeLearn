@@ -50,8 +50,4 @@ public class FindDuplicate {
         return slow;
     }
 
-    public static void main(String[] args) {
-        int[] a = {2,4,5,2,3,1,6,7};
-        System.out.println(new FindDuplicate().findDuplicate(a));
-    }
 }

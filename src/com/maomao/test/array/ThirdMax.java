@@ -64,8 +64,4 @@ public class ThirdMax {
         }
     }
 
-    public static void main(String[] args) {
-        int[] nums = {1,2,-2147483648};
-        System.out.println(new ThirdMax().thirdMax(nums));
-    }
 }

@@ -57,8 +57,4 @@ public class LeastInterval {
         return Math.max((n + 1) * (max - 1) + maxCount, tasks.length);
     }
 
-    public static void main(String[] args) {
-        char[] tasks = {'A','A','A','B','B','B'};
-        System.out.println(new LeastInterval().leastInterval(tasks, 2));
-    }
 }

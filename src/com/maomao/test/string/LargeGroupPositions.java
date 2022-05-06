@@ -67,8 +67,4 @@ public class LargeGroupPositions {
         return res;
     }
 
-    public static void main(String[] args) {
-        String s = "aaa";
-        System.out.println(new LargeGroupPositions().largeGroupPositions(s));
-    }
 }

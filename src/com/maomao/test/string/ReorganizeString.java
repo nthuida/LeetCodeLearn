@@ -65,10 +65,4 @@ public class ReorganizeString {
 
     }
 
-    public static void main(String[] args) {
-        String s = "vvvlo";
-        System.out.println(new ReorganizeString().reorganizeString(s));
-    }
-
-
 }

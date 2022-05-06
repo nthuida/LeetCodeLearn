@@ -58,7 +58,4 @@ public class Multiply {
         return stringBuilder.toString();
     }
 
-    public static void main(String[] args) {
-
-    }
 }
