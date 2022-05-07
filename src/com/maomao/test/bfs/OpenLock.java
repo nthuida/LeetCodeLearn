@@ -128,8 +128,4 @@ public class OpenLock {
         return new String(chars);
     }
 
-    public static void main(String[] args) {
-        String[] a = {"8888"};
-        System.out.println(new OpenLock().openLock(a, "0009"));
-    }
 }

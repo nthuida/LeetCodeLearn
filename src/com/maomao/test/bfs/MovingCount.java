@@ -61,7 +61,4 @@ public class MovingCount {
         return sum;
     }
 
-    public static void main(String[] args) {
-        System.out.println(new MovingCount().movingCount(16,8,4));
-    }
 }

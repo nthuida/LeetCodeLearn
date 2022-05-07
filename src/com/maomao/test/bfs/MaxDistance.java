@@ -82,8 +82,4 @@ public class MaxDistance {
         return max;
     }
 
-    public static void main(String[] args) {
-        int[][] grid = {{0,0,0},{0,0,0},{0,0,0}};
-        System.out.println(new MaxDistance().maxDistance(grid));
-    }
 }
