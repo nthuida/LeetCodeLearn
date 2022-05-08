@@ -23,7 +23,7 @@ import java.util.*;
  * wordList = ["hot","dot","dog","lot","log","cog"]
  * 输出: 5
  * 解释: 一个最短转换序列是 "hit" -> "hot" -> "dot" -> "dog" -> "cog",
- *      返回它的长度 5。
+ * 返回它的长度 5。
  *
  * 示例 2:
  * 输入:
@@ -39,10 +39,58 @@ import java.util.*;
 public class LadderLength {
 
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
-        List<List<String>> res = new ArrayList<>();
         Set<String> distSet = new HashSet<>(wordList);
         if (!distSet.contains(endWord)) {
             return 0;
+        }
+        // 已经访问过的单词集合：只找最短路径，所以之前出现过的单词不用出现在下一层
+        Set<String> visited = new HashSet<>();
+        // 累积每一层的结果队列
+        Queue<String> queue= new LinkedList<>();
+        queue.add(beginWord);
+        visited.add(beginWord);
+        //单词个数
+        int step = 1;
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                String word = queue.poll();
+                //找到
+                if (word.equals(endWord)) {
+                    return step;
+                }
+                char[] chars = word.toCharArray();
+                // 寻找该单词的下一个符合条件的单词
+                for (int j = 0; j < chars.length; j++) {
+                    char temp = chars[j];
+                    for (char ch = 'a'; ch <= 'z'; ch++) {
+                        chars[j] = ch;
+                        if (temp == ch) {
+                            continue;
+                        }
+                        String str = new String(chars);
+                        // 符合条件：在 wordList 中 && 之前的层没有使用过
+                        if (distSet.contains(str) && !visited.contains(str)) {
+                            queue.add(str);
+                            visited.add(str);
+                        }
+                    }
+                    //还原成原字符
+                    chars[j] = temp;
+                }
+            }
+            step++;
+        }
+        return 0;
+    }
+
+
+    public List<List<String>> findLadders(String beginWord, String endWord, List<String> wordList) {
+        //符合条件的接龙序列
+        List<List<String>> res = new ArrayList<>();
+        Set<String> distSet = new HashSet<>(wordList);
+        if (!distSet.contains(endWord)) {
+            return res;
         }
         // 已经访问过的单词集合：只找最短路径，所以之前出现过的单词不用出现在下一层
         Set<String> visited = new HashSet<>();
@@ -83,22 +131,18 @@ public class LadderLength {
                             }
                             // 将该路径添加到该层队列中
                             queue.add(pathList);
-                            // 将该单词添加到该层已访问的单词集合中
+                            // 将该单词添加到该层已访问的单词集合中，但该层还可以用
                             subVisited.add(str);
                         }
                     }
+                    //还原字符串
                     chars[j] = temp;
                 }
             }
             // 将该层所有访问的单词添加到总的已访问集合中
             visited.addAll(subVisited);
         }
-        if (res.size() > 0) {
-            return res.get(0).size();
-        } else {
-            return 0;
-        }
-
+        return res;
     }
 
 }
