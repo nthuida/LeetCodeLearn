@@ -143,11 +143,4 @@ public class Rob {
 
         return dp;
     }
-
-    public static void main(String[] args) {
-        int[] nums = {2,3,2};
-        System.out.println(new Rob().rob(nums));
-
-        System.out.println(new Rob().robII(nums));
-    }
 }

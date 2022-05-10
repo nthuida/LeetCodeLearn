@@ -96,11 +96,4 @@ public class Fib {
         }
         return dp[n-1];
     }
-
-    public static void main(String[] args) {
-        System.out.println(new Fib().climbStairs1(10));
-        System.out.println(new Fib().climbStairs2(10));
-
-    }
-
 }

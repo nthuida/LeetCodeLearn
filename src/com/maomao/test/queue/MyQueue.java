@@ -48,12 +48,4 @@ public class MyQueue<E> {
         return stack1.isEmpty() && stack2.empty();
     }
 
-    public static void main(String[] args) {
-        MyQueue<String> myQueue = new MyQueue<>();
-        myQueue.add("123");
-        myQueue.add("455");
-        System.out.println(myQueue.peek());
-        System.out.println(myQueue.pop());
-        System.out.println(myQueue.peek());
-    }
 }

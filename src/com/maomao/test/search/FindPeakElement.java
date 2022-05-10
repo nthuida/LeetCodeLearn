@@ -23,33 +23,6 @@ package com.maomao.test.search;
  */
 public class FindPeakElement {
 
-    public int findPeakElementII(int[] nums) {
-        int len = nums.length;
-        if (len == 1) {
-            return 0;
-        }
-        for (int i=0; i<len; i++) {
-           int temp = nums[i];
-           boolean left = true;
-           boolean right = true;
-           if (i-1 >=0) {
-               if (temp < nums[i-1]) {
-                   left = false;
-               }
-           }
-           if (i+1 <len) {
-               if (temp < nums[i+1]) {
-                   right = false;
-               }
-           }
-           if (left && right) {
-               return i;
-           }
-        }
-
-        return len-1;
-    }
-
     /**
      * 二分法
      * @param nums
@@ -71,8 +44,4 @@ public class FindPeakElement {
         return left;
     }
 
-    public static void main(String[] args) {
-        int[] a = {1,2,3};
-        System.out.println(new FindPeakElement().findPeakElement(a));
-    }
 }

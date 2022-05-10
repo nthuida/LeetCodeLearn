@@ -75,9 +75,4 @@ public class MaximalRectangle {
         }
         return max;
     }
-
-    public static void main(String[] args) {
-        char[][] a = {{'1', '0', '1', '0', '0'}, {'1', '0', '1', '1', '1'}, {'1', '1', '1', '1', '1'}, {'1', '0', '0', '1', '0'}};
-        System.out.println(new MaximalRectangle().maximalRectangle(a));
-    }
 }

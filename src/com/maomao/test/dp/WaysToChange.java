@@ -74,8 +74,4 @@ public class WaysToChange {
         }
         return dp[n];
     }
-
-    public static void main(String[] args) {
-        System.out.println(new WaysToChange().waysToChange1(6));
-    }
 }

@@ -43,8 +43,4 @@ public class NumTrees {
         map.put(n, count);
         return count;
     }
-
-    public static void main(String[] args) {
-        System.out.println(new NumTrees().numTrees(3));
-    }
 }

@@ -30,28 +30,6 @@ import java.util.LinkedList;
 public class MaxSlidingWindow {
 
     /**
-     * 暴力，超时
-     * @param nums
-     * @param k
-     * @return
-     */
-    public int[] maxSlidingWindowII(int[] nums, int k) {
-        int len = nums.length;
-        int[] res = new int[len-k+1];
-        for (int i=0; i<=len-k; i++) {
-            int max = Integer.MIN_VALUE;
-            for (int j=i; j<i+k; j++) {
-                if (nums[j] > max) {
-                    max = nums[j];
-                }
-            }
-            res[i] = max;
-        }
-
-        return res;
-    }
-
-    /**
      * 单调队列
      * 1、遍历给定数组中的元素，如果队列不为空且当前考察元素大于等于队尾元素，则将队尾元素移除。
      * 直到，队列为空或当前考察元素小于新的队尾元素；形成单调递减队列
@@ -89,11 +67,5 @@ public class MaxSlidingWindow {
             }
         }
         return res;
-    }
-
-    public static void main(String[] args) {
-       int[]  nums = {1,3,-1,-3,5,3,6,7};
-       int[] res = new MaxSlidingWindow().maxSlidingWindow(nums, 3);
-        System.out.println(res);
     }
 }

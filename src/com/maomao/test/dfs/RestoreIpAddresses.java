@@ -103,12 +103,5 @@ public class RestoreIpAddresses {
         }
         return true;
     }
-
-    public static void main(String[] args) {
-        String s = "25525511135";
-        System.out.println(new RestoreIpAddresses().restoreIpAddresses(s));
-    }
-
-
 }
 

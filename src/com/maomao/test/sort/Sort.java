@@ -159,36 +159,4 @@ public class Sort {
             array[i] = temp[i];
         }
     }
-
-    public static void main(String[] args) {
-        Sort sort = new Sort();
-        int[] a = {3,43,2,56,7};
-        sort.bubbleSort(a);
-        for (int i = 0; i < a.length; i++) {
-            System.out.println(a[i]);
-        }
-        System.out.println();
-
-        int[] a1 = {13,43,22,56,71};
-        sort.quickSort(a1);
-        for (int i = 0; i < a1.length; i++) {
-            System.out.println(a1[i]);
-        }
-
-        System.out.println();
-
-        int[] a2 = {3,8,22,6,11};
-        sort.mergeSort(a2);
-        for (int i = 0; i < a2.length; i++) {
-            System.out.println(a2[i]);
-        }
-
-        System.out.println();
-
-        int[] a3 = {3,9,2,6,11};
-        sort.insertionSort(a3);
-        for (int i = 0; i < a3.length; i++) {
-            System.out.println(a3[i]);
-        }
-    }
 }

@@ -60,10 +60,4 @@ public class MincostTickets {
         // 从后向前遍历，返回最前的 minDay
         return dp[minDay];
     }
-
-    public static void main(String[] args) {
-        int[] days = {1,4,6,7,8,20};
-        int[] costs = {2,7,15};
-        System.out.println(new MincostTickets().mincostTickets(days, costs));
-    }
 }

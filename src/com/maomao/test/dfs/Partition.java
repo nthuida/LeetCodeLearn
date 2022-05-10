@@ -79,8 +79,4 @@ public class Partition {
         return true;
     }
 
-    public static void main(String[] args) {
-        String a = "aab";
-        System.out.println(new Partition().partition(a));
-    }
 }

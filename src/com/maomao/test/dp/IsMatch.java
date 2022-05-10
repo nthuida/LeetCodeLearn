@@ -150,11 +150,4 @@ public class IsMatch {
         }
         return dp[m][n];
     }
-
-
-    public static void main(String[] args) {
-        String s = "aa";
-        String p = "*";
-        System.out.println(new IsMatch().isMatch(s,p));
-    }
 }

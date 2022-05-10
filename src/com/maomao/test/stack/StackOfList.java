@@ -30,10 +30,4 @@ public class StackOfList<E> {
         return list.isEmpty();
     }
 
-    public static void main(String[] args) {
-        StackOfList<String> stackOfList = new StackOfList<>();
-        stackOfList.push("fakjkljsa");
-        stackOfList.push("dd");
-        System.out.println(stackOfList.toString());
-    }
 }

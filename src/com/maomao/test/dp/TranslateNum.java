@@ -59,8 +59,4 @@ public class TranslateNum {
         }
         return dp[len];
     }
-
-    public static void main(String[] args) {
-        System.out.println(new TranslateNum().translateNum(12258));
-    }
 }

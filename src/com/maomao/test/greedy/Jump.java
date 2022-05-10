@@ -106,8 +106,4 @@ public class Jump {
         return dp[len-1];
     }
 
-    public static void main(String[] args) {
-        int[] a = {2,3,1,1,4};
-        System.out.println(new Jump().jump(a));
-    }
 }

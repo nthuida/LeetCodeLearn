@@ -16,25 +16,24 @@ package com.maomao.test.array;
  */
 public class RemoveDuplicates {
     /**
-     * 采用两个标记点 number 和 i ，number记录不重复元素的位置，i从number的下一个开始遍历数组，
-     * 如果i位置的数字等于number位置的数字，说明该数字重复出现，不予处理；
-     * 如果i位置的数字不等于number位置的数字，说明该数字没有重复，需要放到l的下一位置，并使number加1。
+     * 双指针
+     * 指针j指向有效数组的最后一个位置, 指针i遍历数组，
+     * 只有当 i 所指向的值和 j 不相等，才将 i 的值添加到 j 的下一位置
      *
      * @param nums
      * @return
      */
     public int removeDuplicates(int[] nums) {
-        int number = 0;
-        for(int i =1; i<nums.length;i++){
+        //初始位置0
+        int j = 0;
+        for(int i =0; i<nums.length;i++){
             // 相邻两个值比较，不同才做统计操作
-            if(nums[i]!=nums[number]){
-                number++;
-                nums[number] = nums[i];
+            if(nums[i] != nums[j]){
+                nums[++j] = nums[i];
             }
         }
-        // 不同数字为总量= number+1
-        number += 1;
-        return number;
+        // 不同数字为总量
+        return j+1;
     }
 
     /**
@@ -43,22 +42,25 @@ public class RemoveDuplicates {
      * 元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。
      *
      * 示例 1:
-     * 给定 nums = [3,2,2,3], val = 3,
+     * 输入：nums = [3,2,2,3], val = 3
+     * 输出：2, nums = [2,2]
      * 函数应该返回新的长度 2, 并且 nums 中的前两个元素均为 2。
      * 你不需要考虑数组中超出新长度后面的元素。
+     *
+     * 双指针
      * @param nums
      * @param val
      * @return
      */
     public int removeElement(int[] nums, int val) {
-        int number = 0;
+        int j = 0;
         for(int i =0; i<nums.length; i++){
             if(nums[i] != val){
-                nums[number] = nums[i];
-                number++;
+                nums[j] = nums[i];
+                j++;
             }
         }
-        return number;
+        return j;
     }
 
     /**
@@ -69,20 +71,14 @@ public class RemoveDuplicates {
      * 给定 nums = [1,1,1,2,2,3],
      * 函数应返回新长度 length = 5, 并且原数组的前五个元素被修改为 1, 1, 2, 2, 3 。
      * 你不需要考虑数组中超出新长度后面的元素。
-     *
-     * 示例 2:
-     * 给定 nums = [0,0,1,1,1,1,2,3,3],
-     * 函数应返回新长度 length = 7, 并且原数组的前五个元素被修改为 0, 0, 1, 1, 2, 3, 3 。
-     * 你不需要考虑数组中超出新长度后面的元素。
-     *
      * @param nums
      * @return
      */
-    public int removeDuplicatesII(int[] nums) {
+    public int removeDuplicate(int[] nums) {
         if (nums.length <= 2) {
             return nums.length;
         }
-        int number = 0;
+        int j = 0;
         int count = 1;
         for(int i =1; i<nums.length;i++){
             // 统计相同的个数
@@ -92,13 +88,10 @@ public class RemoveDuplicates {
                 count = 1;
             }
             if(count <= 2){
-                number++;
-                nums[number] = nums[i];
+                nums[++j] = nums[i];
             }
         }
-        // 不同数字为总量= number+1
-        number += 1;
-        return number;
+        return j+1;
     }
 
 }

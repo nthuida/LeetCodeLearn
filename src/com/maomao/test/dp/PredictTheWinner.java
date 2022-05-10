@@ -55,9 +55,4 @@ public class PredictTheWinner {
 
         return dp[0][len-1] >=0;
     }
-
-    public static void main(String[] args) {
-        int[] a = {1, 5, 233, 7};
-        System.out.println(new PredictTheWinner().predictTheWinner(a));
-    }
 }

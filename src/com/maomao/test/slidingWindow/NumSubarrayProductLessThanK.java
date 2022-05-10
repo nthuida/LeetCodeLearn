@@ -19,29 +19,6 @@ package com.maomao.test.slidingWindow;
 public class NumSubarrayProductLessThanK {
 
     /**
-     * 暴力解
-     * @param nums
-     * @param k
-     * @return
-     */
-    public int numSubarrayProductLessThanKII(int[] nums, int k) {
-        int len = nums.length;
-        int count = 0;
-        for (int i=0; i<len; i++) {
-            int sum = 1;
-            for (int j=i; j<len; j++) {
-                sum *= nums[j];
-                if (sum < k) {
-                    count++;
-                } else {
-                    break;
-                }
-            }
-        }
-        return count;
-    }
-
-    /**
      * 滑动窗口
      * 以每个数字为右边界所形成的有效子数组的个数
      * @param nums

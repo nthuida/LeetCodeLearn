@@ -102,11 +102,4 @@ public class LengthOfLIS {
         }
         return ans;
     }
-
-    public static void main(String[] args) {
-        int [] a = {10,9,2,5,3,4};
-        System.out.println(new LengthOfLIS().lengthOfLIS(a));
-        int[] b = {1,2,4,3,5,4,7,2};
-        System.out.println(new LengthOfLIS().findNumberOfLIS(b));
-    }
 }

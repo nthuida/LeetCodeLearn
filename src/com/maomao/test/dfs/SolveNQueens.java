@@ -33,7 +33,6 @@ import java.util.List;
  */
 public class SolveNQueens {
 
-
     /**
      * 回溯
      * @param n
@@ -137,11 +136,4 @@ public class SolveNQueens {
             }
         }
     }
-
-    public static void main(String[] args) {
-        List<List<String>> res = new SolveNQueens().solveNQueens(4);
-        System.out.println(res);
-        System.out.println(new SolveNQueens().totalNQueens(4));
-    }
-
 }

@@ -79,21 +79,4 @@ public class IsSubtree {
         return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
     }
 
-    public static void main(String[] args) {
-        TreeNode root = new TreeNode(4);
-        TreeNode p = new TreeNode(1);
-        TreeNode pLeft = new TreeNode(2);
-        TreeNode pRight = new TreeNode(3);
-        p.left = pLeft;
-        p.right = pRight;
-        root.left = p;
-
-        TreeNode q = new TreeNode(1);
-        TreeNode qLeft = new TreeNode(2);
-        TreeNode qRight = new TreeNode(3);
-        q.left = qLeft;
-        q.right = qRight;
-
-        System.out.println(new IsSubtree().isSubtree(root, q));
-    }
 }

@@ -135,10 +135,4 @@ public class Permute {
 
     }
 
-    public static void main(String[] args) {
-        int[] nums = {1,2,3};
-        //System.out.println(new Permute().permute(nums));
-        int[] nums1 = {1,1,2};
-        System.out.println(new Permute().permuteUnique(nums1));
-    }
 }

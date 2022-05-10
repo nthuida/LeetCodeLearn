@@ -8,8 +8,6 @@ import java.util.LinkedList;
  * 即在「访问次数」相同的情况下，按照时间顺序，先删除在缓存里时间最久的数据。
  * 核心思想：先考虑访问次数，在访问次数相同的情况下，再考虑缓存的时间
  *
- *
- *
  * @author huida
  * @date 2020/5/26
  */
@@ -137,22 +135,6 @@ public class LFUCache {
         public void freqInc() {
             freq++;
         }
-    }
-
-
-    public static void main(String[] args) {
-        LFUCache cache = new LFUCache(3);
-        cache.put(2,2);
-        cache.put(1,1);
-        System.out.println(cache.get(2));
-        System.out.println(cache.get(1));
-        System.out.println(cache.get(2));
-        cache.put(3,3);
-        cache.put(4,4);
-        System.out.println(cache.get(3));
-        System.out.println(cache.get(2));
-        System.out.println(cache.get(1));
-        System.out.println(cache.get(4));
     }
 
 }

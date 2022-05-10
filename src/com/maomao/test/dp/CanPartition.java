@@ -65,8 +65,4 @@ public class CanPartition {
         }
         return dp[len-1][target];
     }
-
-    public static void main(String[] args) {
-        System.out.println(new CanPartition().canPartition(new int[]{1,2,3,5}));
-    }
 }

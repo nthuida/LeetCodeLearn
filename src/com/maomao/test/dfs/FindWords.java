@@ -91,10 +91,4 @@ public class FindWords {
         }
         return false;
     }
-
-    public static void main(String[] args) {
-        char[][] a = {{'o','a','a','n'},{'e','t','a','e'},{'i','h','k','r'}, {'i','f','l','v'}};
-        String[] words = {"oath","pea","eat","rain"};
-        System.out.println(new FindWords().findWords(a, words));
-    }
 }

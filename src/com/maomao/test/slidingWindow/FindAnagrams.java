@@ -43,36 +43,6 @@ import java.util.List;
 public class FindAnagrams {
 
     /**
-     * 超时
-     * @param s
-     * @param p
-     * @return
-     */
-    public List<Integer> findAnagramsII(String s, String p) {
-        if (s.length() ==0 || p.length()==0 || p.length() > s.length()) {
-            return new ArrayList<>();
-        }
-        List<Integer> res = new ArrayList<>();
-        int sLen = s.length();
-        int pLen = p.length();
-        String pSort = sort(p);
-        for (int i=0; i<= sLen-pLen; i++) {
-            String temp = s.substring(i, i+pLen);
-            String tempSort = sort(temp);
-            if (pSort.equals(tempSort)) {
-                res.add(i);
-            }
-        }
-        return res;
-    }
-
-    private String sort(String s) {
-        char[] chars = s.toCharArray();
-        Arrays.sort(chars);
-        return new String(chars);
-    }
-
-    /**
      * 滑动窗口
      * @param s
      * @param p
@@ -115,9 +85,4 @@ public class FindAnagrams {
         return res;
     }
 
-    public static void main(String[] args) {
-        String s = "wawwwwwcbaebabacd";
-        String p = "abc";
-        System.out.println(new FindAnagrams().findAnagrams(s, p));
-    }
 }

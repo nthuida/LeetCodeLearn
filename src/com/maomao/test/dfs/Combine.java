@@ -52,8 +52,4 @@ public class Combine {
         }
 
     }
-
-    public static void main(String[] args) {
-        System.out.println(new Combine().combine(4, 2));
-    }
 }

@@ -163,14 +163,4 @@ public class CombinationSum {
            track.removeLast();
         }
     }
-
-
-
-    public static void main(String[] args) {
-        int[] nums = {10,1,2,7,6,1,5};
-        int[] nums1 = {1,2,3};
-        System.out.println(new CombinationSum().combinationSum(nums1, 4));
-        System.out.println(new CombinationSum().combinationSum2(nums, 8));
-        System.out.println(new CombinationSum().combinationSum3(3,9));
-    }
 }

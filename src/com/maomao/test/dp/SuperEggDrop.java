@@ -86,9 +86,4 @@ public class SuperEggDrop {
         }
         return N;
     }
-
-
-    public static void main(String[] args) {
-        System.out.println(new SuperEggDrop().superEggDropII(4,5000));
-    }
 }

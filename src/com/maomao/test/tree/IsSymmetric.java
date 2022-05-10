@@ -44,14 +44,4 @@ public class IsSymmetric {
         }
         return isMirror(t1.right, t2.left) && isMirror(t1.left, t2.right);
     }
-
-
-    public static void main(String[] args) {
-        TreeNode p = new TreeNode(1);
-        TreeNode pLeft = new TreeNode(2);
-        TreeNode pRight = new TreeNode(2);
-        p.left = pLeft;
-        p.right = pRight;
-        System.out.println(new IsSymmetric().isSymmetric(p));
-    }
 }

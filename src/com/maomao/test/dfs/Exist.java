@@ -73,11 +73,4 @@ public class Exist {
         visited[x][y] = false;
         return false;
     }
-
-    public static void main(String[] args) {
-        char[][] a = {{'A','B','C','E'},{'S','F','C','S'},{'A','D','E','E'}};
-        String word = "ABCCED";
-        System.out.println(new Exist().exist(a, word));
-    }
-
 }

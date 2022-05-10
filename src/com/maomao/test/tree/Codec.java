@@ -23,7 +23,6 @@ import java.util.List;
  */
 public class Codec {
 
-
     /**
      * 先序遍历序列化
      * @param root
@@ -66,19 +65,5 @@ public class Codec {
         root.left = myDeserialize(list);
         root.right = myDeserialize(list);
         return root;
-    }
-
-    public static void main(String[] args) {
-        TreeNode root = new TreeNode(1);
-        root.left = new TreeNode(2);
-        TreeNode right = new TreeNode(3);
-        right.left = new TreeNode(4);
-        right.right = new TreeNode(5);
-        root.right = right;
-        String data = new Codec().serialize(root);
-        System.out.println(data);
-
-        TreeNode node = new Codec().deserialize(data);
-        System.out.println(node);
     }
 }

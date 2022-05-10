@@ -68,21 +68,4 @@ public class KthSmallest {
             midPost(treeNode.right, k);
         }
     }
-
-    public static void main(String[] args) {
-        TreeNode root = new TreeNode(5);
-        TreeNode right = new TreeNode(6);
-        root.right = right;
-        TreeNode leftRoot = new TreeNode(3);
-        root.left = leftRoot;
-        TreeNode left1 = new TreeNode(2);
-        TreeNode right1 = new TreeNode(4);
-        TreeNode left2 = new TreeNode(1);
-        leftRoot.left = left1;
-        leftRoot.right = right1;
-        left1.left = left2;
-        System.out.println(new KthSmallest().kthSmallestII(root,3));
-
-    }
-
 }

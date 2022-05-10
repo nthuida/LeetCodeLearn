@@ -77,10 +77,4 @@ public class MinDistance {
         }
         return dp[n][m];
     }
-
-    public static void main(String[] args) {
-        String a = "intention";
-        String b = "execution";
-        System.out.println(new MinDistance().minDistance(a,b));
-    }
 }

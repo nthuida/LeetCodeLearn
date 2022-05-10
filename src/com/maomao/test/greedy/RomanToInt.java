@@ -101,8 +101,4 @@ public class RomanToInt {
         return stringBuilder.toString();
     }
 
-    public static void main(String[] args) {
-        RomanToInt romanToInt = new RomanToInt();
-        System.out.println(romanToInt.romanToInt("MCMXCIV"));
-    }
 }

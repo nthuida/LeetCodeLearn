@@ -53,8 +53,4 @@ public class MonotoneIncreasingDigits {
 
     }
 
-
-    public static void main(String[] args) {
-        System.out.println(new MonotoneIncreasingDigits().monotoneIncreasingDigitsII(1234));
-    }
 }

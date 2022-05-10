@@ -96,13 +96,4 @@ public class FindSecondMinimumValue {
         helper(root.left);
         helper(root.right);
     }
-
-    public static void main(String[] args) {
-        TreeNode root = new TreeNode(5);
-        TreeNode left = new TreeNode(5);
-        TreeNode right = new TreeNode(5);
-        root.left = left;
-        root.right = right;
-        System.out.println(new FindSecondMinimumValue().findSecondMinimumValueII(root));
-    }
 }

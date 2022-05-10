@@ -20,27 +20,6 @@ package com.maomao.test.dp;
 public class MaxProduct {
 
     /**
-     * 暴力解法
-     * @param nums
-     * @return
-     */
-    public int maxProductII(int[] nums) {
-        int max = Integer.MIN_VALUE;
-        for (int i=0; i<nums.length; i++) {
-            int j = i;
-            int sum = 1;
-            while (j < nums.length) {
-                sum *= nums[j];
-                if (sum > max) {
-                    max = sum;
-                }
-                j++;
-            }
-        }
-        return max;
-    }
-
-    /**
      * 动态规划
      * 用两个数组dpMax和dpMin来保存当前乘积的最大值和最小值，
      * 因为有正负，最大值可以由最小值乘以负数得到，同样最小值可以由最大值乘以负数得到；
@@ -65,10 +44,5 @@ public class MaxProduct {
             max = Math.max(max, dpMax[i]);
         }
         return max;
-    }
-
-    public static void main(String[] args) {
-        int[] a = {-2,0,1};
-        System.out.println(new MaxProduct().maxProduct(a));
     }
 }

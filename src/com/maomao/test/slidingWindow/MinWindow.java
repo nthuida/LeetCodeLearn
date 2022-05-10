@@ -74,30 +74,6 @@ public class MinWindow {
     }
 
     /**
-     * 暴力解决，超时
-     * @param s
-     * @param t
-     * @return
-     */
-    public String minWindowII(String s, String t) {
-        int m = s.length();
-        int n = t.length();
-        if (m < n) {
-            return "";
-        }
-        //截取长度n至m的字符串，分别比较
-        for(int i=n; i<=m; i++) {
-            for (int j=0; j+i<=m; j++) {
-                String temp = s.substring(j, j+i);
-                if (compare(temp, t)) {
-                    return temp;
-                }
-            }
-        }
-        return "";
-    }
-
-    /**
      * 比较两字符串是否包含
      * @param a
      * @param b
@@ -114,9 +90,5 @@ public class MinWindow {
             }
         }
         return true;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(new MinWindow().minWindow("a", "a"));
     }
 }

@@ -111,9 +111,4 @@ public class FindTargetSumWays {
         // 撤销添加“+”的选择
         sum -= nums[i];
     }
-
-    public static void main(String[] args) {
-        int[] a = {0,1};
-        System.out.println(new FindTargetSumWays().findTargetSumWays(a, 1));
-    }
 }

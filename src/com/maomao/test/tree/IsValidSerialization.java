@@ -59,8 +59,4 @@ public class IsValidSerialization {
         return stack.size() == 1 && stack.pop().equals("#");
     }
 
-    public static void main(String[] args) {
-        String a = "9,3,4,#,#,1,#,#,2,#,6,#,#";
-        System.out.println(new IsValidSerialization().isValidSerialization(a));
-    }
 }

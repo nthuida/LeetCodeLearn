@@ -139,9 +139,4 @@ public class GetPermutation {
         }
         return res;
     }
-
-
-    public static void main(String[] args) {
-        System.out.println(new GetPermutation().getPermutation(8,35784));
-    }
 }

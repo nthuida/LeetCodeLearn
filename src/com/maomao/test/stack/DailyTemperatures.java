@@ -1,6 +1,4 @@
 package com.maomao.test.stack;
-
-
 import java.util.Stack;
 
 /**
@@ -17,29 +15,11 @@ import java.util.Stack;
 public class DailyTemperatures {
 
     /**
-     * 暴力解
-     * @param temperatures
-     * @return
-     */
-    public int[] dailyTemperatures(int[] temperatures) {
-        int[] res = new int[temperatures.length];
-        for (int i=0; i<temperatures.length; i++) {
-            for (int j=i+1; j<temperatures.length; j++) {
-                if (temperatures[j] > temperatures[i]) {
-                    res[i] = j-i;
-                    break;
-                }
-            }
-        }
-        return res;
-    }
-
-    /**
      * 单调递减栈
      * @param temperatures
      * @return
      */
-    public int[] dailyTemperaturesII(int[] temperatures) {
+    public int[] dailyTemperatures(int[] temperatures) {
 
         int len = temperatures.length;
         int[] res = new int[len];
@@ -59,11 +39,4 @@ public class DailyTemperatures {
 
     }
 
-    public static void main(String[] args) {
-        int[] a = {73, 74, 75, 71, 69, 72, 76, 73};
-        int[] res = new DailyTemperatures().dailyTemperaturesII(a);
-        for (int i : res) {
-            System.out.println(i);
-        }
-    }
 }

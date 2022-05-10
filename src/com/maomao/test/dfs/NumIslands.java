@@ -129,19 +129,4 @@ public class NumIslands {
         return 0 <= r && r < grid.length && 0 <= c && c < grid[0].length;
     }
 
-    public static void main(String[] args) {
-        char[][] grid = {{'1','1','1','1','0'},{'1','1','0','1','0'},{'1','1','0','0','0'},{'0','0','0','0','0'}};
-        System.out.println(new NumIslands().numIslands(grid));
-        int[][] a = {
-                {0,0,1,0,0,0,0,1,0,0,0,0,0},
-                {0,0,0,0,0,0,0,1,1,1,0,0,0},
-                {0,1,1,0,1,0,0,0,0,0,0,0,0},
-                {0,1,0,0,1,1,0,0,1,0,1,0,0},
-                {0,1,0,0,1,1,0,0,1,1,1,0,0},
-                {0,0,0,0,0,0,0,0,0,0,1,0,0},
-                {0,0,0,0,0,0,0,1,1,1,0,0,0},
-                {0,0,0,0,0,0,0,1,1,0,0,0,0}
-        };
-        System.out.println(new NumIslands().maxAreaOfIsland(a));
-    }
 }

@@ -6,6 +6,7 @@ package com.maomao.test.search;
  * @date 2019/3/14
  */
 public class Search {
+
     public int search(int[] nums, int target) {
         int high = nums.length-1;
         int low = 0;
@@ -187,8 +188,4 @@ public class Search {
         return false;
     }
 
-    public static void main(String[] args) {
-        int[] a = {-1};
-        System.out.println(new Search().search1(a, -1));
-    }
 }

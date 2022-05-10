@@ -54,9 +54,4 @@ public class Change {
 
         return dp[amount];
     }
-
-    public static void main(String[] args) {
-        int[] a = {1,2,5};
-        System.out.println(new Change().change(5, a));
-    }
 }

@@ -53,9 +53,4 @@ public class LetterCombinations {
             str.deleteCharAt(str.length() - 1);
         }
     }
-
-    public static void main(String[] args) {
-        List<String> res = new LetterCombinations().letterCombinations("2");
-        System.out.println(res);
-    }
 }

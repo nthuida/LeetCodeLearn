@@ -30,19 +30,4 @@ public class IsSameTree {
         return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
     }
 
-    public static void main(String[] args) {
-        TreeNode p = new TreeNode(1);
-        TreeNode pLeft = new TreeNode(2);
-        TreeNode pRight = new TreeNode(3);
-        p.left = pLeft;
-        p.right = pRight;
-
-        TreeNode q = new TreeNode(1);
-        TreeNode qLeft = new TreeNode(2);
-        TreeNode qRight = new TreeNode(3);
-        q.left = qLeft;
-        q.right = qRight;
-
-        System.out.println(new IsSameTree().isSameTree(p, q));
-    }
 }
