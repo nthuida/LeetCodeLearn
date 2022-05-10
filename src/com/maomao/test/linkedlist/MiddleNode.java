@@ -43,7 +43,8 @@ public class MiddleNode {
     }
 
     /**
-     * 快慢指针，快的走到终点后，慢的走到中点
+     * 双指针
+     * 快慢指针，快指针走到终点后，慢指针走到中点
      * @param head
      * @return
      */

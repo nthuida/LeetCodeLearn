@@ -53,7 +53,7 @@ public class ReverseKGroup {
     }
 
     /**
-     * 迭代实现
+     * 递归实现
      * @param head
      * @param k
      * @return
@@ -75,7 +75,7 @@ public class ReverseKGroup {
         // 反转前 k 个元素
         ListNode newHead = reverse(a, b);
         // 递归反转后续链表并连接起来
-        a.next = reverseKGroup(b, k);
+        a.next = reverseKGroupII(b, k);
         return newHead;
     }
 

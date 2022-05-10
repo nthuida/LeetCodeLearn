@@ -9,8 +9,7 @@ package com.maomao.test.linkedlist;
 public class GetIntersectionNode {
 
     /**
-     * 双指针法
-     *
+     * 双指针
      * 创建两个指针 pA 和 pB，分别初始化为链表 A 和 B 的头结点。然后让它们向后逐结点遍历。
      * 当 pA 到达链表的尾部时，将它重定位到链表 B 的头结点;
      * 类似的，当 pB 到达链表的尾部时，将它重定位到链表 A 的头结点。

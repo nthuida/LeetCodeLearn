@@ -61,8 +61,9 @@ public class RemoveNthFromEnd {
     }
 
     /**
-     * 找到链表的倒数N个节点
-     * 遍历一次链表找出
+     * 双指针，找到链表的倒数k个节点
+     * 快指针先走k步，然后快慢指针同时走
+     * 快指针到达终点时，慢指针即为倒数第k个节点
      * @param listNode
      * @param k
      * @return

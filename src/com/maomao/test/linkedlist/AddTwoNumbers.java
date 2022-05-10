@@ -16,11 +16,7 @@ package com.maomao.test.linkedlist;
  * @date 2019/4/22
  */
 public class AddTwoNumbers {
-    /**
-     * @param l1
-     * @param l2
-     * @return
-     */
+
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         if (l1 == null) {
             return l2;
@@ -111,27 +107,4 @@ public class AddTwoNumbers {
         return prev;
     }
 
-    public static void main(String[] args) {
-        ListNode l1 = new ListNode(7);
-        ListNode l2 = new ListNode(2);
-        l1.next = l2;
-        ListNode l3 = new ListNode(4);
-        l2.next = l3;
-        ListNode l4 = new ListNode(3);
-        l3.next = l4;
-
-        ListNode l5 = new ListNode(5);
-        ListNode l6 = new ListNode(6);
-        l5.next = l6;
-        ListNode l7 = new ListNode(4);
-        l6.next = l7;
-
-        ListNode addResult = new AddTwoNumbers().addTwoNumbers1(l1, l5);
-        while (addResult != null) {
-            System.out.println(addResult.val);
-            addResult = addResult.next;
-        }
-
-
-    }
 }

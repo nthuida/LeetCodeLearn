@@ -7,6 +7,7 @@ package com.maomao.test.linkedlist;
  */
 public class HasCycle {
     /**
+     * 双指针
      * 快指针走两步，慢指针走一步，如果有环，肯定会相遇
      * @param head
      * @return

@@ -15,13 +15,7 @@ package com.maomao.test.linkedlist;
  */
 public class ReverseBetween {
 
-    /**
-     * @param head
-     * @param m
-     * @param n
-     * @return
-     */
-    public ListNode reverseBetweenII(ListNode head, int m, int n) {
+    public ListNode reverseBetween(ListNode head, int m, int n) {
         ListNode dummyHead = new ListNode(0);
         dummyHead.next = head;
         //反转链表的的前一个节点
