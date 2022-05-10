@@ -17,33 +17,12 @@ import java.util.Map;
 public class SubarraySum {
 
     /**
-     * 暴力解 （n^2）
-     * @param nums
-     * @param k
-     * @return
-     */
-    public int subarraySum(int[] nums, int k) {
-        int count = 0;
-        for (int i=0; i<nums.length; i++) {
-            int sum = 0;
-            //遍历子数组
-            for (int j=i; j<nums.length; j++) {
-                sum += nums[j++];
-                if (sum == k) {
-                    count++;
-                }
-            }
-        }
-        return count;
-    }
-
-    /**
      * 前缀和
      * @param nums
      * @param k
      * @return
      */
-    public int subarraySumII(int[] nums, int k) {
+    public int subarraySum(int[] nums, int k) {
         int count = 0;
         int preSum = 0;
         //key对应前缀和，value对应出现的次数
@@ -53,7 +32,7 @@ public class SubarraySum {
         for (int i :nums) {
             //计算前缀和
             preSum += i;
-            //计数,如果已存在前缀和preSum-k
+            //preSum-k是想要找的前缀和，计数
             count += map.getOrDefault(preSum-k, 0);
             //保存前缀和对应的次数；
             map.put(preSum, map.getOrDefault(preSum,0)+1);
