@@ -19,7 +19,7 @@ public class MinWindow {
      * 先移动 r 指针不断扩张窗口，直到窗口中的字符串符合要求后停止；
      * 然后移动 l 指针，缩小窗口，直到窗口中的字符串不符合要求，每次移动l,需要更新结果；
      * 重复上面两步，直到 r 指针到达字符串的尽头
-     *
+     * 窗口[l,r)左闭右开
      * @param s
      * @param t
      * @return
@@ -49,6 +49,7 @@ public class MinWindow {
             window[r]++;
             //右移窗口
             right++;
+            //进行窗口内一系列数据更新，关键
             if (need[r] > 0 && need[r] >= window[r]) {
                 //目标字符出现次数大于等于1
                 count++;
@@ -65,30 +66,12 @@ public class MinWindow {
                 window[l]--;
                 //左边缩小窗口
                 left++;
+                //进行窗口内一系列数据更新
                 if (need[l] > 0 && need[l] > window[l]) {
                     count--;
                 }
             }
         }
         return res;
-    }
-
-    /**
-     * 比较两字符串是否包含
-     * @param a
-     * @param b
-     * @return
-     */
-    private boolean compare(String a, String b) {
-        int[] ori = new int[128];
-        for (int i=0; i<a.length(); i++) {
-            ori[a.charAt(i)]++;
-        }
-        for (int j=0; j<b.length(); j++) {
-            if (ori[b.charAt(j)]-- == 0) {
-                return false;
-            }
-        }
-        return true;
     }
 }

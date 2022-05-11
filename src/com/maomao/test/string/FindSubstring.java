@@ -1,4 +1,4 @@
-package com.maomao.test.slidingWindow;
+package com.maomao.test.string;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,10 +12,9 @@ import java.util.Map;
  * 注意子串要与 words 中的单词完全匹配，中间不能有其他字符，但不需要考虑 words 中单词串联的顺序。
  *
  * 示例 1：
- *
  * 输入：
- *   s = "barfoothefoobarman",
- *   words = ["foo","bar"]
+ * s = "barfoothefoobarman",
+ * words = ["foo","bar"]
  * 输出：[0,9]
  * 解释：
  * 从索引 0 和 9 开始的子串分别是 "barfoo" 和 "foobar" 。
@@ -23,8 +22,8 @@ import java.util.Map;
  *
  * 示例 2：
  * 输入：
- *   s = "wordgoodgoodgoodbestword",
- *   words = ["word","good","best","word"]
+ * s = "wordgoodgoodgoodbestword",
+ * words = ["word","good","best","word"]
  * 输出：[]
  *
  * @author: huida
@@ -32,12 +31,6 @@ import java.util.Map;
  **/
 public class FindSubstring {
 
-    /**
-     * 滑动窗口
-     * @param s
-     * @param words
-     * @return
-     */
     public List<Integer> findSubstring(String s, String[] words) {
         if (s == null || s.length() == 0 || words == null || words.length == 0) {
             return new ArrayList<>();

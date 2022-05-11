@@ -1,4 +1,4 @@
-package com.maomao.test.slidingWindow;
+package com.maomao.test.string;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -10,12 +10,10 @@ import java.util.List;
  * 编写一个函数来找出所有目标子串，目标子串的长度为 10，且在 DNA 字符串 s 中出现次数超过一次。
  *
  * 示例 1：
- *
  * 输入：s = "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT"
  * 输出：["AAAAACCCCC","CCCCCAAAAA"]
  *
  * 示例 2：
- *
  * 输入：s = "AAAAAAAAAAAAA"
  * 输出：["AAAAAAAAAA"]
  *
@@ -24,11 +22,6 @@ import java.util.List;
  **/
 public class FindRepeatedDnaSequences {
 
-    /**
-     * 滑动窗口
-     * @param s
-     * @return
-     */
     public List<String> findRepeatedDnaSequences(String s) {
         HashSet<String> set = new HashSet<>();
         HashSet<String> res = new HashSet<>();

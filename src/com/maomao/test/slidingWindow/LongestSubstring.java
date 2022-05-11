@@ -5,8 +5,8 @@ import java.util.HashSet;
 import java.util.Map;
 
 /**
- *给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。
- *
+ * 无重复字符的最长子串
+ * 给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。
  * 示例 1:
  * 输入: "abcabcbb"
  * 输出: 3
@@ -26,7 +26,7 @@ import java.util.Map;
 public class LongestSubstring {
 
     /**
-     * 滑动窗口法  复杂度o(n)
+     * 滑动窗口法
      * @param s
      * @return
      */
@@ -52,18 +52,21 @@ public class LongestSubstring {
 
     public int lengthOfLongestSubstring2(String s) {
         int result = 0;
-        int left = 0;
-        Map<Character, Integer> map = new HashMap<>();
-        for (int i=0; i<s.length(); i++) {
-            //i相当于右边界
-            if (map.containsKey(s.charAt(i))) {
-                //左边界右移
-                left = Math.max(left, map.get(s.charAt(i)) + 1);
+        int left = 0, right = 0;
+        //滑动窗口字符出现次数
+        int[] window = new int[128];
+        while (right < s.length()) {
+            char r = s.charAt(right);
+            window[r]++;
+            right++;
+            //判断左侧是否要收缩, window[r] >1说明有重复字符
+            while (window[r] >1) {
+                char l = s.charAt(left);
+                window[l]--;
+                left++;
             }
-            //更新当前字符位置
-            map.put(s.charAt(i), i);
-            //比较长度
-            result = Math.max(result, i-left+1);
+            //更新结果
+            result = Math.max(result, right-left);
         }
         return result;
     }

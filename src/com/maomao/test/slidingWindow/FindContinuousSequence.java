@@ -22,37 +22,33 @@ import java.util.List;
 public class FindContinuousSequence {
 
     /**
-     * 滑动窗口,双指针，左闭右开
-     * 滑动窗口的重要性质是：窗口的左边界和右边界永远只能向右移动
+     * 滑动窗口,左闭右开
      * @param target
      * @return
      */
     public int[][] findContinuousSequence(int target) {
+        //窗口的和
         int sum = 0;
         int left=1, right=1;
-        int end = target/2 + 1;
         List<int[]> res = new ArrayList<>();
-        while (left<= end ) {
-            if (sum < target) {
-                //右边界右滑
-                sum += right;
-                right++;
-            } else if (sum > target){
-                //左边界右滑
+        while (right <= target/2+1 ) {
+            sum += right;
+            //右边界右移
+            right++;
+            //判断左边界是否收缩
+            while (sum > target) {
                 sum -= left;
                 left++;
-            } else {
+            }
+            //满足条件
+            if (sum == target && (right-left)>=2) {
                 int[] temp = new int[right-left];
                 for (int i = left; i<right ;i++) {
                     temp[i-left] = i;
                 }
                 res.add(temp);
-                //左边界右滑
-                sum -= left;
-                left++;
             }
         }
-
         return res.toArray(new int[res.size()][]);
     }
 

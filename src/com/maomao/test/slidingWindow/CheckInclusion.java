@@ -26,12 +26,12 @@ public class CheckInclusion {
      * @return
      */
     public boolean checkInclusion(String s1, String s2) {
-        if (s1 == null || s2 == null || s2.length() < s1.length()) {
+        if (s2.length() < s1.length()) {
             return false;
         }
         int left = 0;
         int right = 0;
-        //用来对原字符串的字符计数
+        //目标字符串的字符计数
         int[] ori = new int[128];
         //滑动窗口字符计数
         int[] window = new int[128];
@@ -44,24 +44,26 @@ public class CheckInclusion {
         while (right < s2.length()) {
             char ch = s2.charAt(right);
             window[ch]++;
+            right++;
+            //窗口内数据更新
             if (ori[ch] > 0 && ori[ch] >= window[ch]) {
                 count++;
             }
             //满足条件,窗口大小等于s1长度
-            while ((right-left +1) == s1.length()) {
+            while ((right-left) == s1.length()) {
                 //需要字符数等于s1的长度
                 if (count == s1.length()) {
                     return true;
                 }
                 ch = s2.charAt(left);
                 //左边缩小窗口
-                if (ori[ch] > 0 && ori[ch] >= window[ch]) {
+                left++;
+                window[ch]--;
+                //窗口内数据更新
+                if (ori[ch] > 0 && ori[ch] > window[ch]) {
                     count--;
                 }
-                window[ch]--;
-                left++;
             }
-            right++;
         }
         return false;
     }
