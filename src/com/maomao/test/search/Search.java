@@ -43,7 +43,7 @@ public class Search {
                 low = mid+1;
             }
         }
-        //没有找到，{1,2,3} target=4,左边界会出界
+        //{1,2,3} target=4  没有找到，low=high+1, 左边界会出界
         if (low >=nums.length || nums[low] != target ) {
             return -1;
         }
@@ -64,7 +64,7 @@ public class Search {
                 low = mid+1;
             }
         }
-        //{1,2,3}, target = 0,右边界会出界
+        //{1,2,3}, target = 0, 没有找到，high=-1, 右边界会出界
         if (high < 0 || nums[high] != target) {
             return -1;
         }
@@ -90,10 +90,10 @@ public class Search {
      *
      * 思路：二分查找
      * 1 2 3 4 5 6 7 可以大致分为两类，
-     * 第一类 2 3 4 5 6 7 1 这种，也就是 nums[start] <= nums[mid]。此例子中就是 2 <= 5。
-     * 这种情况下，前半部分有序。因此如果 nums[start] <=target<nums[mid]，则在前半部分找，否则去后半部分找。
-     * 第二类 6 7 1 2 3 4 5 这种，也就是 nums[start] > nums[mid]。此例子中就是 6 > 2。
-     * 这种情况下，后半部分有序。因此如果 nums[mid] <target<=nums[end]，则在后半部分找，否则去前半部分找。
+     * 第一类 2 3 4 5 6 7 1 这种，nums[start] <= nums[mid]，前半部分有序。
+     * 因此如果 nums[start] <=target<nums[mid]，则在前半部分找，否则去后半部分找。
+     * 第二类 6 7 1 2 3 4 5 这种，nums[start] > nums[mid] 后半部分有序。
+     * 因此如果 nums[mid] <target<=nums[end]，则在后半部分找，否则去前半部分找。
      *
      * @param nums
      * @param target
@@ -138,11 +138,10 @@ public class Search {
      *  编写一个函数来判断给定的目标值是否存在于数组中。若存在返回 true，否则返回 false。
      *
      *  示例 1:
-     *
      *  输入: nums = [2,5,6,0,0,1,2], target = 0
      *  输出: true
-     *  示例 2:
      *
+     *  示例 2:
      *  输入: nums = [2,5,6,0,0,1,2], target = 3
      *  输出: false
      * @param nums

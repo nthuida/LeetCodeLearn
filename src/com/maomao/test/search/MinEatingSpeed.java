@@ -1,4 +1,4 @@
-package com.maomao.test.array;
+package com.maomao.test.search;
 
 /**
  * 珂珂喜欢吃香蕉。这里有 N 堆香蕉，第 i 堆中有 piles[i] 根香蕉。警卫已经离开了，将在 H 小时后回来。
@@ -7,11 +7,10 @@ package com.maomao.test.array;
  * 珂珂喜欢慢慢吃，但仍然想在警卫回来前吃掉所有的香蕉。
  * 返回她可以在 H 小时内吃掉所有香蕉的最小速度 K（K 为整数）。
  * 示例 1：
- *
  * 输入: piles = [3,6,7,11], H = 8
  * 输出: 4
- * 示例 2：
  *
+ * 示例 2：
  * 输入: piles = [30,11,23,4,20], H = 5
  * 输出: 30
  *
