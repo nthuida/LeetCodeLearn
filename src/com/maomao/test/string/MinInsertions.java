@@ -10,13 +10,12 @@ package com.maomao.test.string;
  * 请你返回让 s平衡的最少插入次数。
  *
  * 示例 1：
- *
  * 输入：s = "(()))"
  * 输出：1
  * 解释：第二个左括号有与之匹配的两个右括号，但是第一个左括号只有一个右括号。
  * 我们需要在字符串结尾额外增加一个 ')' 使字符串变成平衡字符串 "(())))" 。
- * 示例 2：
  *
+ * 示例 2：
  * 输入：s = "())"
  * 输出：0
  * 解释：字符串已经平衡了。
@@ -25,16 +24,12 @@ package com.maomao.test.string;
  * 输入：s = "))())("
  * 输出：3
  * 解释：添加 '(' 去匹配最开头的 '))' ，然后添加 '))' 去匹配最后一个 '(' 。
- * 示例 4：
  *
- * 输入：s = "(((((("
- * 输出：12
- * 解释：添加 12 个 ')' 得到平衡字符串。
  * 示例 5：
- *
  * 输入：s = ")))))))"
  * 输出：5
- * 解释：在字符串开头添加 4 个 '(' 并在结尾添加 1 个 ')' ，字符串变成平衡字符串 "(((())))))))" 。
+ * 解释：在字符串开头添加 4 个 '(' 并在结尾添加 1 个 ')' ，字符串变成平衡字符串 "(((())))))))"
+ *
  *
  * @author: huida
  * @date: 2021/12/3
@@ -42,9 +37,6 @@ package com.maomao.test.string;
 public class MinInsertions {
 
     public int minInsertions(String s) {
-        if (s == null || s.length() == 0) {
-            return 0;
-        }
         int res = 0;
         //需要右括号的数量
         int need = 0;
@@ -58,6 +50,7 @@ public class MinInsertions {
                 }
             } else {
                 need--;
+                //右括号数量多
                 if (need == -1) {
                     //需要左括号
                     res++;
@@ -65,7 +58,6 @@ public class MinInsertions {
                     need = 1;
                 }
             }
-
         }
 
         return res + need;

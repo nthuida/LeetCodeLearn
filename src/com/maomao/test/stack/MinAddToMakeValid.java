@@ -1,4 +1,6 @@
-package com.maomao.test.string;
+package com.maomao.test.stack;
+
+import java.util.Stack;
 
 /**
  * 使括号有效的最少添加
@@ -33,14 +35,11 @@ package com.maomao.test.string;
 public class MinAddToMakeValid {
 
     /**
-     * 核⼼思路是以左括号为基准，通过维护对右括号的需求数 need，来计算最⼩的插⼊ 次数
+     * 核⼼思路是以左括号为基准，通过维护对右括号的需求数 need，来计算最⼩的插⼊次数
      * @param s
      * @return
      */
     public int minAddToMakeValid(String s) {
-        if (s == null || s.length() == 0) {
-            return 0;
-        }
         //左括号数
         int needLeft = 0;
         //右括号数
@@ -60,5 +59,24 @@ public class MinAddToMakeValid {
             }
         }
         return needLeft + needRight;
+    }
+
+    public int minAddToMakeValidII(String s) {
+        Stack<Character> stack = new Stack<>();
+        int needLeft = 0;
+        for (int i=0; i<s.length(); i++) {
+            if (s.charAt(i) == '(') {
+                stack.push('(');
+            } else {
+                if (stack.isEmpty()) {
+                    //需要左括号
+                    needLeft++;
+                } else {
+                    stack.pop();
+                }
+            }
+        }
+        //stack.size()代表的是需要右括号数
+        return needLeft + stack.size();
     }
 }

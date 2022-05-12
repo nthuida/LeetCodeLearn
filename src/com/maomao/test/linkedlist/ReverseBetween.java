@@ -25,13 +25,13 @@ public class ReverseBetween {
         }
         //反转链表的第一个节点
         ListNode cur = pre.next;
-        //头插法，先将 curr 的下一个节点记录为 next；
-        //执行操作 ①：把 curr 的下一个节点指向 next 的下一个节点；
-        //执行操作 ②：把 next 的下一个节点指向 pre 的下一个节点；
-        //执行操作 ③：把 pre 的下一个节点指向 next
+        //头插法，将cur后面的元素删除，然后添加到pre的后面
         for (int i = 0; i < n - m; i++) {
+            //待插节点
             ListNode next = cur.next;
+            //指向后面元素
             cur.next = next.next;
+            //头节点插入
             next.next = pre.next;
             pre.next = next;
         }
