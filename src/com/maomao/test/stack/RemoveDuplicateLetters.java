@@ -28,28 +28,29 @@ public class RemoveDuplicateLetters {
     public String removeDuplicateLetters(String s) {
         Stack<Character> stack = new Stack<>();
         //记录每个字符出现的次数
-        int[] count = new int[26];
+        int[] count = new int[128];
         for (int i=0; i<s.length(); i++) {
-            count[s.charAt(i)- 'a']++;
+            count[s.charAt(i)]++;
         }
         //记录字符是否出现过
-        boolean[] flag = new boolean[26];
+        boolean[] flag = new boolean[128];
         for (char ch : s.toCharArray()) {
-            count[ch -'a']--;
-            if (flag[ch-'a']) {
+            //每次遍历过，减1
+            count[ch]--;
+            if (flag[ch]) {
                 continue;
             }
-            //保证字典顺序
+            //保证字典顺序，递减
             while (!stack.empty() && stack.peek()>ch) {
                 // 若之后不存在栈顶元素了，则停止 pop
-                if (count[stack.peek() - 'a'] == 0) {
+                if (count[stack.peek()] == 0) {
                     break;
                 }
                 // 若之后还有，则可以 pop
-                flag[stack.pop() - 'a'] = false;
+                flag[stack.pop()] = false;
             }
             stack.push(ch);
-            flag[ch-'a'] = true;
+            flag[ch] = true;
         }
 
         StringBuilder stringBuilder = new StringBuilder();
