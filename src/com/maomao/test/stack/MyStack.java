@@ -4,14 +4,19 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * 两个队列实现栈  一个入栈，一个出栈
+ * 两个队列实现栈
  * @author Administrator
  * @date 2019/3/24
  */
 public class MyStack {
+    /**
+     * 主队列，存储栈内元素
+     */
     private  Queue<Integer> queue1;
+    /**
+     * 辅助队列
+     */
     private  Queue<Integer> queue2;
-    int top;
 
     public MyStack() {
         queue1 = new LinkedList<>();
@@ -19,40 +24,29 @@ public class MyStack {
     }
 
     public void push(int x){
-        queue1.offer(x);
-        top = x;
+        queue2.offer(x);
+        while (!queue1.isEmpty()) {
+            //把queue1元素放入queue2，先进变成后出
+            queue2.offer(queue1.poll());
+        }
+        //交换queue1和queue2
+        Queue<Integer> temp = queue1;
+        queue1 = queue2;
+        queue2 = temp;
     }
 
-    /**
-     * 1、queue1只有一个元素直接出栈
-     * 2、不止一个元素，queue1的元素放入queue2,只剩一个元素，弹出，然后再把queue2的元素放入queue1
-     * 出栈
-     */
+
     public int pop(){
-        int e;
-        if (queue1.size() == 1) {
-            return queue1.poll();
-        } else {
-            while (queue1.size() > 1) {
-                queue2.offer(queue1.poll());
-            }
-            e = queue1.poll();
-            while (!queue2.isEmpty()) {
-                int temp = queue2.poll();
-                queue1.offer(temp);
-                top = temp;
-            }
-        }
-        return e;
+        return queue1.poll();
     }
 
     public int top() {
-        return top;
+        return queue1.peek();
     }
 
 
     public  boolean isEmpty(){
-        return queue1.isEmpty()&&queue2.isEmpty();
+        return queue1.isEmpty();
     }
 
 }

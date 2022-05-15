@@ -8,20 +8,25 @@ import java.util.Stack;
  * @author Administrator
  * @date 2019/3/24
  */
-public class MyQueue<E> {
-    private Stack<E> stack1 = new Stack<>();
-    private Stack<E> stack2 = new Stack<>();
+public class MyQueue {
+    private Stack<Integer> stack1;
+    private Stack<Integer> stack2;
 
-    public void add(E e) {
+    public MyQueue() {
+        stack1 = new Stack<>();
+        stack2 = new Stack<>();
+    }
+
+    public void push(int e) {
         stack1.add(e);
     }
 
     /**
      *返回头元素，并删除
      */
-    public E pop() {
+    public int pop() {
         if (empty()) {
-            throw new RuntimeException("empty");
+            return -1;
         }else if (stack2.empty()) {
             while (!stack1.empty()) {
                 stack2.add(stack1.pop());
@@ -33,9 +38,9 @@ public class MyQueue<E> {
     /**
      *返回头元素，不删除删除
      */
-    public E peek() {
+    public int peek() {
         if (empty()) {
-            throw new RuntimeException("empty");
+            return -1;
         }else if (stack2.empty()) {
             while (!stack1.empty()) {
                 stack2.add(stack1.pop());
@@ -45,7 +50,7 @@ public class MyQueue<E> {
     }
 
     public boolean empty() {
-        return stack1.isEmpty() && stack2.empty();
+        return stack1.empty() && stack2.empty();
     }
 
 }

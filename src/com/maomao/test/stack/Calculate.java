@@ -1,11 +1,11 @@
-package com.maomao.test.string;
+package com.maomao.test.stack;
 
 import java.util.Stack;
 
 /**
  * 基本计算器
  * 实现一个基本的计算器来计算一个简单的字符串表达式的值。
- * 字符串表达式仅包含非负整数，+， - ，*，/ 四种运算符和空格  。 整数除法仅保留整数部分。
+ * 字符串表达式仅包含非负整数，+， - ，*，/ 四种运算符和空格 。 整数除法仅保留整数部分。
  *
  * 示例 1:
  *
@@ -37,12 +37,15 @@ public class Calculate {
         int num = 0;
         for (int i=0; i<s.length(); i++) {
             char temp = s.charAt(i);
+            if (temp == ' ') {
+                continue;
+            }
             if (Character.isDigit(temp)) {
                 //转化为数字
                num = num*10 + (temp - '0');
             }
             //不是数字，就是字符，或者到达最后一个元素，要保存之前的值
-            if ((!Character.isDigit(temp) && temp != ' ')|| i==s.length()-1){
+            if (!Character.isDigit(temp)|| i==s.length()-1){
                 switch (lastOp) {
                     case '+' :
                         //直接入栈

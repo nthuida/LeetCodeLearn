@@ -18,7 +18,13 @@ import java.util.Stack;
  */
 public class CQueue {
 
+    /**
+     * 入队
+     */
     private Stack<Integer> stack1;
+    /**
+     * 出队
+     */
     private Stack<Integer> stack2;
 
     public CQueue() {
@@ -31,7 +37,7 @@ public class CQueue {
     }
 
     public int deleteHead() {
-        if (stack1.isEmpty() && stack2.empty()) {
+        if (stack1.empty() && stack2.empty()) {
             return -1;
         }else if (stack2.empty()) {
             while (!stack1.empty()) {

@@ -34,7 +34,9 @@ public class FreqStack {
 
     public void push(int val) {
         int freq = keyToFreq.getOrDefault(val, 0) + 1;
+        //更新频率
         keyToFreq.put(val, freq);
+        //更新频率对应的栈
         freqToList.putIfAbsent(freq, new Stack<>());
         freqToList.get(freq).push(val);
         maxFreq = Math.max(freq, maxFreq);

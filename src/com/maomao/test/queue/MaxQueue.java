@@ -5,7 +5,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * 请定义一个队列并实现函数 max_value 得到队列里的最大值，要求函数max_value、push_back 和 pop_front 的均摊时间复杂度都是O(1)。
+ * 请定义一个队列并实现函数 max_value 得到队列里的最大值，
+ * 要求函数max_value、push_back 和 pop_front 的均摊时间复杂度都是O(1)。
  * 若队列为空，pop_front 和 max_value 需要返回 -1
  *
  * 示例 1：
@@ -24,7 +25,7 @@ public class MaxQueue {
     public MaxQueue() {
         //队列：插入和删除
         que = new LinkedList<>();
-        //双端队列：获取最大值
+        //双端队列：获取最大值，构造单调递减队列
         deq = new LinkedList<>();
     }
 

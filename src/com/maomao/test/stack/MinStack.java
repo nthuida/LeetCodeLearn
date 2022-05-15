@@ -1,6 +1,7 @@
 package com.maomao.test.stack;
 
 import java.util.LinkedList;
+import java.util.Stack;
 
 /**
  * 最小栈
@@ -15,16 +16,16 @@ import java.util.LinkedList;
  * @date 2020/5/12
  */
 public class MinStack {
-    private LinkedList<Integer> list = new LinkedList<>();
+    /*private LinkedList<Integer> list = new LinkedList<>();
     int min = Integer.MAX_VALUE;
     public MinStack() {
 
     }
 
-    /**
+    *//**
      * 同时保存当前最小值和上一个最小值
      * @param x
-     */
+     *//*
     public void push(int x) {
         if (x <= min) {
             //保存之前的最小值
@@ -51,6 +52,35 @@ public class MinStack {
 
     public int getMin() {
         return min;
+    }*/
+
+    //主栈，保存元素
+    private Stack<Integer> stack;
+    //辅助栈，单调递减栈
+    private Stack<Integer> minStack;
+
+    public MinStack() {
+        stack = new Stack<>();
+        minStack = new Stack<>();
+    }
+    public void push(int x) {
+        stack.push(x);
+        //当前元素小于等于栈顶元素，入栈
+        if(minStack.isEmpty() || x <= minStack.peek())
+            minStack.push(x);
     }
 
+    public void pop() {
+        //出栈元素和最小栈栈顶元素相等，最小栈也要出栈
+        if(stack.pop().equals(minStack.peek()))
+            minStack.pop();
+    }
+
+    public int top() {
+        return stack.peek();
+    }
+
+    public int getMin() {
+        return minStack.peek();
+    }
 }
