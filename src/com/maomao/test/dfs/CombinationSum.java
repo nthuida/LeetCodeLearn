@@ -160,7 +160,7 @@ public class CombinationSum {
             backtrack3(res, i+1, sum, k, n, track);
             //回溯
             sum -= i;
-           track.removeLast();
+            track.removeLast();
         }
     }
 }

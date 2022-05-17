@@ -98,10 +98,10 @@ public class PathSum {
         //前缀和计数
         map.put(curSum, map.getOrDefault(curSum, 0) +1);
 
-        //左右子树，curSum不回溯？ 值传递，每层递归的值不一样
+        //左右子树，curSum不回溯 值传递，每层递归的值不一样
         dfs(root.left, target, curSum, map);
         dfs(root.right, target, curSum, map);
-        //回溯，回到上一层 ?
+        //回溯，回到上一层
         map.put(curSum, map.get(curSum)-1);
     }
 

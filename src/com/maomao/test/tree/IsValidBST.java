@@ -84,4 +84,26 @@ public class IsValidBST {
             midOrder(root.right);
         }
     }
+
+    public boolean isValidBSTIII(TreeNode root) {
+        return helper(root, Long.MIN_VALUE, Long.MAX_VALUE);
+    }
+
+    /**
+     * 当前节点的值，是其左子树的上界，其右子树的下届
+     * @param root
+     * @param min
+     * @param max
+     * @return
+     */
+    private boolean helper(TreeNode root, long min, long max) {
+        if (root == null) {
+            return true;
+        }
+        if (root.val <= min || root.val >= max) {
+            return false;
+        }
+        //左子树的最大值为当前节点的值，右子树的最小值为当前节点的值
+        return helper(root.left, min, root.val) && helper(root.right, root.val, max);
+    }
 }

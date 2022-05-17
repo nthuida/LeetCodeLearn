@@ -109,13 +109,13 @@ public class SumNumbers {
         return helper(root, 0);
     }
 
-    public int helper(TreeNode root, int i){
+    public int helper(TreeNode root, int prevSum){
         //终止条件
         if (root == null) {
             return 0;
         }
         //计算当前节点的值
-        int temp = i * 10 + root.val;
+        int temp = prevSum * 10 + root.val;
         //叶子节点，一条完整的路径，直接返回
         if (root.left == null && root.right == null) {
             return temp;
@@ -123,6 +123,28 @@ public class SumNumbers {
         //非叶子节点，递归左右子树
         return helper(root.left, temp) + helper(root.right, temp);
     }
+
+    int res = 0;
+    public int sumNumbersIII(TreeNode root) {
+        dfs(root, 0);
+        return res;
+    }
+
+    private void dfs(TreeNode root, int preSum) {
+        if (root == null) {
+            return ;
+        }
+        int curSum = preSum*10 + root.val;
+        //叶子节点
+        if (root.left == null && root.right == null) {
+            res += curSum;
+        }
+        //非叶子节点
+        dfs(root.left, curSum);
+        dfs(root.right, curSum);
+    }
+
+
 
 
 }
