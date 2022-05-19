@@ -43,11 +43,13 @@ public class KthSmallest {
     }
 
     public void midOrder(TreeNode root, List<Integer> list) {
-        if (root != null) {
-            midOrder(root.left, list);
-            list.add(root.val);
-            midOrder(root.right, list);
+        if (root == null) {
+            return;
         }
+        midOrder(root.left, list);
+        list.add(root.val);
+        midOrder(root.right, list);
+
     }
 
     int res = 0;
@@ -57,15 +59,20 @@ public class KthSmallest {
         return res;
     }
 
+    /**
+     * 等价于BST中序遍历的第 k 个元素
+     * @param treeNode
+     * @param k
+     */
     private void midPost(TreeNode treeNode, int k){
         if (treeNode != null) {
-            midPost(treeNode.left, k);
-            count++;
-            System.out.println("中序遍历计数 ：" + count + " 值：" + treeNode.val);
-            if (count == k) {
-                res = treeNode.val;
-            }
-            midPost(treeNode.right, k);
+            return;
         }
+        midPost(treeNode.left, k);
+        count++;
+        if (count == k) {
+            res = treeNode.val;
+        }
+        midPost(treeNode.right, k);
     }
 }

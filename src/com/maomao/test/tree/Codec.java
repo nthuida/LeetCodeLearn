@@ -2,7 +2,7 @@ package com.maomao.test.tree;
 
 import java.util.Arrays;
 import java.util.LinkedList;
-import java.util.List;
+import java.util.Queue;
 
 /**
  * 二叉树的序列化与反序列化
@@ -51,19 +51,21 @@ public class Codec {
      * @return
      */
     public TreeNode deserialize(String data) {
-        LinkedList<String> list = new LinkedList<>(Arrays.asList(data.split(",")));
+        Queue<String> list = new LinkedList<>(Arrays.asList(data.split(",")));
         return myDeserialize(list);
     }
 
-    private TreeNode myDeserialize(LinkedList<String> list) {
-        if (list.getFirst().equals("null")) {
-            list.removeFirst();
+    private TreeNode myDeserialize(Queue<String> queue) {
+        if (queue.isEmpty()) {
             return null;
         }
-        TreeNode root = new TreeNode(Integer.valueOf(list.getFirst()));
-        list.removeFirst();
-        root.left = myDeserialize(list);
-        root.right = myDeserialize(list);
+        String first = queue.poll();
+        if (first.equals("null")) {
+            return null;
+        }
+        TreeNode root = new TreeNode(Integer.valueOf(first));
+        root.left = myDeserialize(queue);
+        root.right = myDeserialize(queue);
         return root;
     }
 }

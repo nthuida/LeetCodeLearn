@@ -37,7 +37,6 @@ public class IsCompleteTree {
         while(!queue.isEmpty()) {
             TreeNode node = queue.poll();
             if (node == null) {
-                //null
                 flag = true;
                 continue;
             }
