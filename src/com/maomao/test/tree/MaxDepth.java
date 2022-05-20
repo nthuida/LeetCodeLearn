@@ -46,16 +46,10 @@ public class MaxDepth {
         if (root == null) {
             return 0;
         }
-        //右子树为空，代表没有路径，计算左子树的，和最大深度不一样
-        if (root.right == null) {
-            return minDepth(root.left) + 1;
-        }
-        if (root.left == null) {
-            return minDepth(root.right) + 1;
-        }
         int left = minDepth(root.left);
         int right = minDepth(root.right);
-        return left < right ? left + 1 : right + 1;
+        //左子树或者右子树为空的情况，最小深度取非空的子树深度
+        return left == 0 || right == 0 ? left+right+1 : Math.min(left, right) +1;
     }
 
     public int minDepth1(TreeNode root) {
@@ -69,21 +63,20 @@ public class MaxDepth {
 
         while (!q.isEmpty()) {
             int sz = q.size();
-            /* 将当前队列中的所有节点向四周扩散 */
             for (int i = 0; i < sz; i++) {
                 TreeNode cur = q.poll();
                 /* 判断是否到达终点 */
                 if (cur.left == null && cur.right == null) {
-                    //直接返回，跳出while循环
+                    //直接返回
                     return depth;
                 }
-                /* 将 cur 的相邻节点加入队列 */
-                if (cur.left != null)
+                if (cur.left != null) {
                     q.offer(cur.left);
-                if (cur.right != null)
+                }
+                if (cur.right != null) {
                     q.offer(cur.right);
+                }
             }
-            /* 这里增加步数 */
             depth++;
         }
         return depth;
