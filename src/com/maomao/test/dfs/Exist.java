@@ -35,12 +35,9 @@ public class Exist {
         boolean[][] visited = new boolean[row][col];
         for (int i=0; i<row; i++) {
             for (int j=0; j<col; j++) {
-                //从第一个相同的元素开始
-                //if (board[i][j] == word.charAt(0)) {
-                    if (dfs(board, i, j, word,0, visited)) {
-                        return true;
-                    }
-                //}
+                if (dfs(board, i, j, word,0, visited)) {
+                    return true;
+                }
             }
         }
         return false;

@@ -19,21 +19,19 @@ package com.maomao.test.tree;
  **/
 public class RecoverTree {
 
-    TreeNode first = null;
-    TreeNode second = null;
-    TreeNode pre = new TreeNode(Integer.MIN_VALUE);
-
     /**
-     * 只用比较前后访问的节点值，prev 保存上一个访问的节点，当前访问的是 root 节点。
+     * 比较前后访问的节点值，prev 保存上一个访问的节点，当前访问的是 root 节点。
      * 每访问一个节点，如果prev.val>=root.val，就找到了一对“错误对”。
-     * 检查一下它是第一对错误对，还是第二对错误对。
-     * 遍历结束，就确定了待交换的两个错误点，进行交换。
      *
      * @param root
      */
+
+    TreeNode first = null;
+    TreeNode second = null;
+    TreeNode pre = new TreeNode(Integer.MIN_VALUE);
     public void recoverTree(TreeNode root) {
         midOrder(root);
-        //交换值
+        //交换
         int temp = first.val;
         first.val = second.val;
         second.val = temp;
@@ -45,12 +43,12 @@ public class RecoverTree {
             return;
         }
         midOrder(root.left);
-        if (first == null && pre.val > root.val) {
+        if (first == null && pre.val >= root.val) {
             //第一个节点
             first = pre;
         }
 
-        if (first != null && pre.val > root.val) {
+        if (first != null && pre.val >= root.val) {
             //第二个节点
             second = root;
         }
