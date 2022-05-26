@@ -47,35 +47,27 @@ public class Partition {
         }
 
         for (int i=start; i<s.length(); i++) {
+            String str = s.substring(start, i+1);
             //不满足条件
-            if (!check(start, i, s)) {
+            if (!check(str)) {
                 continue;
             }
             //选择
-            path.add(s.substring(start, i+1));
+            path.add(str);
+            System.out.println("回溯前：" + path.toString());
             //进入下一步
             backtrack(i+1, s, path, res);
             //回溯
             path.removeLast();
+            System.out.println("  回溯后：" + path.toString());
         }
     }
 
-    /**
-     * 判断回文
-     * @param begin
-     * @param end
-     * @param s
-     * @return
-     */
-    private boolean check(int begin, int end, String s) {
-        while (begin < end) {
-            if (s.charAt(begin) != s.charAt(end)) {
-                return false;
-            }
-            begin++;
-            end--;
-        }
-        return true;
+
+    private boolean check(String s) {
+        StringBuilder builder = new StringBuilder(s);
+        return s.equals(builder.reverse().toString());
     }
+
 
 }

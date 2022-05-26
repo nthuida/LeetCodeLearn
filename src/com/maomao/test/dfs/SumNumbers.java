@@ -143,8 +143,4 @@ public class SumNumbers {
         dfs(root.left, curSum);
         dfs(root.right, curSum);
     }
-
-
-
-
 }

@@ -143,7 +143,4 @@ public class GetPermutation {
         return res;
     }
 
-    public static void main(String[] args) {
-        System.out.println(new GetPermutation().getPermutationII(8,37566));
-    }
 }

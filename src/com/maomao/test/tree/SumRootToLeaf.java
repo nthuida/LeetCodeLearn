@@ -1,7 +1,4 @@
-package com.maomao.test.dfs;
-
-
-import com.maomao.test.tree.TreeNode;
+package com.maomao.test.tree;
 
 /**
  * 从根到叶的二进制数之和

@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * 单词搜索II
- *  给定一个二维网格 board 和一个字典中的单词列表 words，找出所有同时在二维网格和字典中出现的单词。
+ * 给定一个二维网格 board 和一个字典中的单词列表 words，找出所有同时在二维网格和字典中出现的单词。
  *
  * 单词必须按照字母顺序，通过相邻的单元格内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。
  * 同一个单元格内的字母在一个单词中不允许被重复使用。
@@ -13,7 +13,8 @@ import java.util.List;
  * 示例:
  *
  * 输入:
- * words = ["oath","pea","eat","rain"] and board =
+ * words = ["oath","pea","eat","rain"]
+ * board =
  * [
  *   ['o','a','a','n'],
  *   ['e','t','a','e'],
@@ -69,26 +70,29 @@ public class FindWords {
     }
 
     private boolean dfs(char[][] board, int i, int j, String word, int index, boolean[][] visited) {
-        //最后一个元素或者只有一个元素{{a}}
-        if (index == word.length()-1) {
-            return board[i][j] == word.charAt(index);
+        //结束条件
+        if (index == word.length()) {
+            return true;
         }
-        if (board[i][j] == word.charAt(index)) {
-            visited[i][j] = true;
-            //四个方向搜索
-            for (int[] direct : direction) {
-                int newX = i + direct[0];
-                int newY = j + direct[1];
-                if(newX >= board.length || newX < 0 || newY >= board[0].length || newY < 0 || visited[newX][newY]) {
-                    continue;
-                }
-                if (dfs(board, newX, newY, word, index+1, visited)) {
-                    return true;
-                }
+        //越界
+        if(i >= board.length || i < 0 || j >= board[0].length || j < 0) {
+            return false;
+        }
+        if (board[i][j] != word.charAt(index) || visited[i][j]) {
+            return false;
+        }
+        visited[i][j] = true;
+        //四个方向搜索
+        for (int[] direct : direction) {
+            int newX = i + direct[0];
+            int newY = j + direct[1];
+            if (dfs(board, newX, newY, word, index+1, visited)) {
+                return true;
             }
-            //回溯
-            visited[i][j] = false;
         }
+        //回溯
+        visited[i][j] = false;
+
         return false;
     }
 }

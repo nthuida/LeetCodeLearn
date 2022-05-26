@@ -1,4 +1,4 @@
-package com.maomao.test.array;
+package com.maomao.test.prefixSum;
 
 import java.util.HashMap;
 import java.util.Map;

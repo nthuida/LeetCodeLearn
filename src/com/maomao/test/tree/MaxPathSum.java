@@ -1,5 +1,4 @@
-package com.maomao.test.dfs;
-import com.maomao.test.tree.TreeNode;
+package com.maomao.test.tree;
 
 /**
  * 二叉树中的最大路径和

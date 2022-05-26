@@ -1,4 +1,4 @@
-package com.maomao.test.dfs;
+package com.maomao.test.tree;
 
 import com.maomao.test.tree.TreeNode;
 

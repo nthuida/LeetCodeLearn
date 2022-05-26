@@ -28,7 +28,6 @@ import java.util.Set;
  */
 public class RemoveInvalidParentheses {
 
-
     public List<String> removeInvalidParentheses(String s) {
         //需要删除的左括号数
         int leftDelete = 0;
