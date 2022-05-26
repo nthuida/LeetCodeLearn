@@ -16,8 +16,9 @@ package com.maomao.test.dfs;
 public class SolveSudoku {
 
     /**
-     * 对每一个空着的格子穷举 1 到 9，如果遇到不合法的数字（在同一行或同一列或同一个 3×3 的区域中存在相同的数字）则跳过，
+     * 对每一个空着的格子穷举 1 到 9，如果遇到不合法的数字则跳过，
      * 如果找到一个合法的数字，则继续穷举下一个空格子。
+     * 从第一行开始
      * @param board
      */
     public void solveSudoku(char[][] board) {
@@ -25,27 +26,27 @@ public class SolveSudoku {
     }
 
     private boolean backtrack(int row, int col, char[][] board) {
-        if (col == 9) {
-            //到达一行的最后一列
-            return backtrack(row+1, 0, board);
-        }
+        //退出条件，到达最后一行
         if (row == 9) {
-            //满足，返回
             return true;
         }
+        //到达一行的最后一列，重新开始下一行
+        if (col == 9) {
+            return backtrack(row+1, 0, board);
+        }
+        //已填过，继续下一列
         if (board[row][col] != '.') {
-            //已填过
             return backtrack(row, col+1, board);
         }
         //开始填
         for(char i = '1'; i<='9'; i++) {
+            //不满足条件，继续
             if (!valid(row, col, i, board)) {
-                //不满足，继续
                 continue;
             }
             board[row][col] = i;
             if (backtrack(row, col+1, board)) {
-                //下一格
+                //找到一个结果，直接返回
                 return true;
             }
             //回溯

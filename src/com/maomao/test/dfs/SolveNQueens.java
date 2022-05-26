@@ -33,11 +33,6 @@ import java.util.List;
  */
 public class SolveNQueens {
 
-    /**
-     * 回溯
-     * @param n
-     * @return
-     */
     public List<List<String>> solveNQueens(int n) {
         char[][] chess = new char[n][n];
         //初始化
@@ -51,6 +46,13 @@ public class SolveNQueens {
         return res;
     }
 
+    /**
+     * 回溯
+     * 从第一行开始
+     * @param res
+     * @param chess
+     * @param row
+     */
     private void solve(List<List<String>> res, char[][] chess, int row) {
         //退出条件，到达最后一行
         if (row == chess.length) {
@@ -60,13 +62,15 @@ public class SolveNQueens {
         }
         for (int col = 0; col < chess.length; col++) {
             //判断
-            if (valid(chess, row, col)) {
-                chess[row][col] = 'Q';
-                //下一行
-                solve(res, chess, row + 1);
-                //回溯
-                chess[row][col] = '.';
+            if (!valid(chess, row, col)) {
+                continue;
             }
+            chess[row][col] = 'Q';
+            //下一行
+            solve(res, chess, row + 1);
+            //回溯
+            chess[row][col] = '.';
+
         }
     }
 
@@ -101,12 +105,13 @@ public class SolveNQueens {
         return path;
     }
 
-    int count = 0;
+
     /**
      *  给定一个整数 n，返回 n 皇后不同的解决方案的数量。
      * @param n
      * @return
      */
+    int count = 0;
     public int totalNQueens(int n) {
         char[][] chess = new char[n][n];
         //初始化

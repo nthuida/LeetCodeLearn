@@ -46,11 +46,12 @@ public class Permute {
         //路径
         LinkedList<Integer> track = new LinkedList<>();
         List<List<Integer>> result = new ArrayList<>();
-        backtrack(nums, track, result);
+        boolean[] visited = new boolean[nums.length];
+        backtrack(nums, track, result, visited);
         return result;
     }
 
-    public void backtrack(int[] nums, LinkedList<Integer> track, List<List<Integer>> result) {
+    public void backtrack(int[] nums, LinkedList<Integer> track, List<List<Integer>> result, boolean[] visited) {
         // 触发结束条件
         if (track.size() == nums.length) {
             result.add(new LinkedList(track));
@@ -59,15 +60,17 @@ public class Permute {
 
         for (int i = 0; i < nums.length; i++) {
             // 排除不合法的选择
-            if (track.contains(nums[i])) {
+            if (visited[i]) {
                 continue;
             }
             // 做选择
             track.add(nums[i]);
+            visited[i] = true;
             // 进入下一层决策树
-            backtrack(nums, track, result);
+            backtrack(nums, track, result, visited);
             // 取消选择
             track.removeLast();
+            visited[i] = false;
         }
 
     }
@@ -118,7 +121,7 @@ public class Permute {
             if (visited[i]) {
                 continue;
             }
-            //接下来，如果当前节点与他的前一个节点一样，且他的前一个节点已经被遍历过了，就剪枝
+            //如果当前节点与他的前一个节点一样，且他的前一个节点已经被遍历过了，就剪枝
             // 写 !visited[i - 1] 是因为 nums[i - 1] 在深度优先遍历的过程中刚刚被撤销选择
             if(i>0 && nums[i] == nums[i-1] && !visited[i-1]) {
                 continue;
