@@ -1,6 +1,5 @@
 package com.maomao.test.dfs;
-
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -43,57 +42,58 @@ import java.util.List;
  */
 public class SplitIntoFibonacci {
 
-    /**
-     * 回溯
-     * @param S
-     * @return
-     */
-    public List<Integer> splitIntoFibonacci(String S) {
-        List<Integer> res = new ArrayList<>();
-        backtrack(S.toCharArray(), 0, res);
+    public List<Integer> splitIntoFibonacci(String num) {
+        LinkedList<Integer> res = new LinkedList<>();
+        backtrack(num, 0, res);
         return res;
     }
 
-    private boolean backtrack(char[] chars, int index, List<Integer> res) {
-        //终止条件, 全部截取and找到组合
-        if (res.size() >=3 && index == chars.length) {
-            return true;
+    private boolean backtrack(String num, int index, LinkedList<Integer> res) {
+        //终止条件
+        if (res.size() >=3 && index == num.length()) {
+            return valid(res);
         }
-        for (int i=index; i<chars.length; i++) {
-            //两位以上的数字，不能以0开头
-            if (chars[index] == '0' && i>index) {
-                break;
+        for (int i=index; i<num.length(); i++) {
+            //前导0， 剪枝
+            if (num.charAt(index) == '0' && i>index) {
+                return false;
             }
-            //字符串转数字
-            long num = convert(index, i+1, chars);
-            if (num > Integer.MAX_VALUE) {
-                break;
+            long number = Long.parseLong(num.substring(index, i+1));
+            //剪枝
+            if (number > Integer.MAX_VALUE) {
+                return false;
             }
-            int size = res.size();
-            //如果截取的数字大于res中前两个数字的和，说明这次截取的太大，直接终止
-            if (size >=2 && num > (res.get(size-1) + res.get(size-2))) {
-                break;
+            //如果截取的数字大于res中前两个数字的和，剪枝
+            if (res.size() >=2 && number > (res.get(res.size()-1) + res.get(res.size()-2))) {
+                return false;
             }
-            if (size<=1 || (num == res.get(size-1) + res.get(size-2))) {
-                res.add((int)num);
-                //继续找，找到就返回
-                if (backtrack(chars, i+1, res)) {
-                   return true;
+            res.add((int)number);
+            //两数相加不符合，剪枝
+            if (res.size()>=3) {
+                if (!valid(res)) {
+                    res.removeLast();
+                    continue;
                 }
-                //不满足，回溯
-                res.remove(res.size()-1);
             }
-
+            //找到就返回
+            if (backtrack(num, i+1, res)) {
+               return true;
+            }
+            res.removeLast();
         }
         return false;
-
     }
 
-    private long convert(int start, int end, char[] chars) {
-        long res = 0;
-        for (int i = start; i < end; i++) {
-            res = res * 10 + chars[i] - '0';
+    private boolean valid(LinkedList<Integer> list) {
+        Integer first = list.get(list.size()-3);
+        Integer second = list.get(list.size()-2);
+        Integer third = list.get(list.size()-1);
+        long sum = first + second;
+        if (sum == (long)third) {
+            return true;
         }
-        return res;
+        return false;
     }
+
+
 }

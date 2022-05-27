@@ -30,17 +30,9 @@ public class CanPartitionKSubsets {
         return backtrack(nums, k, 0, target, 0, used);
     }
 
-    /**
-     *
-     * @param num
-     * @param k k号桶正在思考是否应该把nums[start]这个元素装进来
-     * @param start
-     * @param target 每个桶都需要达成的目标和
-     * @param bucket 目前k号桶里面已经装的数字之和为bucket
-     * @param used used标志某一个元素是否已经被装到桶中
-     * @return
-     */
+
     public boolean backtrack(int[] num, int k, int start, int target, int bucket, boolean[] used) {
+        //结束条件，剩余的子集个数为0
         if (k == 0) {
             return true;
         }
@@ -51,25 +43,23 @@ public class CanPartitionKSubsets {
         }
         for (int i=start; i<num.length; i++) {
             if (used[i]) {
-                //已使用过
                 continue;
             }
             if (num[i] + bucket > target) {
-                //太大了
+                //剪枝
                 continue;
             }
             //选择
             bucket += num[i];
             used[i] = true;
-            // 递归穷举下⼀个数字是否装⼊当前桶
-            if (backtrack(num, k, i+1, target, bucket,used)) {
+            // 有一个结果就返回
+            if (backtrack(num, k, i+1, target, bucket, used)) {
                 return true;
             }
             //撤销选择
             used[i] = false;
             bucket -= num[i];
         }
-        // 穷举了所有数字，都⽆法装满当前桶
         return false;
     }
 }

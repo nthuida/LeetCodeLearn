@@ -1,7 +1,4 @@
-package com.maomao.test.dfs;
-
-import com.maomao.test.tree.TreeNode;
-
+package com.maomao.test.tree;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;

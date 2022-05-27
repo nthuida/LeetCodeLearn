@@ -121,7 +121,6 @@ public class GetPermutation {
             path.append(i);
             //当前元素被使用过标记
             used[i] = true;
-            System.out.println(path.toString());
             dfs(path, used, depth + 1, n, k);
             //不需要回溯
             return;
