@@ -1,4 +1,4 @@
-package com.maomao.test.stack;
+package com.maomao.test.stack.monotoneStack;
 import java.util.Stack;
 
 /**

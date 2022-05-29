@@ -12,26 +12,12 @@ package com.maomao.test.dfs;
  * 输入：grid1 = [[1,1,1,0,0],[0,1,1,1,1],[0,0,0,0,0],[1,0,0,0,0],[1,1,0,1,1]],
  * grid2 = [[1,1,1,0,0],[0,0,1,1,1],[0,1,0,0,0],[1,0,1,1,0],[0,1,0,1,0]]
  * 输出：3
- * 解释：如上图所示，左边为 grid1 ，右边为 grid2 。
- * grid2 中标红的 1 区域是子岛屿，总共有 3 个子岛屿。
- *
- * 示例 2：
- * 输入：grid1 = [[1,0,1,0,1],[1,1,1,1,1],[0,0,0,0,0],[1,1,1,1,1],[1,0,1,0,1]],
- * grid2 = [[0,0,0,0,0],[1,1,1,1,1],[0,1,0,1,0],[0,1,0,1,0],[1,0,0,0,1]]
- * 输出：2
- * 解释：如上图所示，左边为 grid1 ，右边为 grid2 。
- * grid2 中标红的 1 区域是子岛屿，总共有 2 个子岛屿。
  *
  * @author: huida
  * @date: 2021/11/23
  **/
 public class CountSubIslands {
 
-    /**
-     * @param grid1
-     * @param grid2
-     * @return
-     */
     public int countSubIslands(int[][] grid1, int[][] grid2) {
         int row = grid1.length;
         int col = grid1[0].length;

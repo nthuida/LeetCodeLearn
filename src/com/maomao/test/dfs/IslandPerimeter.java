@@ -18,8 +18,6 @@ package com.maomao.test.dfs;
  *
  * 输出: 16
  *
- * 解释: 它的周长是下面图片中的 16 个黄色的边：
- *
  * @author huida
  * @date 2020/10/30
  */

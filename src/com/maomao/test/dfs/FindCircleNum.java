@@ -26,14 +26,14 @@ public class FindCircleNum {
      * 可以把 n 个城市和它们之间的相连关系看成图，城市是图中的节点，相连关系是图中的边，
      * 给定的矩阵 isConnected 即为图的邻接矩阵，省份即为图中的连通分量。
      *
-     * 深度优先搜索
+     * 图的深度优先遍历
      * @param isConnected
      * @return
      */
     public int findCircleNum(int[][] isConnected) {
         int res = 0;
         int n = isConnected.length;
-        //初始化数组
+        //标识顶点是否被访问
         boolean[] visited = new boolean[n];
         for (int i=0; i<n; i++) {
             if (!visited[i]) {

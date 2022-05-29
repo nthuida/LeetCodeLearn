@@ -111,4 +111,15 @@ public class FindTargetSumWays {
         // 撤销添加“+”的选择
         sum -= nums[i];
     }
+
+    private void dfs1(int[] nums, int target, int sum, int start) {
+        if (start == nums.length) {
+            if (target == sum) {
+                res++;
+            }
+            return;
+        }
+        dfs(nums, target, sum+nums[start], start+1);
+        dfs(nums, target, sum-nums[start], start+1);
+    }
 }

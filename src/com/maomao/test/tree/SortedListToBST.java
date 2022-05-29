@@ -1,6 +1,6 @@
-package com.maomao.test.linkedlist;
+package com.maomao.test.tree;
 
-import com.maomao.test.tree.TreeNode;
+import com.maomao.test.linkedlist.ListNode;
 
 /**
  * 有序链表转换二叉搜索树

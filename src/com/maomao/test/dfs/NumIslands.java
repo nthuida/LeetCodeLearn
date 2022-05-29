@@ -28,7 +28,7 @@ package com.maomao.test.dfs;
  */
 public class NumIslands {
 
-    private int area = 0;
+    int area = 0;
     public int numIslands(char[][] grid) {
         int count = 0;
         for(int i = 0; i < grid.length; i++) {
@@ -89,9 +89,7 @@ public class NumIslands {
             for(int j = 0; j < grid[0].length; j++) {
                 if(grid[i][j] == 1){
                     dfs(grid, i, j);
-                    if (area >max) {
-                        max = area;
-                    }
+                    max = Math.max(max, area);
                     area = 0;
                 }
             }
