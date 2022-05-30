@@ -1,7 +1,5 @@
 package com.maomao.test.dfs;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedList;
 
 /**
  * 24点
@@ -34,7 +32,7 @@ public class JudgePoint24 {
      * @return
      */
     public boolean judgePoint24(int[] nums) {
-        List<Double> list = new ArrayList<>();
+        LinkedList<Double> list = new LinkedList<>();
         // '/'不是整除，转为浮点数
         for (int a : nums) {
             list.add((double)a);
@@ -42,54 +40,47 @@ public class JudgePoint24 {
         return judge(list);
     }
 
-    private boolean judge(List<Double> list) {
-        //没有结果
-        if (list.size() == 0) {
-            return false;
-        }
+    private boolean judge(LinkedList<Double> list) {
         // le-6是浮点计算的精度误差，这里判断误差小于1e-6，这样就是正确结果
         if (list.size() == 1) {
             return Math.abs(list.get(0) - 24) < 1e-6;
         }
-
+        //每次选择两个不同的数进行计算
         for (int i=0; i< list.size() ;i++) {
             for (int j=0; j<list.size(); j++) {
                 if (i != j) {
                     //保存计算以后的数
-                    List<Double> list1 = new ArrayList<>();
+                    LinkedList<Double> next = new LinkedList<>();
                     for (int k=0; k<list.size(); k++) {
                         if (k!=i && k!=j) {
-                            list1.add(list.get(k));
+                            next.add(list.get(k));
                         }
                     }
-                    //4中情况计算i和j
+                    //4种计算组合
                     for (int n=0; n<4; n++) {
                         if (n==0) {
-                            list1.add(list.get(i) - list.get(j));
+                            next.add(list.get(i) - list.get(j));
                         } else if (n==1) {
-                            list1.add(list.get(i) * list.get(j));
+                            next.add(list.get(i) * list.get(j));
                         } else if (n==2) {
-                            list1.add(list.get(i) + list.get(j));
+                            next.add(list.get(i) + list.get(j));
                         } else {
-                            //除法为0
+                            //被除数为0
                             if (Math.abs(list.get(j)) < 1e-6) {
                                 continue;
                             } else {
-                                list1.add(list.get(i)/list.get(j));
+                                next.add(list.get(i)/list.get(j));
                             }
                         }
-                        // 在这次计算后，判断剩下的元素是否符合要求
-                        // 每次缩小计算范围
-                        if (judge(list1)) {
+                        // 判断剩下的元素是否符合要求
+                        if (judge(next)) {
                             return true;
                         }
-                        // 回溯方法，移除最后一个计算结果，因为最后的记过不满足要求
-                        list1.remove(list1.size() - 1);
+                        next.removeLast();
                     }
                 }
             }
         }
         return false;
     }
-
 }

@@ -36,7 +36,8 @@ public class LongestIncreasingPath {
     int[][] direction = new int[][]{{0,-1},{0,1},{1,0},{-1,0}};
 
     /**
-     * 由于同一个单元格对应的最长递增路径的长度是固定不变的
+     * 同一个单元格对应的最长递增路径的长度是固定不变的
+     * DFS+记忆化
      * @param matrix
      * @return
      */
@@ -65,8 +66,8 @@ public class LongestIncreasingPath {
             //已经计算过
             return visited[i][j];
         }
-        //先加1
-        ++visited[i][j];
+        //加1
+        visited[i][j]++;
         //上下左右比较得到最大值
         for (int[] dir : direction) {
             int newX = i + dir[0];
