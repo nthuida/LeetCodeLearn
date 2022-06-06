@@ -46,8 +46,9 @@ public class MaxDistance {
         for (int i = 0; i < row; i++) {
             for (int j = 0; j < col; j++) {
                 if (grid[i][j] == 1) {
-                    //1入队列
+                    //入队列
                     queue.offer(new int[] {i, j});
+                    //保存的是到陆地1的距离
                     grid[i][j] = 0;
                     visited[i][j] = true;
                 }

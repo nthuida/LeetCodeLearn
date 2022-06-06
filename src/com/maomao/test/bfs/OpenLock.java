@@ -1,9 +1,6 @@
 package com.maomao.test.bfs;
 
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Set;
+import java.util.*;
 
 /**
  * 打开转盘锁
@@ -42,18 +39,8 @@ import java.util.Set;
  **/
 public class OpenLock {
 
-
-    /**
-     * BFS
-     * @param deadends
-     * @param target
-     * @return
-     */
     public int openLock(String[] deadends, String target) {
-        Set<String> deadSet = new HashSet<>();
-        for (String s : deadends) {
-            deadSet.add(s);
-        }
+        Set<String> deadSet = new HashSet<>(Arrays.asList(deadends));
         //初始值包含在死亡数组中，直接返回
         if (deadSet.contains("0000")) {
             return -1;
@@ -85,7 +72,6 @@ public class OpenLock {
                         queue.add(minus);
                         visited.add(minus);
                     }
-
                 }
             }
             //次数加1
@@ -93,7 +79,6 @@ public class OpenLock {
         }
 
         return -1;
-
     }
 
     /**

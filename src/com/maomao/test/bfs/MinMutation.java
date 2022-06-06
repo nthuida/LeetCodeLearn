@@ -15,6 +15,7 @@ import java.util.*;
  * 示例 1：
  * 输入：start = "AACCGGTT", end = "AACCGGTA", bank = ["AACCGGTA"]
  * 输出：1
+ *
  * 示例 2：
  * 输入：start = "AACCGGTT", end = "AAACGGTA", bank = ["AACCGGTA","AACCGCTA","AAACGGTA"]
  * 输出：2
@@ -25,13 +26,6 @@ import java.util.*;
 public class MinMutation {
 
     public int minMutation(String start, String end, String[] bank) {
-        if (start.equals(end)) {
-            return 0;
-        }
-        if (bank.length == 0) {
-            return -1;
-        }
-        //去重
         Set<String> bankSet = new HashSet<>(Arrays.asList(bank));
         //end不在基因库中，直接返回
         if (!bankSet.contains(end)) {
@@ -54,21 +48,23 @@ public class MinMutation {
                 if (cur.equals(end)) {
                     return step;
                 }
+                char[] words = cur.toCharArray();
                 //当前字符串的每一位变为'A', 'C', 'G', 'T'
-                for (int j=0; j<cur.length(); j++) {
+                for (int j=0; j<8; j++) {
+                    char temp = words[j];
                     for (char ch : chars) {
-                        StringBuilder builder = new StringBuilder(cur);
-                        if (builder.charAt(j) != ch) {
-                            //改变一个字符
-                            builder.setCharAt(j, ch);
-                            String str = builder.toString();
-                            if (bankSet.contains(str) && !visited.contains(str)) {
-                                //包含在基因库，且没有访问过
-                                queue.add(str);
-                                visited.add(str);
-                            }
+                        if (ch == temp) {
+                            continue;
+                        }
+                        words[j] = ch;
+                        String str = new String(words);
+                        if (bankSet.contains(str) && !visited.contains(str)) {
+                            //包含在基因库，且没有访问过
+                            queue.add(str);
+                            visited.add(str);
                         }
                     }
+                    words[j] = temp;
                 }
             }
             step++;

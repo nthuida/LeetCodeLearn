@@ -1,5 +1,4 @@
-package com.maomao.test.bfs;
-import com.maomao.test.tree.TreeNode;
+package com.maomao.test.tree;
 
 import java.util.LinkedList;
 import java.util.Queue;

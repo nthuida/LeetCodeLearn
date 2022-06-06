@@ -31,15 +31,8 @@ import java.util.Queue;
  */
 public class OrangesRotting {
 
-    /**
-     * BFS
-     * @param grid
-     * @return
-     */
     public int orangesRotting(int[][] grid) {
-        if (grid == null || grid.length == 0) {
-            return -1;
-        }
+
         int[][] directions = new int[][]{{0,-1},{0,1},{1,0},{-1,0}};
         int row = grid.length;
         int col = grid[0].length;

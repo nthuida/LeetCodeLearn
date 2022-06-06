@@ -54,20 +54,11 @@ public class SlidingPuzzle {
         }
         String start = buffer.toString();
         Queue<String> queue = new LinkedList<>();
-        //记录重复字符串
         Set<String> visited = new HashSet<>();
         //次数
         int step = 0;
         // 记录一维字符串的相邻索引
-        int[][] neighbor = new int[][]{
-                {1, 3},
-                {0, 4, 2},
-                {1, 5},
-                {0, 4},
-                {3, 1, 5},
-                {4, 2}
-        };
-        //BFS框架
+        int[][] neighbor = new int[][]{{1, 3}, {0, 4, 2}, {1, 5}, {0, 4}, {3, 1, 5}, {4, 2}};
         queue.add(start);
         visited.add(start);
         while(!queue.isEmpty()) {
@@ -94,7 +85,6 @@ public class SlidingPuzzle {
             }
             step++;
         }
-
         return -1;
     }
 

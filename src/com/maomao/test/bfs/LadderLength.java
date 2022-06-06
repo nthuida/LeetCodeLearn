@@ -39,8 +39,7 @@ import java.util.*;
 public class LadderLength {
 
     public int ladderLength(String beginWord, String endWord, List<String> wordList) {
-        Set<String> distSet = new HashSet<>(wordList);
-        if (!distSet.contains(endWord)) {
+        if (!wordList.contains(endWord)) {
             return 0;
         }
         // 已经访问过的单词集合：只找最短路径，所以之前出现过的单词不用出现在下一层
@@ -64,13 +63,13 @@ public class LadderLength {
                 for (int j = 0; j < chars.length; j++) {
                     char temp = chars[j];
                     for (char ch = 'a'; ch <= 'z'; ch++) {
-                        chars[j] = ch;
                         if (temp == ch) {
                             continue;
                         }
+                        chars[j] = ch;
                         String str = new String(chars);
                         // 符合条件：在 wordList 中 && 之前的层没有使用过
-                        if (distSet.contains(str) && !visited.contains(str)) {
+                        if (wordList.contains(str) && !visited.contains(str)) {
                             queue.add(str);
                             visited.add(str);
                         }
@@ -88,15 +87,15 @@ public class LadderLength {
     public List<List<String>> findLadders(String beginWord, String endWord, List<String> wordList) {
         //符合条件的接龙序列
         List<List<String>> res = new ArrayList<>();
-        Set<String> distSet = new HashSet<>(wordList);
-        if (!distSet.contains(endWord)) {
+        if (!wordList.contains(endWord)) {
             return res;
         }
-        // 已经访问过的单词集合：只找最短路径，所以之前出现过的单词不用出现在下一层
+        // 已经访问过的单词集合
         Set<String> visited = new HashSet<>();
         // 累积每一层的结果队列
         Queue<List<String>> queue= new LinkedList<>();
-        List<String> list = new ArrayList<>(Arrays.asList(beginWord));
+        List<String> list = new ArrayList<>();
+        list.add(beginWord);
         queue.add(list);
         visited.add(beginWord);
         // 是否到达符合条件的层：如果该层添加的某一单词符合目标单词，则说明截止该层的所有解为最短路径，停止循环
@@ -114,13 +113,13 @@ public class LadderLength {
                 for (int j = 0; j < chars.length; j++) {
                     char temp = chars[j];
                     for (char ch = 'a'; ch <= 'z'; ch++) {
-                        chars[j] = ch;
                         if (temp == ch) {
                             continue;
                         }
+                        chars[j] = ch;
                         String str = new String(chars);
                         // 符合条件：在 wordList 中 && 之前的层没有使用过
-                        if (distSet.contains(str) && !visited.contains(str)) {
+                        if (wordList.contains(str) && !visited.contains(str)) {
                             // 生成新的路径
                             List<String> pathList = new ArrayList<>(path);
                             pathList.add(str);

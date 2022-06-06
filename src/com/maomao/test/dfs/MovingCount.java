@@ -1,4 +1,4 @@
-package com.maomao.test.bfs;
+package com.maomao.test.dfs;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -23,16 +23,32 @@ import java.util.Queue;
  */
 public class MovingCount {
 
-    /**
-     * BFS
-     * @param m
-     * @param n
-     * @param k
-     * @return
-     */
+    int count = 0;
     public int movingCount(int m, int n, int k) {
+        boolean[][] visited = new boolean[m][n];
+        dfs(m, n, k, 0, 0, visited);
+        return count;
+    }
+
+    private void dfs(int m, int n, int k, int x, int y, boolean[][]visited) {
+        if (x < 0 || x >= m || y < 0 || y >= n || visited[x][y]) {
+            return;
+        }
+        if ((count(x)+count(y)) > k) {
+            return;
+        }
+        //计数
+        count++;
+        visited[x][y] = true;
+        dfs(m, n, k, x-1, y, visited);
+        dfs(m, n, k, x+1, y, visited);
+        dfs(m, n, k, x, y-1, visited);
+        dfs(m, n, k, x, y+1, visited);
+    }
+
+    public int movingCountII(int m, int n, int k) {
         int count = 0;
-        boolean[][] visted = new boolean[m][n];
+        boolean[][] visited = new boolean[m][n];
         Queue<int[]> queue = new LinkedList<>();
         //加入（0,0）
         queue.add(new int[]{0,0});
@@ -40,11 +56,11 @@ public class MovingCount {
             int[] top = queue.poll();
             int x = top[0];
             int y = top[1];
-            if (x < 0 || x >= m || y < 0 || y >= n || visted[x][y] || k < (count(x)+count(y))) {
+            if (x < 0 || x >= m || y < 0 || y >= n || visited[x][y] || (count(x)+count(y)) > k) {
                 continue;
             }
             count++;
-            visted[x][y] = true;
+            visited[x][y] = true;
             //加入当前坐标的下方和右方
             queue.offer(new int[]{x, y+1});
             queue.offer(new int[]{x+1, y});

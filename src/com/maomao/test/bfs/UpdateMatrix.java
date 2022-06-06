@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
+ * 01矩阵
  * 给定一个由 0 和 1 组成的矩阵，找出每个元素到最近的 0 的距离。
  * 两个相邻元素间的距离为 1 。
  *
@@ -32,18 +33,14 @@ import java.util.Queue;
  */
 public class UpdateMatrix {
     /**
-     * 一、广度优先搜索
-     * 思路
-     * 首先把每个源点 0入队，然后从各个 0 同时开始一圈一圈的向 1 扩散（每个 1 都是被离它最近的 0 扩散到的 ），
+     * 广度优先搜索
+     * 首先把每个源点 0入队，然后从各个 0 同时开始一圈一圈的向 1 扩散，
      * 扩散的时候可以设置 int[][] dist 来记录距离并同时标志是否访问过。
      *
      * @param matrix
      * @return
      */
     public int[][] updateMatrix(int[][] matrix) {
-        if (matrix == null || matrix.length == 0) {
-            return matrix;
-        }
         int[][] directions = new int[][]{{0,-1},{0,1},{1,0},{-1,0}};
         Queue<int[]> queue = new LinkedList<>();
         int n = matrix.length;
