@@ -20,15 +20,12 @@ public class LengthOfLIS {
 
     /**
      * 动态规划
-     * 转移方程： dp[i] = max(dp[i], dp[j] + 1) for j in [0, i)。
-     * dp[i] 以第 i 个数字结尾的最长上升子序列的长度
+     * 定义状态：dp[i] 以第 i 个数字结尾的最长上升子序列的长度
+     * 转移方程：dp[i] = max(dp[i], dp[j] + 1)   0<=j<i
      * @param nums
      * @return
      */
     public int lengthOfLIS(int[] nums) {
-        if (nums.length == 0) {
-            return 0;
-        }
        int res = 1;
        int[] dp = new int[nums.length];
        //初始化为1

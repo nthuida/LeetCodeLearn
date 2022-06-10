@@ -53,6 +53,50 @@ public class LongestPalindrome {
     }
 
     /**
+     * 定义状态：dp[i][j]表示子串i-j是否回文
+     * 状态转移方程： dp[i[j]=s.charAt(i)==s.charAt(j)&&dp[i+1][j-1]
+     * 初始值：dp[i][i] = true, 即单个字符是回文的
+     * @param s
+     * @return
+     */
+    public String longestPalindromeII(String s) {
+        if (s.length() < 2) {
+            return s;
+        }
+        boolean[][] dp = new boolean[s.length()][s.length()];
+        //初始化
+        for (int i=0; i<s.length(); i++) {
+            dp[i][i] = true;
+        }
+        int maxLen = 1;
+        //起始位置
+        int begin = 0;
+        //对角线右上方遍历
+        for (int right=1; right<s.length(); right++) {
+            for (int left=0; left<right; left++) {
+                //不等
+                if (s.charAt(left) != s.charAt(right)) {
+                    continue;
+                } else {
+                    if (right-left<=2) {
+                        //长度小于等于3，直接返回true，例：bb, bab
+                        dp[left][right] = true;
+                    } else {
+                        dp[left][right] = dp[left+1][right-1];
+                    }
+                }
+                //回文串，更新最大值和开始位置
+                if (dp[left][right] && right-left+1 > maxLen) {
+                    maxLen = right-left+1;
+                    begin = left;
+                }
+            }
+        }
+
+        return s.substring(begin, begin+maxLen);
+    }
+
+    /**
      * 最长回文串
      * 给定一个包含大写字母和小写字母的字符串，找到通过这些字母构造成的最长的回文串。
      * 在构造过程中，请注意区分大小写。比如 "Aa" 不能当做一个回文字符串。

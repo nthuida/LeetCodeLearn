@@ -36,7 +36,6 @@ public class DailyTemperatures {
             stack.add(i);
         }
         return res;
-
     }
 
 }

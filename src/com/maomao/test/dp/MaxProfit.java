@@ -65,13 +65,11 @@ public class MaxProfit {
      * 输出: 0
      * 解释: 在这种情况下, 没有交易完成, 所以最大利润为 0。
      *
-     *
      * 最大利润 = max(第i天的价格 - 前i天里最低的买入价格)
      * @param prices
      * @return
      */
     public int maxProfit2(int[] prices) {
-        //o(n)
         int len = prices.length;
         //保存第i天之前的最低买入价格
         int min = prices[0];
@@ -82,10 +80,28 @@ public class MaxProfit {
             } else {
                 int profit = prices[i] - min;
                 max = Math.max(max, profit);
-
             }
         }
         return max;
+    }
+
+    /**
+     * 定义状态
+     * dp[i][0]表示第 i天不持有可获得的最大利润；
+     * dp[i][1]表示第 i天持有可获得的最大利润。
+     * @param prices
+     * @return
+     */
+    public int maxProfit2II(int[] prices) {
+        int len = prices.length;
+        //0表示不持有, 1持有，获取的最大利润
+        int[][] dp = new int[len][2];
+        dp[0][1] = -prices[0];
+        for (int i=1; i<len; i++) {
+            dp[i][1] = Math.max(dp[i-1][1], -prices[i]);
+            dp[i][0] = Math.max(dp[i-1][0], dp[i-1][1] + prices[i]);
+        }
+        return dp[len-1][0];
     }
 
     /**

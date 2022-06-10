@@ -1,4 +1,4 @@
-package com.maomao.test.bfs;
+package com.maomao.test.graph;
 
 import java.util.*;
 

@@ -1,5 +1,7 @@
 package com.maomao.test.array;
 
+import java.util.Stack;
+
 /**
  * 接雨水
  * 给定 n 个非负整数表示每个宽度为 1 的柱子的高度图，计算按此排列的柱子，下雨之后能接多少雨水。
@@ -46,5 +48,63 @@ public class Trap {
             }
         }
         return sum;
+    }
+
+    /**
+     * 动态规划
+     * 定义状态：maxLeft[i]i左边列的做大值、maxRight[i]i右边列的最大值
+     * 转移方程：maxLeft[i] = max(maxLeft[i-1], height[i-1])
+     *         maxRight[i] = max(maxRight[i+1], height[i+1])
+     * @param height
+     * @return
+     */
+    public int trapII(int[] height){
+        //左边列的最大值
+        int[] maxLeft = new int[height.length];
+        int[] maxRight = new int[height.length];
+        for (int i=1; i<height.length-1; i++) {
+            maxLeft[i] = Math.max(maxLeft[i-1], height[i-1]);
+        }
+        for (int j=height.length-2; j>=1; j--) {
+            maxRight[j] = Math.max(maxRight[j+1], height[j+1]);
+        }
+        int sum = 0;
+        for (int i=1; i<height.length-1; i++) {
+            int min = Math.min(maxLeft[i], maxRight[i]);
+            if (min > height[i]) {
+                sum += (min - height[i]);
+            }
+        }
+        return sum;
+    }
+
+    /**
+     * 单调栈
+     * 只有产生凹陷的地方才能存储雨水, 那么高度一定是先减后增，所以可用单调栈
+     * @param height
+     * @return
+     */
+    public int trapIII(int[] height){
+        int len = height.length;
+        int res = 0;
+        Stack<Integer> stack = new Stack<>();
+        for (int i=0; i<len; i++) {
+            //栈不为空，且当前元素大于栈顶元素
+            while (!stack.isEmpty() && height[i] > height[stack.peek()]) {
+                //栈顶元素出栈
+                int top = stack.pop();
+                //栈里至少需要一个元素，即需要一个左墙
+                if (!stack.isEmpty()) {
+                    //宽度
+                    int width = i-stack.peek()-1;
+                    //左右两边取最小值
+                    int min = Math.min(height[stack.peek()], height[i]);
+                    res += (min - height[top]) * width;
+                }
+            }
+            //递减，下标索引入栈
+            stack.add(i);
+        }
+        return res;
     }
 }
