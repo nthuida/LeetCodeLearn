@@ -19,10 +19,10 @@ public class FindLength {
 
     /**
      * 动态规划
-     * 定义dp[i][j]表示以A[i]和B[j]为结尾的公共子数组的最长长度
-     * 当A[i]!=B[j]时，dp[i][j]=0, 因为以A[i]和B[j]结尾的公共子数组不存在，因为它们的末元素不等
-     * 当A[i]==B[j]时，dp[i][j]=dp[i-1][j-1]+1, 因为A[i]和B[j]相等，
-     * 以它们俩为结尾的最长公共子数组的长度就是以A[i-1]和B[j-1]结尾的最长公共子数组的长度加1
+     * 定义状态：dp[i][j]表示以A[i]和B[j]为结尾的公共子数组的最大长度
+     * 状态转移方程
+     * dp[i][j] = 0,   子数组是连续的  A[i]!=B[j]
+     * dp[i][j] = dp[i-1][j-1] + 1, A[i]==B[j]
      *
      * @param A
      * @param B
@@ -32,20 +32,16 @@ public class FindLength {
         int max = 0;
         int lenA = A.length;
         int lenB = B.length;
-        if (lenA ==0 || lenB == 0) {
-            return 0;
-        }
         int[][] dp = new int[lenA][lenB];
+        //初始化第0行
         for (int i=0; i<lenA; i++) {
-            //初始化第0行
             if (A[i] == B[0]) {
                 dp[0][i] = 1;
                 max = 1;
             }
         }
-
+        //初始化第0列
         for (int i=0; i<lenB; i++) {
-            //初始化第0列
             if (B[i] == A[0]) {
                 dp[i][0] = 1;
                 max = 1;
@@ -55,7 +51,6 @@ public class FindLength {
         for (int i=1; i<lenB; i++) {
             for (int j=1; j<lenA; j++) {
                 if (B[i] == A[j]) {
-                    //i,j结尾的子数组相等, 因为是子数组，所以前一个为dp[i-1][j-1]
                     dp[i][j] = dp[i-1][j-1] +1;
                 }
                 max = Math.max(max, dp[i][j]);

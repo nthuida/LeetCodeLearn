@@ -30,8 +30,8 @@ import java.util.*;
 public class WordBreak {
 
     /**
-     * 动态规划
-     * dp[i]表示前i个字符能否拆分
+     * 动态规划 完全背包
+     * 定义状态：dp[i]表示前i个字符能否拆分
      * 转移方程：dp[j] = dp[i] && check(s[i+1, j]);
      * check(s[i+1, j])就是判断s[i+1, j]是否是wordDict中的元素
      * 假如wordDict=["apple", "pen", "code"],s = "applepencode";
@@ -42,14 +42,13 @@ public class WordBreak {
      * @return
      */
     public boolean wordBreak(String s, List<String> wordDict) {
-        Set<String> set = new HashSet<>(wordDict);
         boolean[] dp = new boolean[s.length()+1];
         //空字符串，初始化为true
         dp[0] = true;
         for (int i=1; i<=s.length(); i++) {
             for (int j=0; j<i; j++) {
                 //判断dp[j]，以及【j,i】的元素是否在字典内
-                if (dp[j] && set.contains(s.substring(j, i))) {
+                if (dp[j] && wordDict.contains(s.substring(j, i))) {
                     dp[i] = true;
                     break;
                 }

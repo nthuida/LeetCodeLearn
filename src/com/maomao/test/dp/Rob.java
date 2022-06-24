@@ -23,26 +23,61 @@ import java.util.*;
 public class Rob {
 
     /**
-     * 标签：动态规划
-     * 转移方程：dp[n] = MAX( dp[n-1], dp[n-2] + num )
-     * 在当前位置 n 房屋可盗窃的最大值，要么就是 n-1 房屋可盗窃的最大值，
-     * 要么就是 n-2 房屋可盗窃的最大值加上当前房屋的值，二者之间取最大值
+     * 定义状态：dp[i]表示前i间房屋能偷窃到的最高总金额
+     * 转移方程：dp[i] = MAX(dp[i-1], dp[i-2] + num[i])
+     * 当前位置i房屋可盗窃的最大值，要么就是 i-1 房屋可盗窃的最大值，
+     * 要么就是 i-2 房屋可盗窃的最大值加上当前房屋的值，二者之间取最大值
      *
      * @param nums
      * @return
      */
     public int rob(int[] nums) {
         int len = nums.length;
-        int[] dp = new int[len + 1];
-        //打劫到第0家
-        dp[0] = 0;
-        //打劫到第1家
-        dp[1] = nums[0];
-        for (int i = 2; i <= len; i++) {
-            //前一家不偷：dp[i-2] + num, 前一家偷：dp[i-1]
-            dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i - 1]);
+        if (len == 1) {
+            return nums[0];
         }
-        return dp[len];
+        int[] dp = new int[len];
+        //打劫到第1家
+        dp[0] = nums[0];
+        //打劫到第2家
+        dp[1] = Math.max(nums[0], nums[1]);
+        for (int i = 2; i < len; i++) {
+            dp[i] = Math.max(dp[i - 1], dp[i - 2] + nums[i]);
+        }
+        return dp[len-1];
+    }
+
+    public int rob2(int[] nums) {
+        int len = nums.length;
+        //0不偷， 1偷
+        int[][] dp = new int[len][2];
+        dp[0][0] = 0;
+        dp[0][1] = nums[0];
+        for (int i=1; i<nums.length; i++) {
+            dp[i][0] = Math.max(dp[i-1][1], dp[i-1][0]);
+            dp[i][1] = dp[i-1][0] + nums[i];
+        }
+        return Math.max(dp[len-1][0], dp[len-1][1]);
+    }
+
+    /**
+     * dp[i] 只与dp[i-1]和dp[i-2]有关，降低空间复杂度
+     * @param nums
+     * @return
+     */
+    public int rob3(int[] nums) {
+        int len = nums.length;
+        if (len == 1) {
+            return nums[0];
+        }
+        int pre = nums[0];
+        int cur = Math.max(nums[0], nums[1]);
+        for (int i = 2; i < len; i++) {
+            int temp = Math.max(cur, pre + nums[i]);
+            pre = cur;
+            cur = temp;
+        }
+        return cur;
     }
 
     /**

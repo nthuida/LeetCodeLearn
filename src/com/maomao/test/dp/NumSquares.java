@@ -26,19 +26,18 @@ import java.util.Set;
 public class NumSquares {
 
     /**
-     * 动态规划
-     * dp[i] 表示当前i需要的最少平方数个数
-     * 动态转移方程为：dp[i] = MIN(dp[i], dp[i - j * j] + 1)，i 表示当前数字，j*j 表示平方数
+     * 动态规划  完全背包
+     * 定义状态：dp[i] 表示当前i需要的最少平方数个数
+     * 动态转移方程：dp[i] = MIN(dp[i], dp[i - j * j] + 1)
      * @param n
      * @return
      */
     public int numSquares(int n) {
         int[] dp = new int[n+1];
         for (int i=1; i<=n; i++) {
-            //最坏情况，都是1相加，最大值
+            //默认最大值
             dp[i] = i;
-            //依次减去平方数
-            for (int j=1; i-j*j >=0; j++) {
+            for (int j=1; j*j<=i; j++) {
                 dp[i] = Math.min(dp[i], dp[i - j*j] +1);
             }
         }

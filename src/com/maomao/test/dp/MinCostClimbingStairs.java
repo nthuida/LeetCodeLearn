@@ -35,22 +35,22 @@ public class MinCostClimbingStairs {
 
     /**
      * 动态规划
+     * 定义状态：dp[i]表示到达第i个台阶的最低花费
+     * 状态转移方程：dp[i] = min(dp[i-1], d[i-2]) + cost[i]
      * @param cost
      * @return
      */
     public int minCostClimbingStairs(int[] cost) {
         int len = cost.length;
         int[] dp = new int[len];
-        //走一步
+        //初始化
         dp[0] = cost[0];
-        //走两步
         dp[1] = cost[1];
         for (int i=2; i<len; i++) {
             dp[i] = Math.min(dp[i-1] + cost[i], dp[i-2]+cost[i]);
         }
-
+        //可以爬一个或两个台阶
         return Math.min(dp[len-2], dp[len-1]);
-
     }
 
 }

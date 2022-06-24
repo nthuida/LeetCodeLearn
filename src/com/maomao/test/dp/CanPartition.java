@@ -23,11 +23,11 @@ package com.maomao.test.dp;
 public class CanPartition {
 
     /**
-     * 动态规划  转为背包问题
-     * 状态定义：dp[i][j]表示从数组的 [0, i] 这个子区间内挑选一些正整数，使得这些数的和恰好等于j。
+     * 动态规划  0-1背包问题
+     * 状态定义：dp[i][j]表示从[0, i]区间内挑选一些正整数，使得这些数的和等于j
+     * 状态转移方程 ： dp[i][j] = dp[i - 1][j] || dp[i - 1][j - nums[i]]
      * 不选择 nums[i]，取决于上一个状态dp[i-1][j]；
      * 选择 nums[i]，取决与dp[i-1][j-nums[i]];
-     * 状态转移方程 ： dp[i][j] = dp[i - 1][j] or dp[i - 1][j - nums[i]]
      * @param nums
      * @return
      */
@@ -36,13 +36,13 @@ public class CanPartition {
         for (int num : nums) {
             sum += num;
         }
-        //奇数肯定不满足
-        if ((sum&1) == 1) {
+        //奇数不满足
+        if (sum%2 == 1) {
             return false;
         }
         int target = sum/2;
         int len = nums.length;
-        // 创建二维状态数组，行：物品索引，列：容量（包括 0）
+        //行：物品，列：容量
         boolean[][] dp = new boolean[len][target+1];
         // 因为背包没有空间的时候，就相当于装满了
         for (int i=0; i<len; i++) {
@@ -61,8 +61,34 @@ public class CanPartition {
                     //选和不选都可以
                     dp[i][j] = dp[i-1][j] || dp[i-1][j - nums[i]];
                 }
+                System.out.println();
             }
         }
         return dp[len-1][target];
     }
+
+    public boolean canPartitionII(int[] nums) {
+        int sum = 0;
+        for (int num : nums) {
+            sum += num;
+        }
+        //奇数不满足
+        if (sum%2 == 1) {
+            return false;
+        }
+        int target = sum/2;
+        //dp[i]表示能否装满容量i的背包
+        boolean[] dp = new boolean[target+1];
+        //初始化
+        dp[0] = true;
+        for (int num : nums) {
+            //倒序遍历，保证物品只被添加一次
+            for (int j=target; j-num>=0; j--) {
+                dp[j] = dp[j] || dp[j - num];
+                System.out.println("dp[" + j + "]=" + dp[j]);
+            }
+        }
+        return dp[target];
+    }
+
 }

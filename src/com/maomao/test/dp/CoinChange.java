@@ -20,16 +20,13 @@ import java.util.Arrays;
  * @date 2020/5/29
  */
 public class CoinChange {
+
     /**
-     * 动态规划
-     * F(i)= min(F[i],F(i−coin[j])+1)  , F(i)为组成金额i所需最少的硬币数量,coin[j]为第j枚硬币的面值
-     *
-     * 对于这道题，以coins = [1, 2, 5], amount = 11为例
-     * 我们要求组成11的最少硬币数，可以考虑组合中的最后一个硬币分别是1，2，5的情况，比如
-     * 最后一个硬币是1的话，最少硬币数应该为【组成10的最少硬币数】+ 1枚（1块硬币）
-     * 最后一个硬币是2的话，最少硬币数应该为【组成9的最少硬币数】+ 1枚（2块硬币）
-     * 最后一个硬币是5的话，最少硬币数应该为【组成6的最少硬币数】+ 1枚（5块硬币）
-     *
+     * 完全背包
+     * 定义状态
+     * dp[i] 表示组成金额i所需最少的硬币数量
+     * 状态转移方程
+     * dp[i]= min(dp[i],dp[i−coin[j]]+1) coin[j]为第j枚硬币的面值
      * @param coins
      * @param amount
      * @return
@@ -42,7 +39,7 @@ public class CoinChange {
         //金额为0，组合为0
         dp[0] = 0;
         for (int coin: coins) {
-            for (int i=coin; i<amount+1; i++) {
+            for (int i=coin; i<=amount; i++) {
                 dp[i] = Math.min(dp[i], dp[i - coin] + 1);
             }
         }
@@ -50,6 +47,14 @@ public class CoinChange {
         return dp[amount] == amount+1 ? -1 : dp[amount];
     }
 
+    /**
+     * 硬币有顺序和没有顺序都可以
+     * 外层for循环遍历物品，内层for遍历背包
+     * 或者外层for遍历背包，内层for循环遍历物品都是可以的！
+     * @param coins
+     * @param amount
+     * @return
+     */
     public int coinChangeII(int[] coins, int amount) {
         int[] dp = new int[amount+1];
         int max = amount +1;

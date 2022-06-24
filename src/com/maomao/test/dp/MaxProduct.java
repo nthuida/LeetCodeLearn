@@ -21,9 +21,13 @@ public class MaxProduct {
 
     /**
      * 动态规划
-     * 用两个数组dpMax和dpMin来保存当前乘积的最大值和最小值，
+     * 定义状态：
+     * dpMax[i]表示以i结尾的子数组乘积的最大值
+     * dpMin[i]表示以i结尾的子数组乘积的最小值
+     * 状态转移方程：
+     * dpMax[i] = Math.max(Math.max(dpMax[i-1] * nums[i], nums[i]), dpMin[i-1] * nums[i]);
+     * dpMin[i] = Math.min(Math.min(dpMin[i-1] * nums[i], nums[i]), dpMax[i-1] * nums[i]);
      * 因为有正负，最大值可以由最小值乘以负数得到，同样最小值可以由最大值乘以负数得到；
-     * 遍历数组的过程中，比较最大值
      * @param nums
      * @return
      */

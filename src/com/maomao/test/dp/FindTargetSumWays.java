@@ -7,17 +7,14 @@ package com.maomao.test.dp;
  * 返回可以使最终数组和为目标数 S 的所有添加符号的方法数。
  *
  * 示例：
- *
  * 输入：nums: [1, 1, 1, 1, 1], S: 3
  * 输出：5
  * 解释：
- *
  * -1+1+1+1+1 = 3
  * +1-1+1+1+1 = 3
  * +1+1-1+1+1 = 3
  * +1+1+1-1+1 = 3
  * +1+1+1+1-1 = 3
- *
  * 一共有5种方法让最终目标和为3。
  *
  * @author huida
@@ -83,6 +80,34 @@ public class FindTargetSumWays {
         return dp[nums.length-1][target];
     }
 
+    public int findTargetSumWaysIII(int[] nums, int target){
+        int sum = 0;
+        for (int a : nums) {
+            sum += a;
+        }
+        //不存在
+        if (sum < target) {
+            return 0;
+        }
+        //必须是偶数
+        if ((sum - target)%2 ==1) {
+            return 0;
+        }
+        //目标值
+        target = (sum-target)/2;
+        //dp[j]表示填满容量为j的背包的方法数
+        int[] dp = new int[target+1];
+        dp[0] = 1;
+        for(int num : nums) {
+            //倒序，保证不重复
+            for (int j=target; j-num>=0; j--) {
+                dp[j] += dp[j-num];
+                //System.out.println("dp[j]= " + j + " " + dp[j]);
+            }
+        }
+        return dp[target];
+    }
+
 
     int res = 0;
     public int findTargetSumWaysII(int[] nums, int target) {
@@ -119,7 +144,8 @@ public class FindTargetSumWays {
             }
             return;
         }
-        dfs(nums, target, sum+nums[start], start+1);
-        dfs(nums, target, sum-nums[start], start+1);
+        dfs1(nums, target, sum+nums[start], start+1);
+        dfs1(nums, target, sum-nums[start], start+1);
     }
+
 }

@@ -1,7 +1,7 @@
 package com.maomao.test.dp;
 
 /**
- * 不同的路径
+ * 不同路径
  * 一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为“Start” ）。
  * 机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为“Finish”）。
  * 问总共有多少条不同的路径？
@@ -16,20 +16,14 @@ package com.maomao.test.dp;
  * 2. 向右 -> 向下 -> 向右
  * 3. 向下 -> 向右 -> 向右
  *
- * 示例 2:
- *
- * 输入: m = 7, n = 3
- * 输出: 28
- *
- *
  * @author huida
  * @date 2020/7/4
  */
 public class UniquePaths {
 
     /**
-     *  dp[i][j] 是到达 i, j 最多路径
-     * 动态方程：dp[i][j] = dp[i-1][j] + dp[i][j-1]
+     * 定义状态：dp[i][j] 表示到达 (i, j)的路径数
+     * 动态转移方程：dp[i][j] = dp[i-1][j] + dp[i][j-1]
      * @param m
      * @param n
      * @return
@@ -52,7 +46,7 @@ public class UniquePaths {
     }
 
     /**
-     * 不同的路径II
+     * 不同路径II
      * 一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为“Start” ）。
      * 机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为“Finish”）。
      * 现在考虑网格中有障碍物。那么从左上角到右下角将会有多少条不同的路径？
@@ -76,7 +70,6 @@ public class UniquePaths {
      * @return
      */
     public int uniquePathsWithObstacles(int[][] obstacleGrid) {
-
         int row = obstacleGrid.length;
         int col = obstacleGrid[0].length;
         //自己是障碍物，直接返回

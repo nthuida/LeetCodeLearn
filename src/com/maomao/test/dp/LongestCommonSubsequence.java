@@ -28,12 +28,11 @@ package com.maomao.test.dp;
 public class LongestCommonSubsequence {
 
     /**
-     * dp[i][j] 表示 text1[0:i], text2[0:j] 的最长公共子序列的长度。i表示text1的前缀长度i
-     * 当i或j为0时，dp[i][j] = 0, 因为空字符串和任何字符串的最长公共子序列的长度都是 0
-     *
+     * 定义状态
+     * dp[i][j] 表示 以text1的i和text2的j结尾的最长公共子序列的长度
      * 状态转移方程
-     * dp[i][j] =  dp[i−1][j−1]+1,  text1[i-1] = text2[j-1]
-     *             max(dp[i−1][j],dp[i][j−1]), text1[i-1] != text2[j-1]
+     * dp[i][j] =  dp[i−1][j−1]+1,             text1[i-1] == text2[j-1]
+     *             max(dp[i−1][j], dp[i][j−1]), text1[i-1] != text2[j-1]
      *
      * @param text1
      * @param text2
@@ -45,12 +44,10 @@ public class LongestCommonSubsequence {
         int[][] dp = new int[n+1][m+1];
         for (int i=1; i<=n; i++) {
             for (int j=1; j<=m; j++) {
-                //第一个字符开始
                 if (text1.charAt(i-1) == text2.charAt(j-1)) {
-                    // text1[i-1] 和 text2[j-1] 必然在 lcs 中
                     dp[i][j] = dp[i-1][j-1] + 1;
                 } else {
-                    // text1[i-1] 和 text2[j-1] 至少有一个不在 lcs 中
+                    //和连续子数组不同
                     dp[i][j] = Math.max(dp[i-1][j], dp[i][j-1]);
                 }
             }
