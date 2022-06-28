@@ -31,7 +31,7 @@ public class LongestCommonSubsequence {
      * 定义状态
      * dp[i][j] 表示 以text1的i和text2的j结尾的最长公共子序列的长度
      * 状态转移方程
-     * dp[i][j] =  dp[i−1][j−1]+1,             text1[i-1] == text2[j-1]
+     * dp[i][j] =  dp[i−1][j−1]+1,              text1[i-1] == text2[j-1]
      *             max(dp[i−1][j], dp[i][j−1]), text1[i-1] != text2[j-1]
      *
      * @param text1

@@ -21,6 +21,7 @@ package com.maomao.test.string;
 public class IsSubsequence {
 
     /**
+     * 双指针
      * 两个指针分别指向s和t，如果指针所指的位置相同，则两个指正都后移，否则只有指向t的指针后移。
      * @param s
      * @param t
@@ -31,17 +32,10 @@ public class IsSubsequence {
         while (i<s.length() && j<t.length()) {
             if (s.charAt(i) == t.charAt(j)) {
                 i++;
-                j++;
-            } else {
-                //只有t向后移动
-                j++;
             }
+            j++;
         }
         //遍历到最后
-        if (i == s.length()) {
-            return true;
-        } else {
-            return false;
-        }
+        return i == s.length();
     }
 }
