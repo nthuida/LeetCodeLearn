@@ -27,39 +27,34 @@ package com.maomao.test.dp;
 public class NumDecodings {
 
     /**
-     * 用一个 dp 数组， dp [ i ] 代表字符串 s 从 i 开始到结尾的字符串的解码方式。
-     * dp [ i ] = dp[ i + 1 ] + dp [ i + 2 ]
-     *
+     * 状态定义：dp[i]表示以i结尾的字符串的解码总数
+     * 状态转移方程
+     * dp[i] = dp[i-1]  1<=a<=9 以一个字符i解码
+     * dp[i] = dp[i-1] + dp[i-2] 10<=b<=26 以两个字符[i-1,i]解码
      * @param s
      * @return
      */
     public int numDecodings(String s) {
-        int len = s.length();
-        if (len == 0) {
+        if (s.charAt(0) == '0') {
             return 0;
         }
-        //动态数组
+        int len = s.length();
         int[] dp = new int[len+1];
-        //将递归法的结束条件初始化为 1
-        dp[len] = 1;
-        //最后一个字符不为0，初始化
-        if (s.charAt(len-1) != '0') {
-            dp[len-1] = 1;
-        }
-
-        for (int i=len-2; i>=0; i--) {
-            if (s.charAt(i) == '0') {
-                continue;
+        //初始化 空字符串
+        dp[0] = 1;
+        dp[1] = 1;
+        for (int i=2; i<=len; i++) {
+            int a = s.charAt(i-1) - '0';
+            if (a != 0) {
+                dp[i] = dp[i-1];
             }
-            //分割为一个字符和剩余
-            dp[i] = dp[i+1];
-            //分割为两个字符和剩余
-            int temp = (s.charAt(i) - '0') * 10 + (s.charAt(i+1) - '0');
-            if (temp <= 26) {
-                dp[i] += dp[i+2];
+            int b = (s.charAt(i-2)-'0')*10 + a;
+            if (10 <=b && b<=26) {
+                //两个字符解码
+                dp[i] += dp[i-2];
             }
         }
-        return dp[0];
+        return dp[len];
     }
 
 }

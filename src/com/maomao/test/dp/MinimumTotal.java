@@ -24,15 +24,13 @@ import java.util.List;
 public class MinimumTotal {
 
     /**
+     * 状态定义：dp[i][j]表示i行j列的最小路径和
      * 动态转移方程
-     * dp[i][j]=min(dp[i-1][j],dp[i-1][j-1])+triangle[i][j]
+     * dp[i][j] = min(dp[i-1][j],dp[i-1][j-1]) + triangle[i][j]
      * @param triangle
      * @return
      */
     public int minimumTotal(List<List<Integer>> triangle) {
-        if (triangle == null || triangle.size() == 0) {
-            return 0;
-        }
         int row = triangle.size();
         int col = triangle.get(row-1).size();
         int[][] dp = new int[row][col];
