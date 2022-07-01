@@ -29,35 +29,35 @@ package com.maomao.test.dp;
 public class MincostTickets {
 
     /**
-     * 动态规划  从后向前推
-     * dp[i] = min(决策1, 决策2, 决策3);
-     *       = min(c[0] + 1天后不包, c[1] + 7天后不包, c[2] + 30天后不包);
-     *       = min(c[0] + dp[i + 1], c[1] + dp[i + 7], c[2] + dp[i + 30]);
-     *  dp[i] 为第 i 天开始，所需最小费用累计
+     * 状态定义：dp[i] 表示第i天为止，所需的最小费用
+     * 状态转移方程：dp[i]  = min(c[0] + dp[i-1], c[1] + dp[i-7], c[2] + dp[i-30])
+     *
      * @param days
      * @param costs
      * @return
      */
     public int mincostTickets(int[] days, int[] costs) {
         int len = days.length;
-        int maxDay = days[len - 1];
-        int minDay = days[0];
-        // 多扩几天，省得判断 365 的限制
-        int[] dp = new int[maxDay + 31];
-        // 只需看 maxDay -> minDay，此区间外都不需要出门，不会增加费用
-        for (int d = maxDay, i = len - 1; d >= minDay; d--) {
-            // i 表示 days 的索引
-            if (d == days[i]) {
-                dp[d] = Math.min(dp[d + 1] + costs[0], dp[d + 7] + costs[1]);
-                dp[d] = Math.min(dp[d], dp[d + 30] + costs[2]);
-                // 别忘了递减一天
-                i--;
+        int lastDay = days[len-1];
+        int[] dp = new int[lastDay+1];
+        //days的索引
+        int index = 0;
+        for (int i=1; i<=lastDay; i++) {
+            if (i == days[index]) {
+                //买一天
+                int way1 = dp[i-1] + costs[0];
+                //如果今天距离第一天已经超过7天了，则花费: dp[i-7](7天前已经花费的钱)+cost[1](7天前买了一张7天的票)
+                //否则就是直接第一天买了一张7天票
+                int way2 = i-7>0 ? dp[i-7] + costs[1] : costs[1];
+                //买30天
+                int way3 = i-30>0 ? dp[i-30] + costs[2] : costs[2];
+                dp[i] = Math.min(Math.min(way1,way2), way3);
+                index++;
             } else {
-                // 不需要出门
-                dp[d] = dp[d + 1];
+                dp[i] = dp[i-1];
             }
         }
-        // 从后向前遍历，返回最前的 minDay
-        return dp[minDay];
+
+        return dp[lastDay];
     }
 }

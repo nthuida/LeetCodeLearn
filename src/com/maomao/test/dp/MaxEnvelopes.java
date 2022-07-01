@@ -31,7 +31,7 @@ public class MaxEnvelopes {
      * @return
      */
     public int maxEnvelopes(int[][] envelopes) {
-        //以w升序排列，当w相等时，以h降序排列
+        //以w升序排列，当w相等时，以h降序排列，保证相同宽度的信封不被计算进去
         Arrays.sort(envelopes, (e1, e2) -> {
             if(e1[0] == e2[0]) {
                 return e2[1] - e1[1];

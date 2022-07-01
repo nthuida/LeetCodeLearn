@@ -46,6 +46,7 @@ public class NumDecodings {
         for (int i=2; i<=len; i++) {
             int a = s.charAt(i-1) - '0';
             if (a != 0) {
+                //0不能单独翻译，必须和前面组成两个字符，区别与"把数字翻译成字符串"
                 dp[i] = dp[i-1];
             }
             int b = (s.charAt(i-2)-'0')*10 + a;
