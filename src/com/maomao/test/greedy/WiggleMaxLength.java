@@ -1,4 +1,4 @@
-package com.maomao.test.dp;
+package com.maomao.test.greedy;
 
 /**
  * 摆动序列
@@ -20,10 +20,6 @@ package com.maomao.test.dp;
  * 输出: 7
  * 解释: 这个序列包含几个长度为 7 摆动序列，其中一个可为[1,17,10,13,10,16,8]。
  *
- * 示例 3:
- * 输入: [1,2,3,4,5,6,7,8,9]
- * 输出: 2
- *
  * @author huida
  * @date 2020/12/14
  */
@@ -31,8 +27,9 @@ public class WiggleMaxLength {
 
     /**
      * 动态规划
-     * up[i] 表示以前 i个元素中的某一个为结尾的最长的「上升摆动序列」的长度。
-     * down[i] 表示以前 i个元素中的某一个为结尾的最长的「下降摆动序列」的长度
+     * 状态定义
+     * up[i] 表示以i结尾的最长上升序列的长度
+     * down[i] 表示以i结尾的最长下降序列的长度
      *
      * @param nums
      * @return
@@ -48,7 +45,7 @@ public class WiggleMaxLength {
         up[0] = 1;
         for (int i=1; i<len; i++) {
             if (nums[i] > nums[i-1]) {
-                //上升摆动序列的长度,可以从 up[i - 1]进行转移，也可以从 down[i−1] 进行转移
+                //上升序列的长度,可以从 up[i - 1]进行转移，也可以从 down[i−1] 进行转移
                 up[i] = Math.max(up[i-1], down[i-1] +1);
                 down[i] = down[i-1];
             } else if (nums[i] < nums[i-1]) {
@@ -61,5 +58,31 @@ public class WiggleMaxLength {
         }
 
         return Math.max(up[len-1], down[len-1]);
+    }
+
+    /**
+     * 贪心算法
+     * @param nums
+     * @return
+     */
+    public int wiggleMaxLengthII(int[] nums) {
+        int len = nums.length;
+        if (len < 2) {
+            return len;
+        }
+        //前一对差值
+        int preDiff = 0;
+        //当前差值
+        int curDiff = 0;
+        int count = 1;
+        for (int i=1; i<len; i++) {
+            curDiff = nums[i] - nums[i-1];
+            //有峰值，preDiff==0的场景为最开始的那个节点
+            if (curDiff>0 && preDiff<=0 || curDiff<0 && preDiff>=0) {
+                count++;
+                preDiff = curDiff;
+            }
+        }
+        return count;
     }
 }

@@ -27,7 +27,6 @@ public class LongestPalindromeSubseq {
      * dp[i][j] = dp[i + 1][j - 1] + 2             s[i] == s[j]
      * dp[i][j] = max(dp[i + 1][j], dp[i][j - 1])  s[i] != s[j]
      *
-     * 为了保证每次计算dp[i][j]，左、下、左下三个方向的位置已经被计算出来，只能斜着遍历或者反着遍历：
      * @param s
      * @return
      */

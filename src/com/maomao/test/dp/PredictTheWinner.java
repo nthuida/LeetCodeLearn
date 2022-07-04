@@ -28,31 +28,27 @@ package com.maomao.test.dp;
 public class PredictTheWinner {
 
     /**
-     * 动态规划
-     * dp[i][j]表示从nums[i]到nums[j]先手比另一位玩家多的最大分数，最后返回dp[0][nums.length-1]是否大于0即可
-     *
-     * 对于dp[i][j]，如果先手拿了nums[i]，则另一位玩家比先手多dp[i+1][j]，dp[i][j] = nums[i]-dp[i+1][j]，
-     * 如果先手拿了nums[j]，则另一位玩家比先手多dp[i][j-1]，dp[i][j] = nums[j]-dp[i][j-1]
-     * 综上，转态转移方程：dp[i][j] = Math.max(nums[i]-dp[i+1][j],nums[j]-dp[i][j-1])
-     *
+     * 定义状态：dp[i][j]表示在子数组[i,j]中，玩家1对玩家2的净胜分
+     * 转态转移方程：dp[i][j] = Math.max(nums[i]-dp[i+1][j], nums[j]-dp[i][j-1])
+     * 甲先手面对区间[i...j]时，如果甲拿nums[i]，那么变成乙先手面对区间[i+1...j]，这段区间内乙对甲的净胜分为dp[i+1][j]；
+     * 那么甲对乙的净胜分就应该是nums[i] - dp[i+1][j]。
+     * 如果甲拿nums[j]，同理可得甲对乙的净胜分为是nums[j] - dp[i][j-1]
      * @param nums
      * @return
      */
     public boolean predictTheWinner(int[] nums) {
         int len = nums.length;
         int[][] dp = new int[len][len];
-        //初始化，当i和j相等时，只存在一个数，先手赢
+        //初始化，当i和j相等时，只存在一个数，玩家1赢
         for (int i=0; i<len; i++) {
             dp[i][i] = nums[i];
         }
-
+        //从下往上，从左往右遍历
         for (int i=len-2; i>=0; i--) {
-            //因为较小的i值（状态转移方程中的i）是由较大的i值（状态转移方程中的i+1）得到的
             for (int j=i+1; j<len; j++) {
                 dp[i][j] = Math.max(nums[i] - dp[i + 1][j], nums[j] - dp[i][j - 1]);
             }
         }
-
         return dp[0][len-1] >=0;
     }
 }

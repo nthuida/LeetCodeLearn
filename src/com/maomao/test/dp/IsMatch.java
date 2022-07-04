@@ -11,20 +11,6 @@ package com.maomao.test.dp;
  * s 可能为空，且只包含从 a-z 的小写字母。
  * p 可能为空，且只包含从 a-z 的小写字母，以及字符 ? 和 *。
  *
- * 示例 1:
- * 输入:
- * s = "aa"
- * p = "a"
- * 输出: false
- * 解释: "a" 无法匹配 "aa" 整个字符串。
- *
- * 示例 2:
- * 输入:
- * s = "aa"
- * p = "*"
- * 输出: true
- * 解释: '*' 可以匹配任意字符串。
- *
  * 示例 3:
  * 输入:
  * s = "cb"
@@ -45,10 +31,10 @@ package com.maomao.test.dp;
 public class IsMatch {
 
     /**
-     *  状态 dp[i][j] : 表示 s 的前 i 个字符和 p 的前 j 个字符是否匹配
+     *  定义状态：dp[i][j]表示s的前i个字符和p的前j个字符是否匹配
      *  状态转移方程：
-     *  1. 当 s[i] == p[j]，或者 p[j] == ? 那么 dp[i][j] = dp[i - 1][j - 1];
-     *  2. 当 p[j] == * 那么 dp[i][j] = dp[i][j - 1] || dp[i - 1][j]    其中：
+     *  dp[i][j] = dp[i - 1][j - 1]  s[i] == p[j] || p[j] == ?
+     *  dp[i][j] = dp[i][j - 1] || dp[i - 1][j]    p[j] == *
      *     dp[i][j - 1] 表示 * 代表的是空字符，例如 ab, ab*
      *     dp[i - 1][j] 表示 * 代表的是非空字符，例如 abcd, ab*
      *
@@ -64,10 +50,11 @@ public class IsMatch {
         //初始化,都为空，可以匹配
         dp[0][0] = true;
         for (int i=1; i<=n; i++) {
-            //s为空，p只有为*时，才有可能为true；
+            //s为空，p只有为*时，才有可能为true
             if (p.charAt(i-1) == '*') {
-                //匹配0次
-                dp[0][i] = dp[0][i-1];
+                dp[0][i] = true;
+            } else {
+                break;
             }
         }
         for (int i=1; i<=m; i++) {
@@ -75,6 +62,7 @@ public class IsMatch {
                 if (s.charAt(i-1) == p.charAt(j-1) || p.charAt(j-1) == '?') {
                     dp[i][j] = dp[i-1][j-1];
                 } else if (p.charAt(j-1) == '*') {
+                    //*匹配0个或若干个
                     dp[i][j] = dp[i][j-1] || dp[i-1][j];
                 }
             }
@@ -84,15 +72,11 @@ public class IsMatch {
     }
 
     /**
+     * 正则表达式匹配
      * 给你一个字符串 s 和一个字符规律 p，请你来实现一个支持 '.' 和 '*' 的正则表达式匹配。
      * '.' 匹配任意单个字符
      * '*' 匹配零个或多个前面的那一个元素
      * 所谓匹配，是要涵盖 整个 字符串 s的，而不是部分字符串。
-     *
-     * 示例 1：
-     * 输入：s = "aa", p = "a"
-     * 输出：false
-     * 解释："a" 无法匹配 "aa" 整个字符串。
      *
      * 示例 2:
      * 输入：s = "aa", p = "a*"
@@ -107,15 +91,17 @@ public class IsMatch {
      */
 
     /**
-     * 状态 dp[i][j] : 表示 s 的前 i 个字符和 p 的前 j 个字符是否匹配
-     * 状态转移方程
-     * 1、p[j] == s[i],或 p[j] = '.' ，则dp[i][j] = dp[i-1][j-1]；
-     * 2、p[j] == '*'：
-     *  2.1 p[j-1] != s[i] : dp[i][j] = dp[i][j-2] //in this case, a* only counts as empty
-     *  2.2 p[j-1] == s[i] or p[j-1] == '.'：
-     *      dp[i][j] = dp[i-1][j] //in this case, a* counts as multiple a
-     *      or dp[i][j] = dp[i][j-1] // in this case, a* counts as single a
-     *      or dp[i][j] = dp[i][j-2] // in this case, a* counts as empty
+     * 定义状态：dp[i][j]表示s的前i个字符和p的前j个字符是否匹配
+     * 状态转移方程:
+     * dp[i][j] = dp[i-1][j-1]  p[j] == s[i] || p[j] = '.'
+     * dp[i][j] = dp[i][j-2]    p[j-1] != s[i]， in this case, a* only counts as empty
+     * dp[i][j] = dp[i-1][j] || dp[i][j-1] || dp[i][j-2]  p[j-1] == s[i] or p[j-1] == '.'
+     *
+     * dp[i-1][j],in this case, a* counts as multiple a
+     * dp[i][j-1],in this case, a* counts as single a
+     * dp[i][j-2],in this case, a* counts as empty
+     *
+     * '*' 匹配零个等于删除，区别与通配符匹配
      *
      * @param s
      * @param p
@@ -129,7 +115,7 @@ public class IsMatch {
         //初始化,都为空，可以匹配
         dp[0][0] = true;
         for (int i=1; i<=n; i++) {
-            //s为空，p只有为*时，才有可能为true；
+            //s为空，p只有为*时，才有可能为true
             if (p.charAt(i-1) == '*') {
                 dp[0][i] = dp[0][i-2];
             }
@@ -140,9 +126,10 @@ public class IsMatch {
                     dp[i][j] = dp[i-1][j-1];
                 } else if (p.charAt(j-1) == '*') {
                     if (p.charAt(j-2) == s.charAt(i-1) || p.charAt(j-2) == '.'){
-                        //*匹配多次，一次或者0次
+                        //*匹配多个，一个或者0个
                         dp[i][j] = dp[i-1][j] || dp[i][j-1] || dp[i][j-2];
                     } else {
+                        //*只能匹配0个，等于删除,
                         dp[i][j] = dp[i][j-2];
                     }
                 }

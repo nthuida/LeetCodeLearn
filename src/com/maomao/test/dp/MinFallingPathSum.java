@@ -15,25 +15,16 @@ package com.maomao.test.dp;
  *  [6,5,4],       [6,5,4],
  *  [7,8,9]]       [7,8,9]]
  *
- *  示例 2：
- * 输入：matrix = [[-19,57],[-40,-5]]
- * 输出：-59
- * 解释：下面是一条和最小的下降路径，用加粗+斜体标注：
- * [[-19,57],
- *  [-40,-5]]
- *
- * 示例 3：
- * 输入：matrix = [[-48]]
- * 输出：-48
- *
  * @author: huida
  * @date: 2021/12/7
  **/
 public class MinFallingPathSum {
 
     /**
-     * 动态规划
-     * dp[i][j] = matrix[i][j] + Math.min(Math.min(dp[i-1][j-1],dp[i-1][j]),dp[i-1][j+1])
+     * 类似 三角形最小路径和
+     * 状态定义：dp[i][j]表示i行j列的最小路径和
+     * 动态转移方程：
+     * dp[i][j] = Math.min(Math.min(dp[i-1][j-1],dp[i-1][j]),dp[i-1][j+1]) + matrix[i][j]
      * @param matrix
      * @return
      */
