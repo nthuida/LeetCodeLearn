@@ -1,4 +1,4 @@
-package com.maomao.test.array;
+package com.maomao.test.greedy;
 
 import java.util.Arrays;
 
@@ -32,25 +32,32 @@ import java.util.Arrays;
  **/
 public class FindContentChildren {
 
+    /**
+     * 大饼给大胃口
+     * @param g
+     * @param s
+     * @return
+     */
     public int findContentChildren(int[] g, int[] s) {
-        int res = 0;
+        int len1 = g.length;
+        int len2 = s.length;
+        if (len2==0) {
+            return 0;
+        }
         Arrays.sort(g);
         Arrays.sort(s);
-        boolean[] flag = new boolean[s.length];
-        for (int i=0; i<g.length; i++) {
-            for (int j=0; j<s.length; j++) {
-                if (!flag[j]) {
-                    if (s[j] >= g[i]) {
-                        res++;
-                        flag[j] = true;
-                    }
-                }
+        int res = 0;
+        int i=len1-1, j=len2-1;
+        while (i>=0 && j>=0) {
+            if (s[j] >= g[i]) {
+                res++;
+                j--;
+                i--;
+            } else {
+                i--;
             }
         }
-
         return res;
-
     }
-
 
 }
