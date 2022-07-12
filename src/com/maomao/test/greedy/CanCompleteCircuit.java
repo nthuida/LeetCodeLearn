@@ -1,4 +1,4 @@
-package com.maomao.test.array;
+package com.maomao.test.greedy;
 
 /**
  * 加油站
@@ -50,5 +50,36 @@ public class CanCompleteCircuit {
         }
         return -1;
 
+    }
+
+    /**
+     * 如果总油量减去总消耗大于等于零那么一定可以跑完一圈，
+     * 因此要跑完一圈就要保证在各个站点的加油站 剩油量 rest[i] = gas[i] - cost[i] >= 0。
+     * 局部最优：若当前累加到 j 的和 curSum < 0，起始位置至少要是 j+1 ，因为从 j开始一定不行。
+     * 全局最优：找到可以跑一圈的起始位置。
+     *
+     * @param gas
+     * @param cost
+     * @return
+     */
+    public int canCompleteCircuitII(int[] gas, int[] cost) {
+        int n = gas.length;
+        int sum = 0;
+        int curSum = 0;
+        int start = 0;
+        for (int i=0; i<n; i++) {
+            curSum += gas[i] - cost[i];
+            sum += gas[i] - cost[i];
+            if (curSum < 0) {
+                curSum = 0;
+                //起始位置更新为i+1
+                start = i+1;
+            }
+        }
+        //总油量减去总消耗小于0，肯定跑不完
+        if (sum < 0) {
+            return -1;
+        }
+        return start;
     }
 }

@@ -1,4 +1,4 @@
-package com.maomao.test.array;
+package com.maomao.test.greedy;
 
 import java.util.Arrays;
 
@@ -53,7 +53,7 @@ public class Candy {
             }
         }
         int res = 0;
-        //比较去最大值
+        //比较取最大值
         for (int k=0; k<len; k++) {
             res += Math.max(left[k], right[k]);
         }
