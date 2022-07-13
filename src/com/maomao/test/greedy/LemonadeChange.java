@@ -1,4 +1,4 @@
-package com.maomao.test.array;
+package com.maomao.test.greedy;
 
 /**
  * 在柠檬水摊上，每一杯柠檬水的售价为 5 美元。
@@ -47,6 +47,7 @@ public class LemonadeChange {
                     return false;
                 }
             } else {
+                //20的，优先找零10
                 if (tenCount >0) {
                     tenCount--;
                     if (fiveCount >0) {

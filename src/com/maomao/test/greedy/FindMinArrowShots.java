@@ -1,6 +1,7 @@
-package com.maomao.test.array;
+package com.maomao.test.greedy;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 /**
  * 用最少数量的箭引爆气球
@@ -27,21 +28,26 @@ import java.util.Arrays;
  */
 public class FindMinArrowShots {
 
+    /**
+     *
+     * @param points
+     * @return
+     */
     public int findMinArrowShots(int[][] points) {
-        if (points == null || points.length == 0) {
-            return 0;
-        }
-        //按右边界从小到大排序
-        Arrays.sort(points, (a, b) -> a[1] > b[1] ? 1 : -1);
+        //按左边界从小到大排序
+        Arrays.sort(points, Comparator.comparingInt(a -> a[0]));
         int res = 1;
-        //最开始的最小右边界
+        //最小右边界
         int pos = points[0][1];
-        for (int i=0; i<points.length; i++) {
+        for (int i=1; i<points.length; i++) {
             //气球的左边位置大于最小边界，就需要另一只箭才能射破
             if (points[i][0] > pos) {
                 res++;
-                //更新最小边界
+                //更新最小右边界
                 pos = points[i][1];
+            } else {
+                //俩区间有重叠，保留右边界小的那个
+                pos = Math.min(pos, points[i][1]);
             }
         }
         return res;

@@ -21,16 +21,22 @@ import java.util.List;
  * @date 2020/10/22
  */
 public class PartitionLabels {
-    public List<Integer> partitionLabels(String S) {
+
+    /**
+     * 已扫描的字符能去到的最远位置，扫到这个位置就切割，切出的字符不会在之后出现
+     * @param s
+     * @return
+     */
+    public List<Integer> partitionLabels(String s) {
         List<Integer> res = new ArrayList<>();
         int[] lastIndex = new int[26];
-        //获取字母最后出现的位置；
-        for (int i=0; i<S.length(); i++) {
-            lastIndex[S.charAt(i) - 'a'] = i;
+        //获取字母最远出现的位置；
+        for (int i=0; i<s.length(); i++) {
+            lastIndex[s.charAt(i) - 'a'] = i;
         }
         int start=0, end = 0;
-        for (int i=0; i<S.length(); i++) {
-            end = Math.max(end, lastIndex[S.charAt(i) - 'a']);
+        for (int i=0; i<s.length(); i++) {
+            end = Math.max(end, lastIndex[s.charAt(i) - 'a']);
             //找到最后一个，分割
             if (i == end) {
                 //长度

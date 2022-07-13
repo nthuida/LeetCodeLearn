@@ -1,4 +1,4 @@
-package com.maomao.test.array;
+package com.maomao.test.greedy;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -29,7 +29,7 @@ public class ReconstructQueue {
      * 1.排序规则：按照先H高度降序，K个数升序排序
      * 2.遍历排序后的数组，根据K插入到K的位置上
      *
-     * 核心思想：高个子先站好位，矮个子插入到K位置上，前面肯定有K个高个子，矮个子再插到前面也满足K的要求
+     * 优先按身高高的people的k来插入，后序插入节点也不会影响前面已经插入的节点
      *
      *  [7,0], [7,1], [6,1], [5,0], [5,2], [4,4]
      *  再一个一个插入。

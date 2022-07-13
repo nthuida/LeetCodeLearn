@@ -32,29 +32,27 @@ public class EraseOverlapIntervals {
 
     /**
      * 贪心算法
-     * 1、从区间集合 intvs 中选择一个区间 x，这个 x 是在当前所有区间中结束最早的（end 最小）。
-     * 2、把所有与 x 区间相交的区间从区间集合 intvs 中删除。
-     * 3、重复步骤 1 和 2，直到 intvs 为空为止。之前选出的那些 x 就是最大不相交子集。
+     * 如果后面区间的头小于当前区间的尾，为了防止在下一个区间和现有区间有重叠，
+     * 应该让现有区间越短越好，所以应该移除尾部比较大的。
+     *
      * @param intervals
      * @return
      */
     public int eraseOverlapIntervals(int[][] intervals) {
-        if (intervals.length == 0) {
-            return 0;
-        }
-        //end从小到大排序
-        Arrays.sort(intervals, (a,b) -> a[1]-b[1]);
-        int len = intervals.length;
-        int count = 1;
-        int end = intervals[0][1];
-        for (int[] ints : intervals) {
-            int start = ints[0];
-            if (start >= end) {
-                //不相交的区间
-                count++;
-                end = ints[1];
+        //左边界从小到大排序
+        Arrays.sort(intervals, Comparator.comparingInt(a -> a[0]));
+        int res = 0;
+        //最小右边界
+        int rightMin = intervals[0][1];
+        for (int i=1; i<intervals.length; i++) {
+            if (intervals[i][0] < rightMin) {
+                res++;
+                //保留右边界小的那个
+                rightMin = Math.min(rightMin, intervals[i][1]);
+            } else {
+                rightMin = intervals[i][1];
             }
         }
-        return len-count;
+        return res;
     }
 }
