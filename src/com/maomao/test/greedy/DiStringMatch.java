@@ -24,15 +24,14 @@ package com.maomao.test.greedy;
 public class DiStringMatch {
 
     /**
-     * 因为 I 和 D 决定了 前后位置的大小关系，按照贪心算法的思想，每次根据 I 或 D 选取 T 中最小或最大的数字，
-     * 如果已经使用过的去掉，从没用过的里面选。具体步骤如下：
+     * I 和 D 决定了 前后位置的大小关系，每次根据 I 或 D 选取 T 中最小或最大的数字；
      *
+     * 具体步骤如下：
      * 用两个指针来保存当前 T 中的 最大值max 和最小值min ；
      * 遍历字符串
      * 如果 s[i]=‘I’，那么令 result[i] 为剩余数字中的最小数；
-     * 如果 s[i]=‘D’，那么令 result[i] 为剩余数字中的最大数。
+     * 如果 s[i]=‘D’，那么令 result[i] 为剩余数字中的最大数；
      * 最后一个数，填入 result[n] 中；
-     * 返回结果 result。
      *
      * @param s
      * @return

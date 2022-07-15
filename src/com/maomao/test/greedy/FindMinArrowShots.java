@@ -28,11 +28,6 @@ import java.util.Comparator;
  */
 public class FindMinArrowShots {
 
-    /**
-     *
-     * @param points
-     * @return
-     */
     public int findMinArrowShots(int[][] points) {
         //按左边界从小到大排序
         Arrays.sort(points, Comparator.comparingInt(a -> a[0]));

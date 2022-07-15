@@ -32,29 +32,22 @@ public class VideoStitching {
 
     /**
      * 贪心算法
-     * 先按照起点升序排序，如果起点相同的话按照终点降序排序
+     * 1、要用若干短视频凑出完成视频 [0, T]，至少得有一个短视频的起点是 0。
+     * 2、如果有几个短视频的起点都相同，那么一定应该选择那个最长（终点最大）的视频。
      * @param clips
      * @param time
      * @return
      */
     public int videoStitching(int[][] clips, int time) {
-        //排序
-        Arrays.sort(clips, (a, b) -> {
-            if (a[0] == b[0]) {
-                return b[1] - a[1];
-            } else {
-                return a[0] - b[0];
-            }
-        });
-        //计数
+        //先按照起点升序排序，如果起点相同的话按照终点降序排序
+        Arrays.sort(clips, (a, b) -> a[0] == b[0] ? b[1] - a[1] : a[0] - b[0]);
         int res = 0;
-        int i = 0;
         //区间终点，初始化为0
         int curEnd = 0, nextEnd = 0;
-        int n = clips.length;
+        int  i = 0, n = clips.length;
         while (i<n && clips[i][0] <= curEnd) {
             while (i<n && clips[i][0] <= curEnd) {
-                //贪心选择终点最大的区间
+                //贪心选择区间终点最大的那个视频
                 nextEnd = Math.max(nextEnd, clips[i][1]);
                 i++;
             }
@@ -62,11 +55,11 @@ public class VideoStitching {
             res++;
             curEnd = nextEnd;
             if (nextEnd >= time) {
+                //已找到
                 return res;
             }
 
         }
         return -1;
-
     }
 }
