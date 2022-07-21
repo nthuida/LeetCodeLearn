@@ -1,4 +1,4 @@
-package com.maomao.test.array;
+package com.maomao.test.search;
 
 /**
  * 寻找两个正序数组的中位数
@@ -48,7 +48,7 @@ public class FindMedianSortedArrays {
      * @param nums2
      * @param start2
      * @param end2
-     * @param k
+     * @param k，个数，不是索引
      * @return
      */
     public int getKth(int[] nums1, int start1, int end1, int[] nums2, int start2, int end2, int k) {

@@ -31,8 +31,15 @@ import java.util.Map;
  **/
 public class FindSubstring {
 
+    /**
+     * 判断每个子串是否符合条件
+     * 判断子串中单词出现的个数
+     * @param s
+     * @param words
+     * @return
+     */
     public List<Integer> findSubstring(String s, String[] words) {
-        if (s == null || s.length() == 0 || words == null || words.length == 0) {
+        if (s.length() == 0 || words.length == 0) {
             return new ArrayList<>();
         }
         //子串的长度
@@ -44,7 +51,7 @@ public class FindSubstring {
             wordsMap.put(word, wordsMap.getOrDefault(word,0) +1);
         }
         List<Integer> res = new ArrayList<>();
-        //遍历子串
+        //遍历所有子串
         for (int i=0; i<s.length() - subLen + 1; i++) {
             //截取子串
             String subTemp = s.substring(i, i+subLen);

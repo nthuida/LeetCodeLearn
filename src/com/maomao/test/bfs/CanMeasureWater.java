@@ -1,4 +1,4 @@
-package com.maomao.test.digit;
+package com.maomao.test.bfs;
 
 import java.util.*;
 
@@ -28,6 +28,12 @@ public class CanMeasureWater {
 
     /**
      * 关注水的总量，每次增加或减少x、y
+     * 1、A倒空；
+     * 2、A装满；
+     * 3、B倒空；
+     * 4、B装满；
+     * 5、A倒进B，直到B倒满或者A倒空；
+     * 6、B倒进A，直到A倒满或者B倒空；
      * @param x
      * @param y
      * @param z
@@ -37,7 +43,7 @@ public class CanMeasureWater {
         if (z < 0 || z > x + y) {
             return false;
         }
-        //去重
+        //保存总量的状态
         Set<Integer> set = new HashSet<>();
         //水的总量
         Queue<Integer> q = new LinkedList<>();
