@@ -1,4 +1,4 @@
-package com.maomao.test.array;
+package com.maomao.test.slidingWindow;
 
 /**
  * 给定一个含有 n 个正整数的数组和一个正整数 s ，找出该数组中满足其和 ≥ s 的长度最小的连续子数组，
@@ -15,16 +15,14 @@ package com.maomao.test.array;
 public class MinSubArrayLen {
 
     /**
-     * 双指针
+     * 双指针，滑动窗口
      * @param s
      * @param nums
      * @return
      */
     public int minSubArrayLen(int s, int[] nums) {
-        if (nums.length == 0) {
-            return 0;
-        }
         int min = nums.length + 1;
+        //开始指针
         int start = 0;
         int end = 0;
         int sum = 0;
@@ -32,6 +30,7 @@ public class MinSubArrayLen {
             sum += nums[end];
             while (sum >= s) {
                 min = Math.min(min, end-start+1);
+                //缩小左边界
                 sum -= nums[start];
                 start++;
             }
