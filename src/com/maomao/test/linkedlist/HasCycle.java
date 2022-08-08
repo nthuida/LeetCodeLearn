@@ -26,13 +26,12 @@ public class HasCycle {
     }
 
     /**
-     * 根据：
-     * f=2s （快指针每次2步，路程刚好2倍）
-     * f= s + nb (相遇时，刚好多走了n圈）
-     * 推出：s = nb
+     * slow = s
+     * fast = 2s
+     * 2s - s = nb (相遇时，快指针比慢指针刚好多走了n圈）
      *
-     * 从head结点走到入环点需要走 ： a + nb， 而slow已经走了nb，那么slow再走a步就是入环点了。
-     * 如何知道slow刚好走了a步？ 从head开始，和slow指针一起走，相遇时刚好就是a步
+     * 从head结点到入环点需要走：a+nb， 而slow已经走了nb，那么slow再走a步就是入环点了。
+     * 如何知道slow刚好走了a步？从head开始，和slow指针一起走，相遇时刚好就是a步
      *
      * 给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。
      * @param head

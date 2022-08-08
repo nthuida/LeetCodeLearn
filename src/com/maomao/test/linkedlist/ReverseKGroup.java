@@ -23,10 +23,10 @@ public class ReverseKGroup {
      * @return
      */
     public ListNode reverseKGroup(ListNode head, int k) {
-        ListNode headNode = new ListNode(0);
-        headNode.next = head;
-        ListNode pre = headNode;
-        ListNode end = headNode;
+        ListNode dummyHead = new ListNode(0);
+        dummyHead.next = head;
+        ListNode pre = dummyHead;
+        ListNode end = dummyHead;
         while (end.next != null) {
             for (int i=0; i<k && end != null; i++) {
                 //找到每次翻转的最后一个结点
@@ -49,7 +49,7 @@ public class ReverseKGroup {
             pre = start;
             end = start;
         }
-        return headNode.next;
+        return dummyHead.next;
     }
 
     /**

@@ -36,29 +36,6 @@ public class DeleteDuplicates {
         return head;
     }
 
-    /**
-     * set判断元素是否存在，前置节点来去重
-     * 时间复杂度：O(n)  链表未排序
-     * @param head
-     * @return
-     */
-    public ListNode deleteDuplicates1(ListNode head) {
-        ListNode temp = head;
-        ListNode pre = null;
-        Set<Integer> set = new HashSet<>();
-        while (temp != null) {
-            if (set.contains(temp.val)) {
-                pre.next = temp.next;
-                temp = temp.next;
-            } else {
-                set.add(temp.val);
-                pre = temp;
-                temp = temp.next;
-            }
-
-        }
-        return head;
-    }
 
     /**
      * 给定一个排序链表，删除所有含有重复数字的节点，只保留原始链表中没有重复出现的数字。

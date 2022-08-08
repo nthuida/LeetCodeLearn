@@ -24,19 +24,21 @@ public class RemoveDuplicateNodes {
         if (head == null) {
             return null;
         }
+        ListNode cur = head;
+        ListNode pre = null;
         Set<Integer> set = new HashSet<>();
-        ListNode temp = head;
-        ListNode result = new ListNode(0);
-        ListNode res = result;
-        while (temp != null) {
-            if (!set.contains(temp.val)) {
-                set.add(temp.val);
-                res.next = new ListNode(temp.val);
-                res = res.next;
+        while (cur != null) {
+            if (set.contains(cur.val)) {
+                pre.next = cur.next;
+                cur = cur.next;
+            } else {
+                set.add(cur.val);
+                pre = cur;
+                cur = cur.next;
             }
-            temp = temp.next;
+
         }
-        return result.next;
+        return head;
     }
 
 }

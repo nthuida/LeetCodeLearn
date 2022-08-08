@@ -1,7 +1,7 @@
 package com.maomao.test.linkedlist;
 
 /**
- * 反转一个单链表。
+ * 反转链表
  *
  * 示例:
  *
