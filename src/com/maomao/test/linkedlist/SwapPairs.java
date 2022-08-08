@@ -38,9 +38,10 @@ public class SwapPairs {
         if (head == null || head.next == null) {
             return head;
         }
-        ListNode pre = new ListNode(0);
-        pre.next = head;
-        ListNode temp = pre;
+        //虚拟头节点
+        ListNode dummyHead = new ListNode(0);
+        dummyHead.next = head;
+        ListNode temp = dummyHead;
         while (temp.next != null && temp.next.next != null) {
             ListNode start = temp.next;
             ListNode end  = temp.next.next;
@@ -50,7 +51,7 @@ public class SwapPairs {
             end.next = start;
             temp = start;
         }
-        return pre.next;
+        return dummyHead.next;
     }
 
 }

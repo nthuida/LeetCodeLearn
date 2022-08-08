@@ -34,18 +34,21 @@ public class ReverseList {
     }
 
     /**
-     * 非递归
+     * 迭代
      * @param head
      * @return
      */
     public ListNode reverseList1(ListNode head) {
-        //链表原地反转
         ListNode prev = null;
-        while (head != null) {
-            ListNode next = head.next;
-            head.next = prev;
-            prev = head;
-            head = next;
+        ListNode cur = head;
+        while (cur != null) {
+            //下一个节点
+            ListNode next = cur.next;
+            //当前节点指向pre,翻转
+            cur.next = prev;
+            //pre,cur向前移动
+            prev = cur;
+            cur = next;
         }
         return prev;
     }

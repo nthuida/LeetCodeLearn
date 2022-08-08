@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 顺时针打印矩阵
- * 输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字。
+ * 螺旋矩阵
+ * 给你一个 m 行 n 列的矩阵 matrix ，请按照 顺时针螺旋顺序 ，返回矩阵中的所有元素
  *
  * 示例 1：
  * 输入：matrix = [[1,2,3],[4,5,6],[7,8,9]]
@@ -26,9 +26,7 @@ public class SpiralOrder {
      * @return
      */
     public List<Integer> spiralOrder(int[][] matrix) {
-        if (matrix.length == 0) {
-            return new ArrayList<>();
-        }
+
         int row = matrix.length;
         int col = matrix[0].length;
         int upBound = 0;

@@ -16,18 +16,19 @@ public class RemoveElements {
         if (head == null) {
             return null;
         }
-        ListNode node = head;
-        //新建链表存放结果
-        ListNode result = new ListNode(1);
-        ListNode a = result;
-        while (node != null) {
-            if (node.val != val) {
-               a.next = new ListNode(node.val);
-               a = a.next;
+        //虚拟头节点
+        ListNode dummyHead = new ListNode(1);
+        dummyHead.next = head;
+        ListNode cur = dummyHead;
+        //当前节点的下一节点不为空
+        while (cur.next != null) {
+            if (cur.next.val != val) {
+                cur = cur.next;
+            } else {
+                cur.next = cur.next.next;
             }
-            node = node.next;
         }
-        return result.next;
+        return dummyHead.next;
     }
 
 }
