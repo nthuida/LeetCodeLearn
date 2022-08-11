@@ -65,8 +65,6 @@ public class ThreeSum {
                     while(left < right && nums[right+1] == nums[right]) {
                         right--;
                     }
-                    left++;
-                    right--;
                 }
             }
         }

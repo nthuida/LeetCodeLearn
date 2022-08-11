@@ -1,5 +1,8 @@
 package com.maomao.test.digit;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * 快乐数
  *
@@ -23,21 +26,14 @@ package com.maomao.test.digit;
  */
 public class IsHappy {
 
-    /**
-     * 使用“快慢指针”思想找出循环：“快指针”每次走两步，“慢指针”每次走一步，当二者相等时，
-     * 即为一个循环周期。此时，判断是不是因为1引起的循环，是的话就是快乐数，否则不是快乐数。
-     * @param n
-     * @return
-     */
     public boolean isHappy(int n) {
-        int fast = n;
-        int slow = n;
-        do {
-            slow = compute(slow);
-            fast = compute(fast);
-            fast = compute(fast);
-        } while (fast != slow);
-        return slow ==1;
+        //判断重复
+        Set<Integer> set = new HashSet<>();
+        while (n!=1 && !set.contains(n)) {
+            set.add(n);
+            n = compute(n);
+        }
+        return n==1;
     }
 
     public int compute(int n) {
