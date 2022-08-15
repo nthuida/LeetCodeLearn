@@ -1,4 +1,4 @@
-package com.maomao.test.doublePoint;
+package com.maomao.test.array;
 
 /**
  * 有序数组的平方

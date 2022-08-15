@@ -1,4 +1,4 @@
-package com.maomao.test.doublePoint;
+package com.maomao.test.array;
 
 /**
  * 删除排序数组中的重复项
