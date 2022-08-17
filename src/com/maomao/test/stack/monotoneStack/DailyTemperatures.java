@@ -23,6 +23,7 @@ public class DailyTemperatures {
 
         int len = temperatures.length;
         int[] res = new int[len];
+        //单调递减栈
         Stack<Integer> stack = new Stack<>();
         for (int i=0; i<len; i++) {
             //栈不为空，且当前元素大于栈顶元素

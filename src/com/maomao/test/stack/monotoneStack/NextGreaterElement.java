@@ -29,6 +29,7 @@ public class NextGreaterElement {
         int[] res = new int[nums1.length];
         //保存nums2下一个更大元素
         Map<Integer, Integer> map = new HashMap<>();
+        //单调递减栈
         Stack<Integer> stack = new Stack<>();
         for (int i=0; i<nums2.length; i++) {
             //栈非空，当前元素大于栈顶元素

@@ -74,6 +74,7 @@ public class LargestRectangleArea {
         for (int i=0; i<len; i++) {
             newHeight[i+1] = heights[i];
         }
+        //单调递增栈
         Stack<Integer> stack = new Stack<>();
         int max = 0;
         for (int i=0; i<newHeight.length; i++) {

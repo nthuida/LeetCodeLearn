@@ -1,4 +1,4 @@
-package com.maomao.test.array;
+package com.maomao.test.stack;
 
 import java.util.Stack;
 import java.util.regex.Pattern;
@@ -52,36 +52,27 @@ import java.util.regex.Pattern;
 public class EvalRPN {
 
     public int evalRPN(String[] tokens) {
-        Stack<String> stack = new Stack<>();
-        int res = 0;
+        Stack<Integer> stack = new Stack<>();
         for (int i=0; i<tokens.length; i++) {
             String temp = tokens[i];
-            if (temp.equals("+")) {
-                String s1 = stack.pop();
-                String s2 = stack.pop();
-                res = Integer.parseInt(s2) + Integer.parseInt(s1);
-                stack.push(res + "");
-            } else if (temp.equals("*")) {
-                String s1 = stack.pop();
-                String s2 = stack.pop();
-                res = Integer.parseInt(s2) * Integer.parseInt(s1);
-                stack.push(res + "");
-            } else if (temp.equals("-")) {
-                String s1 = stack.pop();
-                String s2 = stack.pop();
-                res = Integer.parseInt(s2) - Integer.parseInt(s1);
-                stack.push(res + "");
-            } else if (temp.equals("/")) {
-                String s1 = stack.pop();
-                String s2 = stack.pop();
-                res = Integer.parseInt(s2) / Integer.parseInt(s1);
-                stack.push(res + "");
+            if (temp == "*" || temp == "/" || temp == "-" || temp == "+") {
+                int num1 = stack.pop();
+                int num2 = stack.pop();
+                if (temp.equals("+")) {
+                    stack.push(num1+num2);
+                } else if (temp.equals("*")) {
+                    stack.push(num1*num2);
+                } else if (temp.equals("-")) {
+                    stack.push(num2-num1);
+                } else if (temp.equals("/")) {
+                    stack.push(num2/num1);
+                }
             } else {
-                res = Integer.parseInt(temp);
-                stack.push(temp);
+                stack.push(Integer.parseInt(temp));
             }
+
         }
-        return res;
+        return stack.pop();
     }
 
 }
