@@ -1,4 +1,4 @@
-package com.maomao.test.array;
+package com.maomao.test.stack.monotoneStack;
 
 import java.util.Stack;
 
@@ -87,6 +87,7 @@ public class Trap {
     public int trapIII(int[] height){
         int len = height.length;
         int res = 0;
+        //单调递减栈
         Stack<Integer> stack = new Stack<>();
         for (int i=0; i<len; i++) {
             //栈不为空，且当前元素大于栈顶元素
@@ -95,7 +96,7 @@ public class Trap {
                 int top = stack.pop();
                 //栈里至少需要一个元素，即需要一个左墙
                 if (!stack.isEmpty()) {
-                    //宽度
+                    //宽度，-1只求中间的宽度
                     int width = i-stack.peek()-1;
                     //左右两边取最小值
                     int min = Math.min(height[stack.peek()], height[i]);

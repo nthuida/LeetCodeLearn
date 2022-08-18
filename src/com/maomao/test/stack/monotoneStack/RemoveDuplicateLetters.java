@@ -35,13 +35,13 @@ public class RemoveDuplicateLetters {
         //记录字符是否出现过
         boolean[] flag = new boolean[128];
         for (char ch : s.toCharArray()) {
-            //每次遍历过，减1
+            //每次遍历过减1
             count[ch]--;
             if (flag[ch]) {
                 continue;
             }
-            //保证字典顺序，递减
-            while (!stack.empty() && stack.peek()>ch) {
+            //保持递减，字典序小
+            while (!stack.empty() && stack.peek() > ch) {
                 // 若之后不存在栈顶元素了，则停止 pop
                 if (count[stack.peek()] == 0) {
                     break;
