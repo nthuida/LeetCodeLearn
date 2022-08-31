@@ -34,8 +34,8 @@ public class HasPathSum {
             return false;
         }
         //叶子节点
-        if (root.right == null && root.left == null) {
-            return root.val == sum;
+        if (root.right == null && root.left == null && root.val == sum) {
+            return true;
         }
         return (hasPathSum(root.left, sum - root.val) || hasPathSum(root.right, sum - root.val));
     }

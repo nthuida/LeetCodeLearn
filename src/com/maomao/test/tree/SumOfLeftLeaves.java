@@ -14,27 +14,31 @@ package com.maomao.test.tree;
  *
  * 在这个二叉树中，有两个左叶子，分别是 9 和 15，所以返回 24
  *
- * @Author huida.mao
+ * @Author huida
  * @Date 2019/11/6
  */
 public class SumOfLeftLeaves {
 
-    /**
-     * 递归
-     * 1、左子树的和加上右子树的和
-     * 2、怎么求左子叶的和：左子树为叶子节点，返回右子树的左叶子和 + 左子叶的值
-     * @param root
-     * @return
-     */
+    int sum = 0;
     public int sumOfLeftLeaves(TreeNode root) {
-        if (root == null) {
-            return 0;
-        }
-        //左子树为叶子节点，那么需返回右子树的左叶子和 + 左子叶的值
-        if (root.left != null && root.left.left == null && root.left.right == null) {
-            return  root.left.val + sumOfLeftLeaves(root.right);
-        }
+        traverse(root);
+        return sum;
+    }
 
-        return sumOfLeftLeaves(root.left) + sumOfLeftLeaves(root.right);
+    /**
+     * 先序遍历，找到左子叶，累加求和
+     * @param root
+     */
+    private void traverse(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        //判断左子叶
+        if (root.left != null && root.left.left == null && root.left.right == null) {
+            sum += root.left.val;
+        }
+        traverse(root.left);
+        traverse(root.right);
+
     }
 }
