@@ -47,11 +47,7 @@ public class FindMode {
     public void midOrder(TreeNode root, Map<Integer, Integer> map) {
         if (root != null) {
             midOrder(root.left, map);
-            if (map.containsKey(root.val)) {
-                map.put(root.val, map.get(root.val) + 1);
-            } else {
-                map.put(root.val, 1);
-            }
+            map.put(root.val, map.getOrDefault(root.val, 0) + 1);
             midOrder(root.right, map);
         }
     }

@@ -27,6 +27,7 @@ public class InsertIntoBST {
 
     public TreeNode insertIntoBST(TreeNode root, int val) {
         if (root == null) {
+            //找到插入节点的为止
             return new TreeNode(val);
         }
         if (root.val > val) {
