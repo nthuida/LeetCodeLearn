@@ -20,9 +20,9 @@ package com.maomao.test.tree;
 public class RecoverTree {
 
     /**
-     * 比较前后访问的节点值，prev 保存上一个访问的节点，当前访问的是 root 节点。
-     * 每访问一个节点，如果prev.val>=root.val，就找到了一对“错误对”。
-     *
+     * 中序遍历寻找错误的场景
+     * 错误1：出现了两对不满足前小后大，需要交换第一对的第一个元素与第二对的第二个元素。
+     * 错误2：只出现一对不满足前小后大，交换这一对元素即可。
      * @param root
      */
 
@@ -43,16 +43,14 @@ public class RecoverTree {
             return;
         }
         midOrder(root.left);
-        if (first == null && pre.val >= root.val) {
+        if (first == null && pre.val > root.val) {
             //第一个节点
             first = pre;
         }
-
-        if (first != null && pre.val >= root.val) {
+        if (first != null && pre.val > root.val) {
             //第二个节点
             second = root;
         }
-
         //更新pre
         pre = root;
 

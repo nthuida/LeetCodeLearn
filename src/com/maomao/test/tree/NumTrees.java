@@ -32,7 +32,7 @@ public class NumTrees {
         }
         int count = 0;
         for (int i=1; i<=n; i++) {
-            //已i为根节点，左边可以构成二叉搜索树的数量
+            //i为根节点，左边可以构成二叉搜索树的数量
             int leftCount = numTrees(i-1);
             //右边
             int rightCount = numTrees(n-i);
