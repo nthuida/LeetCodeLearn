@@ -1,7 +1,5 @@
 package com.maomao.test.tree;
 
-import com.maomao.test.tree.TreeNode;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,13 +47,15 @@ public class IsCousins {
      }
 
     private void dfs(TreeNode root, TreeNode par, Map<Integer, Integer> depthMap, Map<Integer, TreeNode> parentMap) {
-        if (root != null) {
-            //计算深度
-            depthMap.put(root.val, par != null ? 1 + depthMap.get(par.val) : 0);
-            //保存父节点
-            parentMap.put(root.val, par);
-            dfs(root.left, root, depthMap, parentMap);
-            dfs(root.right, root, depthMap, parentMap);
+        if (root == null) {
+            return;
         }
+        //计算深度
+        depthMap.put(root.val, par != null ? 1 + depthMap.get(par.val) : 0);
+        //保存父节点
+        parentMap.put(root.val, par);
+        dfs(root.left, root, depthMap, parentMap);
+        dfs(root.right, root, depthMap, parentMap);
+
     }
 }
