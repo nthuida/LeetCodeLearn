@@ -28,6 +28,13 @@ import java.util.Set;
  */
 public class RemoveInvalidParentheses {
 
+    /**
+     * 1、计算不合法的左括号和右括号的数量
+     * 2、回溯,终止条件 leftToDelete == 0 && rightToDelete == 0
+     * 3、为了简化删除后的字符串的合法性判断，定义左括号出现的数量leftCount
+     * @param s
+     * @return
+     */
     public List<String> removeInvalidParentheses(String s) {
         //需要删除的左括号数
         int leftDelete = 0;
