@@ -67,12 +67,18 @@ public class SolveSudoku {
                 //检查行
                 return false;
             }
-            // 判断 3 x 3 方框是否存在重复
-            if (board[(row/3)*3 + i/3][(col/3)*3 + i%3] == val) {
-                return false;
-            }
         }
 
+        // 判断 3 x 3 方框是否存在重复
+        int startRow = (row/3)*3;
+        int startCol = (col/3)*3;
+        for (int i=startRow; i<startRow+3; i++) {
+            for (int j=startCol; j<startCol+3; j++) {
+                if (board[i][j] == val) {
+                    return false;
+                }
+            }
+        }
         return true;
     }
 }
