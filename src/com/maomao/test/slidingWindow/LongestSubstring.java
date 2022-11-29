@@ -1,8 +1,6 @@
 package com.maomao.test.slidingWindow;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 
 /**
  * 无重复字符的最长子串

@@ -66,14 +66,16 @@ public class MinStack {
     public void push(int x) {
         stack.push(x);
         //当前元素小于等于栈顶元素，入栈
-        if(minStack.isEmpty() || x <= minStack.peek())
+        if(minStack.isEmpty() || x <= minStack.peek()) {
             minStack.push(x);
+        }
     }
 
     public void pop() {
         //出栈元素和最小栈栈顶元素相等，最小栈也要出栈
-        if(stack.pop().equals(minStack.peek()))
+        if(stack.pop().equals(minStack.peek())) {
             minStack.pop();
+        }
     }
 
     public int top() {
