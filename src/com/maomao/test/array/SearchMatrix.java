@@ -62,7 +62,7 @@ public class SearchMatrix {
      *
      * 从整个矩阵的右上角开始枚举，假设当前枚举的数是 x：
      * 如果 x 等于target，则说明我们找到了目标值，返回true；
-     * 如果 x小于target，则 x左边的数一定都小于target，我们可以直接排除当前一整行的数；
+     * 如果 x 小于target，则 x左边的数一定都小于target，我们可以直接排除当前一整行的数；
      * 如果 x 大于target，则 x 下边的数一定都大于target，我们可以直接排除当前一整列的数
      * 复杂度O(m+n)
      *

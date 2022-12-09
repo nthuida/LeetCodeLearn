@@ -33,10 +33,10 @@ public class IsMatch {
     /**
      *  定义状态：dp[i][j]表示s的前i个字符和p的前j个字符是否匹配
      *  状态转移方程：
-     *  dp[i][j] = dp[i - 1][j - 1]  s[i] == p[j] || p[j] == ?
-     *  dp[i][j] = dp[i][j - 1] || dp[i - 1][j]    p[j] == *
-     *     dp[i][j - 1] 表示 * 代表的是空字符，例如 ab, ab*
-     *     dp[i - 1][j] 表示 * 代表的是非空字符，例如 abcd, ab*
+     *  dp[i][j] = dp[i-1][j-1]  s[i] == p[j] || p[j] == ?
+     *  dp[i][j] = dp[i][j-1] || dp[i-1][j]    p[j] == *
+     *     dp[i][j-1] 表示 * 代表的是空字符，例如 ab, ab*
+     *     dp[i-1][j] 表示 * 代表的是非空字符，例如 abcd, ab*
      *
      * @param s
      * @param p

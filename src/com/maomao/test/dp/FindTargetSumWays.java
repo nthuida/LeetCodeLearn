@@ -102,7 +102,6 @@ public class FindTargetSumWays {
             //倒序，保证不重复
             for (int j=target; j-num>=0; j--) {
                 dp[j] += dp[j-num];
-                //System.out.println("dp[j]= " + j + " " + dp[j]);
             }
         }
         return dp[target];

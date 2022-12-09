@@ -61,7 +61,6 @@ public class CanPartition {
                     //选和不选都可以
                     dp[i][j] = dp[i-1][j] || dp[i-1][j - nums[i]];
                 }
-                System.out.println();
             }
         }
         return dp[len-1][target];

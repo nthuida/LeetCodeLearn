@@ -225,8 +225,8 @@ public class MaxProfit {
      * 定义状态：dp[i][j][k]代表 第i天交易了k次时的最大利润，其中j代表当天是否持有股票，0不持有，1持有
      * 以买入代表交易的次数
      * 状态转移方程：
-     * dp[i][0][j] = max(dp[i-1][0][j], dp[i-1][1][j] + prices[i])
-     * dp[i][1][j] = max(dp[i-1][1][j], dp[i-1][0][j-1] - prices[i])
+     * dp[i][0][k] = max(dp[i-1][0][k], dp[i-1][1][k] + prices[i])
+     * dp[i][1][k] = max(dp[i-1][1][k], dp[i-1][0][k-1] - prices[i])
      * @param prices
      * @return
      */

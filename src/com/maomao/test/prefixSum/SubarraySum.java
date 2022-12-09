@@ -30,9 +30,9 @@ public class SubarraySum {
         //前缀和0出现的次数为1；
         map.put(0,1);
         for (int i :nums) {
-            //计算前缀和
+            //计算当前前缀和
             preSum += i;
-            //preSum-k是想要找的前缀和，计数
+            //preSum-k是想要找的前缀和，preSum - (preSum - k) == k
             count += map.getOrDefault(preSum-k, 0);
             //保存前缀和对应的次数；
             map.put(preSum, map.getOrDefault(preSum,0)+1);
