@@ -30,6 +30,7 @@ public class LongestCommonPrefix {
         for (int i=1; i<strs.length; i++) {
             //indexOf() 字符出现的最早位置
             while (strs[i].indexOf(result) != 0) {
+                //没找到了，说明result不是strs[i]的前缀，更新result
                 result = result.substring(0,result.length()-1);
                 if (result.length() == 0) {
                     return "";

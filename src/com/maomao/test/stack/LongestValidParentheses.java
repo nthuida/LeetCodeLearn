@@ -66,9 +66,9 @@ public class LongestValidParentheses {
     /**
      * 动态规划
      * 状态定义：dp[i] 表示以i结尾的最长有效括号长度
-     * 状态转移方程： s[i] = '('   dp[i] = 0;
-     *              s[i] = ')'  dp[i] = dp[i-2] + 2  if s[i-1] = '('
-     *                          dp[i] = dp[i-1] + dp[i-dp[i-1]-2] + 2  if s[i-1] = ')'
+     * 状态转移方程：dp[i] = 0,                              s[i] = '(' ;
+     *             dp[i] = dp[i-2] + 2,                    s[i] = ')' and s[i-1] = '('
+     *             dp[i] = dp[i-1] + dp[i-dp[i-1]-2] + 2,  s[i] = ')' and s[i-1] = ')'
      * @param s
      * @return
      */
@@ -81,10 +81,14 @@ public class LongestValidParentheses {
         for (int i=1; i<s.length(); i++) {
             if (s.charAt(i) == ')') {
                 if (s.charAt(i-1) == '(') {
-                    dp[i] = i-2 >=0 ? (dp[i-2] + 2) : 2;
-                } else if (i-dp[i-1]-1 >=0 && s.charAt(i-dp[i-1]-1) == '('){
-                    //i-1 对应的位置为 i-dp[i-1]-1
-                    if (i-dp[i-1]-2 >=0) {
+                    if (i-2 >= 0) {
+                        dp[i] = dp[i-2] + 2;
+                    } else {
+                        dp[i] = 2;
+                    }
+                } else if (s.charAt(i-dp[i-1]-1) == '('){
+                    //i 对应的位置为 i-dp[i-1]-1
+                    if (i-dp[i-1]-2 >= 0) {
                         //需要加上i-dp[i-1]-1的前一个位置i-dp[i-1]-2对应的最长有效长度
                         dp[i] = dp[i-dp[i-1]-2] + dp[i-1] + 2;
                     } else {

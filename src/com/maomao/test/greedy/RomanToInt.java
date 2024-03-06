@@ -71,7 +71,7 @@ public class RomanToInt {
         int sum = 0;
         for (int i=0; i<s.length(); i++) {
             int value = map.get(s.charAt(i));
-            if (i== s.length()-1 || map.get(s.charAt(i+1)) <= map.get(s.charAt(i))) {
+            if (i== s.length()-1 || map.get(s.charAt(i)) >= map.get(s.charAt(i+1))) {
                 //小值在大值的右边，最后一个直接加
                 sum += value;
             } else {
