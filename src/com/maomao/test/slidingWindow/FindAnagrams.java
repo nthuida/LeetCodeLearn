@@ -84,4 +84,27 @@ public class FindAnagrams {
         return res;
     }
 
+    public List<Integer> findAnagramsII(String s, String p) {
+        if (s.length() ==0 || p.length()==0 || p.length() > s.length()) {
+            return new ArrayList<>();
+        }
+        int sourceLen = s.length();
+        int targetLen = p.length();
+        List<Integer> res = new ArrayList<>();
+        for (int i=0; i<=sourceLen-targetLen; i++) {
+            String subStr = s.substring(i, i+targetLen);
+            char[] a = p.toCharArray();
+            Arrays.sort(a);
+            char[] b = subStr.toCharArray();
+            Arrays.sort(b);
+            if (Arrays.equals(a, b)) {
+                res.add(i);
+            }
+
+        }
+
+        return res;
+    }
+
+
 }
