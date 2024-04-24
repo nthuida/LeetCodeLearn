@@ -34,7 +34,7 @@ public class ThreeSum {
                 //如果当前数字大于0，则三数之和一定大于0，所以结束循环
                 break;
             }
-            //去重
+            //固定的那个数去重
             if(k > 0 && nums[k] == nums[k - 1]) {
                 continue;
             }
@@ -44,16 +44,8 @@ public class ThreeSum {
                 int sum = nums[k] + nums[left] + nums[right];
                 if(sum < 0){
                     left++;
-                    //去重
-                    while(left < right && nums[left-1] == nums[left]) {
-                        left++;
-                    }
-
                 } else if (sum > 0) {
                     right--;
-                    while(left < right && nums[right+1] == nums[right]) {
-                        right--;
-                    }
                 } else {
                     res.add(new ArrayList<>(Arrays.asList(nums[k], nums[left], nums[right])));
                     left++;
@@ -70,5 +62,7 @@ public class ThreeSum {
         }
         return res;
     }
+
+
 
 }

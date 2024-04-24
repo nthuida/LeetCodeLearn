@@ -53,34 +53,27 @@ public class RemoveNthFromEnd {
         //防止删除第链表长度的时候，出现空指针
         ListNode temp = new ListNode(0);
         temp.next = head;
-        //找到倒数第N+1个节点
-        ListNode cur = findFromEnd(temp, n+1);
+        /**
+         * 双指针，找到链表的倒数n+1个节点
+         * 快指针先走n+1步，然后快慢指针同时走
+         * 快指针到达终点时，慢指针即为倒数第n+1个节点
+         */
+        ListNode fast = temp;
+        ListNode slow = temp;
+        //第一节点先走n+1步
+        for (int i=0; i<=n; i++) {
+            fast = fast.next;
+        }
+
+        //同时走步
+        while (fast != null) {
+            fast = fast.next;
+            slow = slow.next;
+        }
         //删除第n个节点
-        cur.next = cur.next.next;
+        slow.next = slow.next.next;
         return temp.next;
     }
 
-    /**
-     * 双指针，找到链表的倒数k个节点
-     * 快指针先走k步，然后快慢指针同时走
-     * 快指针到达终点时，慢指针即为倒数第k个节点
-     * @param listNode
-     * @param k
-     * @return
-     */
-    private ListNode findFromEnd(ListNode listNode, int k) {
-        ListNode first = listNode;
-        //第一节点先走k步
-        for (int i=0; i<k; i++) {
-            first = first.next;
-        }
-        ListNode second = listNode;
-        //同时走n-k步
-        while (first != null) {
-            first = first.next;
-            second = second.next;
-        }
-        //返回倒数第k个
-        return second;
-    }
+
 }

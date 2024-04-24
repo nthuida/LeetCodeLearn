@@ -44,7 +44,7 @@ public class MaxSlidingWindow {
         int len = nums.length;
         //保存窗口的最大值
         int[] res = new int[len-k+1];
-        //因为要在队尾和对头删除元素，所以使用双端队列
+        //因为要在队尾和队头删除元素，所以使用双端队列
         Deque<Integer> deque = new LinkedList<>();
         //遍历右边界
         for (int right=0; right<len; right++) {

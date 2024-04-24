@@ -41,15 +41,15 @@ public class SwapPairs {
         //虚拟头节点
         ListNode dummyHead = new ListNode(0);
         dummyHead.next = head;
-        ListNode temp = dummyHead;
-        while (temp.next != null && temp.next.next != null) {
-            ListNode start = temp.next;
-            ListNode end  = temp.next.next;
+        ListNode cur = dummyHead;
+        while (cur.next != null && cur.next.next != null) {
+            ListNode start = cur.next;
+            ListNode end  = cur.next.next;
             //变换位置
-            temp.next = end;
+            cur.next = end;
             start.next = end.next;
             end.next = start;
-            temp = start;
+            cur = start;
         }
         return dummyHead.next;
     }
