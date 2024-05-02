@@ -36,6 +36,22 @@ public class MyStack {
     }
 
 
+    /**
+     * 用一个队列实现
+     * @param x
+     */
+    public void push1(int x) {
+        int size = queue1.size();
+        queue1.offer(x);
+        //把前面的元素放到新加入的后面，形成后进先出
+        for (int i=0; i<size; i++) {
+            queue1.offer(queue1.poll());
+        }
+    }
+
+
+
+
     public int pop(){
         return queue1.poll();
     }

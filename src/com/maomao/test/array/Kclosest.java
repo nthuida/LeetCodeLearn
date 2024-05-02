@@ -27,7 +27,7 @@ public class Kclosest {
         if (K == 0 || points.length == 0) {
             return new int[0][2];
         }
-        // 默认是小根堆，实现大根堆需要重写一下比较器。优先队列
+        // 默认是小项堆，实现大项堆需要重写一下比较器。优先队列
         PriorityQueue<int []> pq = new PriorityQueue<>((p1, p2) -> (p2[0] * p2[0] + p2[1] * p2[1]) - (p1[0] * p1[0] + p1[1] * p1[1]));
         for (int[] point: points) {
             if (pq.size() < K) {

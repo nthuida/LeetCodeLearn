@@ -26,7 +26,7 @@ public class RemoveDuplicates {
     public int removeDuplicates(int[] nums) {
         //初始位置0
         int j = 0;
-        for(int i =0; i<nums.length;i++){
+        for(int i =1; i<nums.length;i++){
             // 相邻两个值比较，不同才做统计操作
             if(nums[i] != nums[j]){
                 nums[++j] = nums[i];
@@ -92,6 +92,10 @@ public class RemoveDuplicates {
             }
         }
         return j+1;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new RemoveDuplicates().removeDuplicates(new int[] {1,2,2,3}));
     }
 
 }

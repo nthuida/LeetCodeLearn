@@ -49,4 +49,24 @@ public class GetMinimumDifference {
             midOrder(root.right, list);
         }
     }
+
+
+    TreeNode pre = null;
+    int min = Integer.MAX_VALUE;
+    public int getMinimumDifferenceII(TreeNode root) {
+       midOrder(root);
+       return min;
+    }
+
+    private void midOrder(TreeNode root) {
+       if (root == null) {
+           return;
+       }
+       midOrder(root.left);
+       if (pre != null) {
+           min = Math.min(min, root.val - pre.val);
+       }
+       pre = root;
+       midOrder(root.right);
+    }
 }

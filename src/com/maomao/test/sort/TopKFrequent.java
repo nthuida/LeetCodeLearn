@@ -33,7 +33,8 @@ public class TopKFrequent {
         }
         //优先队列: 最小堆 保存频率最大的k个数
         //比较的是map的value
-        Queue<Integer> minHeap = new PriorityQueue<>((a, b) -> map.get(a) - map.get(b));
+        //Queue<Integer> minHeap = new PriorityQueue<>((a, b) -> map.get(a) - map.get(b));
+        Queue<Integer> minHeap = new PriorityQueue<>(Comparator.comparingInt(map::get));
         for (int key : map.keySet()) {
             minHeap.add(key);
             if (minHeap.size() > k) {

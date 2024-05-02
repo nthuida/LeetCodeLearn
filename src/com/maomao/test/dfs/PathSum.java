@@ -60,4 +60,28 @@ public class PathSum {
         //回溯
         list.removeLast();
     }
+
+    private void traceBack(TreeNode root, List<List<Integer>> res, LinkedList<Integer> path, int targetSum, int sum) {
+        if (root == null) {
+            return;
+        }
+        sum += root.val;
+        path.add(root.val);
+        if (root.left == null && root.right == null && sum == targetSum) {
+            res.add(new ArrayList<>(path));
+            return;
+        }
+        if (root.left != null) {
+            traceBack(root.left, res, path, targetSum, sum);
+            path.removeLast();
+        }
+
+        if (root.right != null) {
+            traceBack(root.right, res, path, targetSum, sum);
+            path.removeLast();
+        }
+
+    }
+
+
 }

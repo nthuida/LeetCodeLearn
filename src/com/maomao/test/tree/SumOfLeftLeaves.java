@@ -1,5 +1,8 @@
 package com.maomao.test.tree;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * 左子叶之和
  * 计算给定二叉树的所有左叶子之和。
@@ -40,5 +43,43 @@ public class SumOfLeftLeaves {
         traverse(root.left);
         traverse(root.right);
 
+    }
+
+
+    public int sumOfLeftLeavesII(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        int leave = 0;
+        if (root.left != null && root.left.left == null && root.left.right == null) {
+            leave = root.left.val;
+        }
+
+        int left = sumOfLeftLeavesII(root.left);
+        int right = sumOfLeftLeavesII(root.right);
+
+        return leave + left + right;
+    }
+
+    public int findBottomLeftValue(TreeNode root) {
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        int left = 0;
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            for (int i=0; i<size; i++) {
+                TreeNode node = queue.poll();
+                if (i == 0) {
+                    left = node.val;
+                }
+                if (node.left != null) {
+                    queue.offer(node.left);
+                }
+                if (node.right != null) {
+                    queue.offer(node.right);
+                }
+            }
+        }
+        return left;
     }
 }

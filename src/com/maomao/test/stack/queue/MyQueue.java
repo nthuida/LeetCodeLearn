@@ -1,4 +1,4 @@
-package com.maomao.test.queue;
+package com.maomao.test.stack.queue;
 
 import java.util.Stack;
 
