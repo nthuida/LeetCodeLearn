@@ -72,8 +72,8 @@ public class LongestIncreasingPath {
         for (int[] dir : direction) {
             int newX = i + dir[0];
             int newY = j + dir[1];
-            if (newX >= 0 && newY >=0 && newX < matrix.length && newY < matrix[0].length && matrix[i][j] > matrix[newX][newY] ) {
-                //满足条件matrix[i][j] > matrix[newX][newY]，再比较获取最大值
+            if (newX >= 0 && newY >=0 && newX < matrix.length && newY < matrix[0].length && matrix[i][j] < matrix[newX][newY] ) {
+                //满足条件matrix[i][j] < matrix[newX][newY]，再比较获取最大值
                 visited[i][j] = Math.max(visited[i][j], dfs(matrix, newX, newY, visited) + 1);
             }
         }

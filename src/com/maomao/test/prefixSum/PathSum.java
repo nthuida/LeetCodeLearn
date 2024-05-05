@@ -81,23 +81,23 @@ public class PathSum {
            return 0;
        }
        //key为前缀和，value为次数
-       Map<Integer, Integer> map = new HashMap<>();
+       Map<Long, Long> map = new HashMap<>();
        //为了得到子节点到根节点的路径
-       map.put(0,1);
+       map.put((long)0,(long)1);
        dfs(root, sum, 0, map);
        return count;
     }
 
-    private void dfs(TreeNode root, int target, int curSum, Map<Integer, Integer> map) {
+    private void dfs(TreeNode root, int target, long curSum, Map<Long, Long> map) {
         if (root == null) {
             return;
         }
         //当前的前缀和
         curSum += root.val;
         //如果存在前缀和为curSum-target的节点，则两个节点之间的路径和正好为target,
-        count += map.getOrDefault(curSum-target, 0);
+        count += map.getOrDefault(curSum-target, (long)0);
         //前缀和计数
-        map.put(curSum, map.getOrDefault(curSum, 0) +1);
+        map.put(curSum, map.getOrDefault(curSum, (long)0) +1);
 
         //左右子树，curSum不回溯 值传递，每层递归的值不一样
         dfs(root.left, target, curSum, map);

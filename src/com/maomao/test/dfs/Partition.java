@@ -54,12 +54,10 @@ public class Partition {
             }
             //选择
             path.add(str);
-            System.out.println("回溯前：" + path.toString());
             //进入下一步
             backtrack(i+1, s, path, res);
             //回溯
             path.removeLast();
-            System.out.println("  回溯后：" + path.toString());
         }
     }
 
@@ -68,6 +66,5 @@ public class Partition {
         StringBuilder builder = new StringBuilder(s);
         return s.equals(builder.reverse().toString());
     }
-
 
 }

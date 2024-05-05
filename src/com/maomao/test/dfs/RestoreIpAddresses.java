@@ -67,8 +67,11 @@ public class RestoreIpAddresses {
         }
         for (int i= begin; i<s.length(); i++) {
             // 每次分割后，判断剩下的字符串的长度是否合理，进行剪枝
-            if (s.length()-i-1 > 3 * (3 - splitCount)) {
+            /*if (s.length()-i-1 > 3 * (3 - splitCount)) {
                 continue;
+            }*/
+            if (i-begin > 3) {
+                break;
             }
             //ip是否合法
             if (!judgeIfIpSegment(s.substring(begin, i+1))) {

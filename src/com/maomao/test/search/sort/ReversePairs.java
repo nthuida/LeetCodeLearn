@@ -1,4 +1,4 @@
-package com.maomao.test.sort;
+package com.maomao.test.search.sort;
 
 /**
  * 数组中的逆序对

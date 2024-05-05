@@ -81,4 +81,35 @@ public class SolveSudoku {
         }
         return true;
     }
+
+
+    /**
+     * 二维递归
+     * @param board
+     * @return
+     */
+    boolean backTrace(char[][] board) {
+
+        for (int i=0; i<9; i++) {
+            for (int j=0; j<9; j++) {
+                if (board[i][j] == '.') {
+                    for (char ch = '1'; ch <='9'; ch++) {
+                        if (!valid(i,j,ch,board)) {
+                            continue;
+                        }
+                        board[i][j] = ch;
+                        if (backTrace(board)) {
+                            //找到结果，直接返回
+                            return true;
+                        }
+                        board[i][j] = '.';
+                    }
+                    // 9个数都试完了，都不行，那么就返回false
+                    return false;
+                }
+            }
+        }
+        // 遍历完没有返回false，说明找到了合适棋盘位置了
+        return true;
+    }
 }

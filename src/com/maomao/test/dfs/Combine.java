@@ -27,7 +27,6 @@ import java.util.List;
 public class Combine {
 
     public List<List<Integer>> combine(int n, int k) {
-        //路径
         LinkedList<Integer> track = new LinkedList<>();
         List<List<Integer>> result = new ArrayList<>();
 

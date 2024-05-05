@@ -1,5 +1,8 @@
 package com.maomao.test.tree;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 恢复二叉搜索树
  * 给你二叉搜索树的根节点 root ，该树中的两个节点被错误地交换。请在不改变其结构的情况下，恢复这棵树。
@@ -55,5 +58,60 @@ public class RecoverTree {
         pre = root;
 
         midOrder(root.right);
+    }
+
+    public void recoverTreeII(TreeNode root) {
+        List<TreeNode> list = new ArrayList<>();
+        midOrder(root,list);
+        TreeNode first = null;
+        TreeNode second = null;
+        for (int i=0; i<list.size()-1; i++) {
+            if (list.get(i).val > list.get(i+1).val) {
+                if (first == null) {
+                    first = list.get(i);
+                }
+                second = list.get(i+1);
+            }
+        }
+        if (first != null && second != null) {
+            int temp = first.val;
+            first.val = second.val;
+            second.val = temp;
+        }
+
+    }
+
+    private void midOrder(TreeNode root, List<TreeNode> list) {
+        if (root == null) {
+            return;
+        }
+        midOrder(root.left, list);
+        list.add(root);
+        midOrder(root.right, list);
+    }
+
+
+    int count = 0;
+    public int pathSum(TreeNode root, int targetSum) {
+        dfs(root, targetSum, 0);
+        return count;
+    }
+
+    private void dfs(TreeNode root, int targetSum, int sum) {
+        if (root == null) {
+            return;
+        }
+        sum += root.val;
+        if (sum == targetSum) {
+            count++;
+            return;
+        }
+        if (root.left != null) {
+            dfs(root.left, targetSum, sum);
+        }
+
+        if (root.right != null) {
+            dfs(root.right, targetSum, sum);
+        }
     }
 }

@@ -51,6 +51,7 @@ public class SumOfLeftLeaves {
             return 0;
         }
         int leave = 0;
+        //过节点的父节点来判断其左孩子是不是左叶子
         if (root.left != null && root.left.left == null && root.left.right == null) {
             leave = root.left.val;
         }

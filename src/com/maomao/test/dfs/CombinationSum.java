@@ -103,7 +103,7 @@ public class CombinationSum {
             return;
         }
         for (int i = start; i < nums.length; i++) {
-            //排好序，防止得到的组合重复
+            //排好序，防止得到的组合重复，同层使用过的元素去重
             if (i > start && nums[i-1] == nums[i]) {
                 continue;
             }
@@ -148,6 +148,11 @@ public class CombinationSum {
         //终止条件
         if (track.size() == k && n==sum) {
             res.add(new ArrayList<>(track));
+            return;
+        }
+
+        //剪枝
+        if (sum > n) {
             return;
         }
 

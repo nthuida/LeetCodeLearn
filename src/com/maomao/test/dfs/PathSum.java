@@ -61,27 +61,41 @@ public class PathSum {
         list.removeLast();
     }
 
-    private void traceBack(TreeNode root, List<List<Integer>> res, LinkedList<Integer> path, int targetSum, int sum) {
-        if (root == null) {
-            return;
-        }
-        sum += root.val;
-        path.add(root.val);
-        if (root.left == null && root.right == null && sum == targetSum) {
-            res.add(new ArrayList<>(path));
-            return;
-        }
-        if (root.left != null) {
-            traceBack(root.left, res, path, targetSum, sum);
-            path.removeLast();
-        }
 
-        if (root.right != null) {
-            traceBack(root.right, res, path, targetSum, sum);
-            path.removeLast();
-        }
+    public static void main(String[] args) {
+        TreeNode root = new TreeNode(5);
+
+
+        TreeNode node13 = new TreeNode(13);
+
+        TreeNode rnode4 = new TreeNode(4);
+        TreeNode node1 = new TreeNode(1);
+        TreeNode node5 = new TreeNode(5);
+        rnode4.left = node5;
+        rnode4.right = node1;
+
+        TreeNode node8 = new TreeNode(8);
+        node8.left = node13;
+        node8.right = rnode4;
+
+        TreeNode node4 = new TreeNode(4);
+
+        TreeNode node11 = new TreeNode(11);
+        TreeNode node7 = new TreeNode(7);
+        TreeNode node2 = new TreeNode(2);
+        node11.left = node7;
+        node11.right = node2;
+
+        node4.left = node11;
+
+        root.left = node4;
+        root.right = node8;
+
+
+
+        List<List<Integer>> res = new PathSum().pathSum(root, 22);
+        System.out.println(res);
+
 
     }
-
-
 }
