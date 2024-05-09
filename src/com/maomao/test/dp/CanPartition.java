@@ -90,4 +90,31 @@ public class CanPartition {
         return dp[target];
     }
 
+    public boolean canPartitionIII(int[] nums) {
+        int sum = 0;
+        for (int num : nums) {
+            sum += num;
+        }
+        //奇数不满足
+        if (sum%2 == 1) {
+            return false;
+        }
+        int target = sum/2;
+        //dp[i]表示容量为i的背包可以装的最大重量为dp[i]
+        int[] dp = new int[target+1];
+        for (int num : nums) {
+            //倒序遍历，保证物品只被添加一次
+            for (int j=target; j-num>=0; j--) {
+                dp[j] = Math.max(dp[j], dp[j-num] + num);
+                System.out.println("dp[" + j + "]=" + dp[j]);
+            }
+        }
+        return dp[target] == target;
+    }
+
+    public static void main(String[] args) {
+        int[] nums = {1,5,11,5};
+        System.out.println(new CanPartition().canPartitionIII(nums));
+    }
+
 }

@@ -23,8 +23,9 @@ public class IntegerBreak {
     /**
      * 动态规划
      * 状态定义：dp[i]表示拆分i获得的最大乘积
-     * 状态转移方程：dp[i] = max((i-j)*j, j*dp[i-j]), i<=j<i
+     * 状态转移方程：dp[i] = max((i-j)*j, j*dp[i-j]), j<i
      * (i-j)*j 表示只拆成两个
+     * j*dp[i-j] 表示拆成两个以及两个以上的个数,再相乘
      * @param n
      * @return
      */

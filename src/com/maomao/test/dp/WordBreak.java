@@ -47,8 +47,10 @@ public class WordBreak {
         dp[0] = true;
         for (int i=1; i<=s.length(); i++) {
             for (int j=0; j<i; j++) {
-                //判断dp[j]，以及【j,i】的元素是否在字典内
+                //判断dp[j]，以及[j,i]的元素是否在字典内
+                //i对应的字符串坐标为i-1,j对应的字符串坐标为j-1,子串为j-1+1, i-1+1;
                 if (dp[j] && wordDict.contains(s.substring(j, i))) {
+                    //找到一个就可以
                     dp[i] = true;
                     break;
                 }

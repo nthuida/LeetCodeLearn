@@ -53,4 +53,18 @@ public class MinCostClimbingStairs {
         return Math.min(dp[len-2], dp[len-1]);
     }
 
+    public int minCostClimbingStairsII(int[] cost) {
+        int len = cost.length;
+        //dp[i]表示到达第i个台阶的最低花费
+        int[] dp = new int[len+1];
+        //下标为 0 或下标为 1 的台阶不付钱
+        dp[0] = 0;
+        dp[1] = 0;
+        for (int i=2; i<=len; i++) {
+            dp[i] = Math.min(dp[i-2] + cost[i-2], dp[i-1] + cost[i-1]);
+        }
+        return dp[len];
+
+    }
+
 }
