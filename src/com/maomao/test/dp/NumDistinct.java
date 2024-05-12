@@ -22,6 +22,8 @@ public class NumDistinct {
      * 相等时，分为两种情况：用s[i]这个元素区去配,个数为dp[i-1][j-1]
      *                   不用s[i]这个元素去匹配，个数为dp[i-1][j]
      * dp[i][j] = dp[i-1][j]                 s[i] != t[j]
+     *
+     * 整个过程只对s进行删除操作
      * @param s
      * @param t
      * @return

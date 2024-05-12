@@ -111,6 +111,7 @@ public class MaxProfit {
      * 输出: 0
      * 解释: 在这种情况下, 没有交易完成, 所以最大利润为 0。
      *
+     * 贪心
      * 最大利润 = max(第i天的价格 - 前i天里最低的买入价格)
      * @param prices
      * @return

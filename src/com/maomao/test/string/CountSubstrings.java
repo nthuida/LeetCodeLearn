@@ -47,25 +47,6 @@ public class CountSubstrings {
         return count;
     }
 
-    /**
-     * 暴力
-     * @param s
-     * @return
-     */
-    public int countSubstringsII(String s) {
-        int count = 0;
-        int len = s.length();
-        for (int i=0; i<len; i++) {
-            for (int end=i; end<len; end++) {
-                String str = s.substring(i,end+1);
-                String reverse = new StringBuilder(str).reverse().toString();
-                if (str.equals(reverse)) {
-                    count++;
-                }
-            }
-        }
-        return count;
-    }
 
     /**
      * 动态规划
