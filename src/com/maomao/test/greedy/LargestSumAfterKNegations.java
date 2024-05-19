@@ -24,6 +24,15 @@ import java.util.Arrays;
  **/
 public class LargestSumAfterKNegations {
 
+    /**
+     * 第一步：从小到大排序
+     * 第二步：从前向后遍历，遇到负数将其变为正数，同时K--
+     * 第三步：如果K还大于0，那么反复转变数值最小的元素，将K用完
+     * 第四步：求和
+     * @param nums
+     * @param k
+     * @return
+     */
     public int largestSumAfterKNegations(int[] nums, int k) {
         //把可能的负数排在从小到大前面
         Arrays.sort(nums);

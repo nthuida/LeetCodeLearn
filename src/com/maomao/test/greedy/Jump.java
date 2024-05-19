@@ -1,5 +1,7 @@
 package com.maomao.test.greedy;
 
+import java.util.Arrays;
+
 /**
  * 跳跃游戏II
  * 给定一个非负整数数组，你最初位于数组的第一个位置。
@@ -40,6 +42,30 @@ public class Jump {
             }
         }
         return steps;
+    }
+
+    /**
+     * 动态规划
+     * dp[i] 跳到i的最小次数
+     * @param nums
+     * @return
+     */
+    public int jumpII(int[] nums) {
+        int len = nums.length;
+        int[] dp = new int[len];
+        //默认最大值
+        Arrays.fill(dp, len-1);
+        //第一个不需要跳
+        dp[0] = 0;
+        for (int i=1; i<len; i++) {
+            for (int j=0; j<i; j++) {
+                if (j+nums[j] >= i) {
+                    //j能跳到i
+                    dp[i] = Math.min(dp[i], dp[j]+1);
+                }
+            }
+        }
+        return dp[len-1];
     }
 
     /**

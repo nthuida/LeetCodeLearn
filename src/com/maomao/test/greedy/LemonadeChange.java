@@ -37,13 +37,9 @@ public class LemonadeChange {
                 }
             } else {
                 //20的，优先找零10
-                if (tenCount >0) {
+                if (tenCount >0 && fiveCount > 0) {
                     tenCount--;
-                    if (fiveCount >0) {
-                        fiveCount--;
-                    } else {
-                        return false;
-                    }
+                    fiveCount--;
                 } else {
                     if (fiveCount >=3) {
                         fiveCount -= 3;
