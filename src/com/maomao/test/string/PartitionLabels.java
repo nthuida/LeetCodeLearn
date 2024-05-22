@@ -37,7 +37,7 @@ public class PartitionLabels {
         int start=0, end = 0;
         for (int i=0; i<s.length(); i++) {
             end = Math.max(end, lastIndex[s.charAt(i) - 'a']);
-            //找到最后一个，分割
+            //找到之前遍历过的所有字母的最远边界，分割
             if (i == end) {
                 //长度
                 res.add(end-start+1);
